@@ -11,7 +11,7 @@ Read more in our [application for the Scholarly Communications Insitute.](https:
 - Samantha Hindle, bioRxiv, USA
 - Tony Ross-Hellauer, Know-Center, Austria
 
-
+See our [repositories on GitHub.](https://github.com/transpose-publishing)
 
 <!---
 You can use the [editor on GitHub](https://github.com/transpose-publishing/transpose-publishing/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
