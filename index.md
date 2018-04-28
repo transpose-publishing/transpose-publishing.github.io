@@ -14,7 +14,7 @@ Read more in our [application for the Scholarly Communications Insitute.](https:
 See our [repositories on GitHub.](https://github.com/transpose-publishing)
 
 ### Supporting organizations
-[![ASAPbio](transpose-publishing.github.io/images/ASAP-small.png)](asapbio.org)
+[![ASAPbio](transpose-publishing.github.io/images/ASAP-small.png)](http://asapbio.org)
 
 <!--- When displaying SHERPA data:
 ### Data sources
