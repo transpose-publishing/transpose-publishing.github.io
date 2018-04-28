@@ -14,9 +14,16 @@ Read more in our [application for the Scholarly Communications Insitute.](https:
 See our [repositories on GitHub.](https://github.com/transpose-publishing)
 
 ### Supporting organizations
-![ASAPbio](transpose-publishing.github.io/images/ASAP-small.png)
+[![ASAPbio](transpose-publishing.github.io/images/ASAP-small.png)](asapbio.org)
 
-<!---
+<!--- When displaying SHERPA data:
+### Data sources
+[![Sherpa Romeo](transpose-publishing.github.io/images/romeosmall.gif)](http://www.sherpa.ac.uk/RoMEO.php)
+This information is derived from the RoMEO database which is compiled by SHERPA and has been modified for use here. Data from SHERPA RoMEO is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 2.5 License.](https://creativecommons.org/licenses/by-nc-sa/2.5/)
+--->
+
+
+<!--- Original text
 You can use the [editor on GitHub](https://github.com/transpose-publishing/transpose-publishing/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
