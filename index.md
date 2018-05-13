@@ -15,6 +15,7 @@ See our [repositories on GitHub.](https://github.com/transpose-publishing)
 
 ### Supporting organizations
 [![ASAPbio](transpose-publishing.github.io/images/ASAP-small.png)](http://asapbio.org)
+[![OpenUP](transpose-publishing.github.io/images/openup-small.png)](http://asapbio.org)
 
 <!--- When displaying SHERPA data:
 ### Data sources
