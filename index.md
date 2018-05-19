@@ -3,12 +3,13 @@ TRANSPOSE is a new, grassroots initiative aiming to crowdsource a list of journa
 Read more in our [application for the Scholarly Communications Institute.](https://docs.google.com/document/d/1vcsf2pzQelBVUF6GaSU4FQ8JhDVvq4wrpc4ulZPA7hE/edit#heading=h.v9lrq4a95j57)
 
 ### Contributors
-- Jessica Polka, ASAPbio, USA
-- Gary McDowell, Future of Research, USA
-- Daniel Himmelstein, UPenn, USA
-- Jennifer Lin, Crossref, USA
+- Cameron Blandford, USA
 - Benedikt Fecher, Humboldt Institute for Internet and Society, Germany
+- Daniel Himmelstein, UPenn, USA
 - Samantha Hindle, bioRxiv, USA
+- Jennifer Lin, Crossref, USA
+- Gary McDowell, Future of Research, USA
+- Jessica Polka, ASAPbio, USA
 - Tony Ross-Hellauer, Know-Center, Austria
 
 See our [repositories on GitHub.](https://github.com/transpose-publishing)
