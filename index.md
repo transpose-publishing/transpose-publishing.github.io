@@ -13,7 +13,7 @@ Read more in our [application for the Scholarly Communications Institute.](https
 - Tony Ross-Hellauer, Know-Center, Austria
 
 
-**[👉Edit and add new records to the TRANSPOSE policy database](https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true)**
+**[📝Edit and add new records to the TRANSPOSE policy database](https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true)**
 
 Preprint policies are displayed at [ASAPbio](http://asapbio.org/transpose-policies).
 
@@ -21,7 +21,7 @@ Preprint policies are displayed at [ASAPbio](http://asapbio.org/transpose-polici
 [![ASAPbio](transpose-publishing.github.io/images/ASAP-small.png)](http://asapbio.org)
 [![OpenUP](transpose-publishing.github.io/images/openup-small.png)](http://openup-h2020.eu/)
 
-_See our [repositories on GitHub.](https://github.com/transpose-publishing)_
+_See our [repositories on GitHub.](https://github.com/transpose-preprints)_
 
 <!--- When displaying SHERPA data:
 ### Data sources
