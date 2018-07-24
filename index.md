@@ -21,7 +21,7 @@ Preprint policies are displayed at [ASAPbio](http://asapbio.org/transpose-polici
 [![ASAPbio](transpose-publishing.github.io/images/ASAP-small.png)](http://asapbio.org)
 [![OpenUP](transpose-publishing.github.io/images/openup-small.png)](http://openup-h2020.eu/)
 
-_See our [repositories on GitHub.](https://github.com/transpose-publishing/policies-database)_
+_See our [repositories on GitHub.](https://github.com/transpose-publishing)_
 
 <!--- When displaying SHERPA data:
 ### Data sources
