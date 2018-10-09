@@ -17,8 +17,6 @@ Read more in our [application for the Scholarly Communications Institute.](https
 
 Preview all the [information collected (pdf)](https://transpose-publishing.github.io/images/TRANSPOSE%20policy%20editor%20-%20Google%20Forms%202018%2007%2024.pdf).
 
-Preprint policies are displayed at [ASAPbio](http://asapbio.org/transpose-policies).
-
 ### Supporting organizations
 [![ASAPbio](transpose-publishing.github.io/images/ASAP-small.png)](http://asapbio.org)
 [![OpenUP](transpose-publishing.github.io/images/openup-small.png)](http://openup-h2020.eu/)
