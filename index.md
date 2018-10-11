@@ -2,6 +2,13 @@ TRANSPOSE is a new, grassroots initiative aiming to crowdsource a list of journa
 
 Read more in our [application for the Scholarly Communications Institute.](https://docs.google.com/document/d/1vcsf2pzQelBVUF6GaSU4FQ8JhDVvq4wrpc4ulZPA7hE/edit#heading=h.v9lrq4a95j57)
 
+### [📝Edit and add new records to the TRANSPOSE policy database](https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true)**
+
+Preview all the [information collected (pdf)](https://transpose-publishing.github.io/images/TRANSPOSE%20policy%20editor%20-%20Google%20Forms%202018%2010%2011.pdf).
+
+### Why TRANSPOSE?
+[Read potential use cases to learn how these data could be useful to different stakeholder groups](./usecases.html).
+
 ### Contributors
 - Cameron Blandford, 221B, USA
 - Benedikt Fecher, Humboldt Institute for Internet and Society, Germany
@@ -11,11 +18,6 @@ Read more in our [application for the Scholarly Communications Institute.](https
 - Gary McDowell, Future of Research, USA
 - Jessica Polka, ASAPbio, USA
 - Tony Ross-Hellauer, Know-Center, Austria
-
-
-**[📝Edit and add new records to the TRANSPOSE policy database](https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true)**
-
-Preview all the [information collected (pdf)](https://transpose-publishing.github.io/images/TRANSPOSE%20policy%20editor%20-%20Google%20Forms%202018%2010%2011.pdf).
 
 ### Supporting organizations
 [![ASAPbio](transpose-publishing.github.io/images/ASAP-small.png)](http://asapbio.org)
