@@ -1,3 +1,6 @@
+##Why use TRANSPOSE data?
+
+Data on open peer review (OPR), co-review, and detailed preprinting policies could be useful to many different stakeholder groups.
 
 |Group|Type|Use case|
 |:----|:---|:-------|
@@ -12,30 +15,12 @@
 |Researcher|OPR|As a graduate student wanting to learn to peer review, I want a list of journals that publish peer review so I can read good and bad examples.|
 |Researcher|OPR|As a PI, I want to know which journals will give me credit for doing peer review so that I can build a stronger tenure and promotion package.|
 |Researcher|OPR|As an author, I want to pick journals that publish peer review so that I can receive more constructive feedback on the research.|
-Researcher
-OPR
-As an author, I want a list of journals that do "open interaction" collaborative peer review so that the requested revisions are more clear.
-Researcher
-OPR
-As an early career researcher concerned about bias, I want to choose a journal that publishes peer reviews so that this risk would be minimized through transparency.
-Funder
-OPR
-As a funder, I want to read the peer review of the papers I fund so that I can ensure the results are not shared in a journal that has predatory publishing practices.
-Researcher
-Preprints
-As an author, I want to quickly check the list of preprint servers approved across journals so that I do not waste time submitting to a journal where my preprint posting would go against a journal's restrictive prior publication policy.
-Publisher
-Preprints
-As a preprint server, I want to be know preprint policies across journals so that I can be a reliable resource to recommend to researchers what journals to submit.
-Institution
-Preprints
-As an institutional administrator trying to promote open science, I want to know the journals which allow preprints so that I can include them in a list for my researchers.
-Institution
-All
-As a librarian, I want an easy way to look up journal policies across publishers and fields so that I can better advise researchers
-Technology & service provider
-Preprints
-As the developer of a reference manager, I want to know which journals allow citations to preprints so that I can...
-Technology & service provider
-OPR
-As the representative of a manuscript tracking system, I want to learn journal peer review policies so that I can better serve the peer review needs of my clients.
+|Researcher|OPR|As an author, I want a list of journals that do "open interaction" collaborative peer review so that the requested revisions are more clear.|
+|Researcher|OPR|As an early career researcher concerned about bias, I want to choose a journal that publishes peer reviews so that this risk would be minimized through transparency.|
+|Funder|OPR|As a funder, I want to read the peer review of the papers I fund so that I can ensure the results are not shared in a journal that has predatory publishing practices.|
+|Researcher|Preprints|As an author, I want to quickly check the list of preprint servers approved across journals so that I do not waste time submitting to a journal where my preprint posting would go against a journal's restrictive prior publication policy.|
+|Publisher|Preprints|As a preprint server, I want to be know preprint policies across journals so that I can be a reliable resource to recommend to researchers what journals to submit.|
+|Institution|Preprints|As an institutional administrator trying to promote open science, I want to know the journals which allow preprints so that I can include them in a list for my researchers.|
+|Institution|All|As a librarian, I want an easy way to look up journal policies across publishers and fields so that I can better advise researchers.|
+|Technology & service provider|Preprints|As the developer of a reference manager, I want to know which journals allow citations to preprints so that I can code citation styles appropriately, or notify users when they try to add a disallowed citation.|
+|Technology & service provider|OPR|As the representative of a manuscript tracking system, I want to learn journal peer review policies so that I can better serve the peer review needs of my clients.|
