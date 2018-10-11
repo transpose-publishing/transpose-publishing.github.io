@@ -1,13 +1,13 @@
-TRANSPOSE is a new, grassroots initiative aiming to crowdsource a list of journal policies for (1) open peer review, (2) co-reviewer involvement, and (3) pre-printing. We’ll then look at a representative subset of journals in more detail to systematically taxonomize and analyse their stated peer review and preprinting policies. These initiatives will then be complemented by a strategic discussion on how journals could be persuaded to improve their policies. As a final step, we will work to foster data-sharing in order to more systematically test how these innovations affect the quality and efficiency of scholarly communications, as well as their effects on researchers. These actions will mitigate the risks that adopters of innovative practices run, clarifying options and providing evidence of systematic change.  
+TRANSPOSE is a grassroots initiative build a crowdsourced database of journal policies. We're focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and pubilshers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.
 
 Read more in our [application for the Scholarly Communications Institute.](https://docs.google.com/document/d/1vcsf2pzQelBVUF6GaSU4FQ8JhDVvq4wrpc4ulZPA7hE/edit#heading=h.v9lrq4a95j57)
 
-### [📝Edit and add new records to the TRANSPOSE policy database](https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true)**
-
-Preview all the [information collected (pdf)](https://transpose-publishing.github.io/images/TRANSPOSE%20policy%20editor%20-%20Google%20Forms%202018%2010%2011.pdf).
-
 ### Why TRANSPOSE?
 [Read potential use cases to learn how these data could be useful to different stakeholder groups](./usecases.html).
+
+### [📝Edit and add new records to the TRANSPOSE policy database](https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true)
+
+Preview all the [information collected (pdf)](https://transpose-publishing.github.io/images/TRANSPOSE%20policy%20editor%20-%20Google%20Forms%202018%2010%2011.pdf).
 
 ### Contributors
 - Cameron Blandford, 221B, USA
