@@ -15,7 +15,7 @@ Read more in our [application for the Scholarly Communications Institute.](https
 
 **[📝Edit and add new records to the TRANSPOSE policy database](https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true)**
 
-Preview all the [information collected (pdf)](https://transpose-publishing.github.io/images/TRANSPOSE%20policy%20editor%20-%20Google%20Forms%202018%2007%2024.pdf).
+Preview all the [information collected (pdf)](https://transpose-publishing.github.io/images/TRANSPOSE%20policy%20editor%20-%20Google%20Forms%202018%2010%2011.pdf).
 
 ### Supporting organizations
 [![ASAPbio](transpose-publishing.github.io/images/ASAP-small.png)](http://asapbio.org)
