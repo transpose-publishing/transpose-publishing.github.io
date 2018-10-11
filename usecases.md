@@ -1,6 +1,6 @@
 ## Why use TRANSPOSE data?
 
-Data on open peer review (OPR), co-review, and detailed preprinting policies could be useful to many different stakeholder groups.
+Data on open peer review (OPR), co-review, and detailed preprinting policies could be useful to many different stakeholder groups. Here are a few different examples:
 
 |Group|Type|Use case|
 |:----|:---|:-------|
