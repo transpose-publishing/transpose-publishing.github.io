@@ -1,5 +1,3 @@
-![TRANSPOSElogo](transpose-publishing.github.io/images/TRANSPOSElogo.PNG)
-
 TRANSPOSE is a grassroots initiative build a crowdsourced database of journal policies. We're focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and pubilshers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.
 
 ### More about TRANSPOSE
