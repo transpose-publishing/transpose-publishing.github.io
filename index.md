@@ -23,6 +23,8 @@ Preview all the [information collected (pdf)](https://transpose-publishing.githu
 
 _See our [repositories on GitHub.](https://github.com/transpose-publishing)_
 
+**[💬 Follow us on Twitter]**(https://twitter.com/TRANSPOSEsci)
+
 <!--- When displaying SHERPA data:
 ### Data sources
 [![Sherpa Romeo](transpose-publishing.github.io/images/romeosmall.gif)](http://www.sherpa.ac.uk/RoMEO.php)
