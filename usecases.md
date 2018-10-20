@@ -18,6 +18,7 @@ Data on open peer review (OPR), co-review, and detailed preprinting policies cou
 |Researcher|OPR|As an author, I want a list of journals that do "open interaction" collaborative peer review so that the requested revisions are more clear.|
 |Researcher|OPR|As an early career researcher concerned about bias, I want to choose a journal that publishes peer reviews so that this risk would be minimized through transparency.|
 |Funder|OPR|As a funder, I want to read the peer review of the papers I fund so that I can ensure the results are not shared in a journal that has predatory publishing practices.|
+|Journalist|Preprints|As a journalist, I want authors to know the policy of journals they've submitted to regarding media coverage of preprints so that I can write about preprints without causing a paper to be rejected.|
 |Researcher|Preprints|As an author, I want to quickly check the list of preprint servers approved across journals so that I do not waste time submitting to a journal where my preprint posting would go against a journal's restrictive prior publication policy.|
 |Publisher|Preprints|As a preprint server, I want to be know preprint policies across journals so that I can be a reliable resource to recommend to researchers what journals to submit.|
 |Institution|Preprints|As an institutional administrator trying to promote open science, I want to know the journals which allow preprints so that I can include them in a list for my researchers.|
