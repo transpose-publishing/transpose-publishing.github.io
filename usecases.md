@@ -1,3 +1,5 @@
+![Preprint user stories](transpose-publishing.github.io/images/Preprint user stories.png)
+
 ## Why use TRANSPOSE data?
 
 Data on open peer review (OPR), co-review, and detailed preprinting policies could be useful to many different stakeholder groups. Here are a few different examples:
