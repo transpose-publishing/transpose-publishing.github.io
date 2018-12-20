@@ -1,4 +1,4 @@
-![Preprint user stories](transpose-publishing.github.io/images/Preprint-user-stories.png)
+[![Preprint user stories](transpose-publishing.github.io/images/Preprint-user-stories.png)](https://transpose-publishing.github.io/images/Preprint-user-stories.png)
 
 ## Why use TRANSPOSE data?
 
