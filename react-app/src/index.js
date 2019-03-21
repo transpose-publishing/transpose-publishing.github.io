@@ -1,43 +1,24 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
+import {HashRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import HomePage from './homePage';
 
-const sheetsuApiUrl = 'https://sheetsu.com/apis/v1.0su/7d4c3d615bcf';
-const spreadSheetUrl = 'https://docs.google.com/spreadsheets/d/19fuw6MEVPgoTgqY5Vh8JFEvW_HA4oPaDE_g3BZhB7Ek/edit#gid=0';
+
 
 function App () {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [error, setError] = useState();
-
-  useEffect(() => {
-    fetch(sheetsuApiUrl)
-      .then(resp => resp.json())
-      .then(resp => {
-        setData(resp);
-        setLoading(false);
-      })
-      .catch(err => {
-        setLoading(false);
-        setError(err)
-      })
-  }, []);
-
   return (
-    <div>
-      <p>Hello World!</p>
-      <p>{loading ? 'Fetching spreadsheet data, please wait...' : 'Tada!'}</p>
-      {!loading &&
-      <div>
-        {error
-          ? 'Oops, something went wrong!'
-          : <Fragment>
-              {!!data.length && data.map( item => <div>{item.name}-{item.age}</div>)}
-              <br/>
-              <p>Try it out! Go to the source spreadsheet below and add some names / ages</p>
-              <a target="_blank" href={spreadSheetUrl}>{spreadSheetUrl}</a>
-            </Fragment>}
-      </div>}
-    </div>
+    <Router>
+      <div style={{display: 'flex', flexDirection: 'row'}}>
+        <Link to="/">Home</Link>
+        <Link to="/user-stories">User Stories</Link>
+        <Link to="/about">About</Link>
+      </div>
+      <Switch>
+        <Route exact path="/" component={HomePage}/>
+        <Route path="/user-stories" render={() => <div>User stories</div>}/>
+        <Route path="/about" render={() => <div>About</div>}/>
+      </Switch>
+    </Router>
   )
 }
 
