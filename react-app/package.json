@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --mode production & webpack-dev-server"
+    "start": "webpack --mode development & webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "react": "16.8.4",
-    "react-dom": "16.8.4"
+    "react-dom": "16.8.4",
+    "react-router-dom": "5.0.0"
   }
 }
