@@ -1,0 +1,32 @@
+{
+  "name": "react-app",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --mode production & webpack-dev-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.0",
+    "@babel/preset-env": "7.4.1",
+    "@babel/preset-react": "7.0.0",
+    "babel-loader": "8.0.5",
+    "webpack": "4.29.6",
+    "webpack-cli": "3.3.0",
+    "webpack-dev-server": "3.2.1"
+  },
+  "dependencies": {
+    "react": "16.8.4",
+    "react-dom": "16.8.4"
+  }
+}
