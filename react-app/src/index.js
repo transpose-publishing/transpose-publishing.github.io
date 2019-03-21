@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ReactDom from 'react-dom';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {HashRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import HomePage from './homePage';
 
 const sheetsuApiUrl = 'https://sheetsu.com/apis/v1.0su/7d4c3d615bcf';
