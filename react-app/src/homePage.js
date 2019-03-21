@@ -1,26 +1,8 @@
-import React, {useEffect, useState, Fragment} from 'react';
+import React, {Fragment} from 'react';
 
-const sheetsuApiUrl = 'https://sheetsu.com/apis/v1.0su/7d4c3d615bcf';
 const spreadSheetUrl = 'https://docs.google.com/spreadsheets/d/19fuw6MEVPgoTgqY5Vh8JFEvW_HA4oPaDE_g3BZhB7Ek/edit#gid=0';
 
-export default function HomePage () {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [error, setError] = useState();
-
-  useEffect(() => {
-    fetch(sheetsuApiUrl)
-      .then(resp => resp.json())
-      .then(resp => {
-        setData(resp);
-        setLoading(false);
-      })
-      .catch(err => {
-        setLoading(false);
-        setError(err)
-      })
-  }, []);
-
+export default function HomePage ({loading, data, error}) {
   return (
     <div>
       <p>Hello World!</p>
