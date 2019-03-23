@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import {HashRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import HomePage from './homePage';
 
-const sheetsuApiUrl = 'https://sheetsu.com/apis/v1.0su/7d4c3d615bcf';
+const spreadSheetUrl = 'https://docs.google.com/spreadsheets/d/19fuw6MEVPgoTgqY5Vh8JFEvW_HA4oPaDE_g3BZhB7Ek/edit?usp=sharing';
 
 function App () {
   const [loading, setLoading] = useState(true);
@@ -11,16 +11,20 @@ function App () {
   const [error, setError] = useState();
 
   useEffect(() => {
-    fetch(sheetsuApiUrl)
-      .then(resp => resp.json())
-      .then(resp => {
-        setData(resp);
-        setLoading(false);
-      })
-      .catch(err => {
-        setLoading(false);
-        setError(err)
-      })
+    try {
+      Tabletop.init({
+        key: spreadSheetUrl,
+        callback: function(data, tabletop) {
+          setLoading(false);
+          setData(data);
+        },
+        simpleSheet: true
+      });
+    } catch (e) {
+      setLoading(false);
+      setError('Sorry, something went wrong!')
+    }
+
   }, []);
 
   return (
@@ -30,10 +34,13 @@ function App () {
         <Link to="/user-stories">User Stories</Link>
         <Link to="/about">About</Link>
       </div>
+
+      <Route path="/" render={ routerProps => {
+        //Keeping HomePage route outside of switch to preserve its state regardless of current url path
+        return <HomePage loading={loading} data={data} error={error} {...routerProps}/>
+      }}/>
+
       <Switch>
-        <Route exact path="/" render={() => {
-          return <HomePage loading={loading} data={data} error={error}/>
-        }}/>
         <Route path="/user-stories" render={() => <div>User stories</div>}/>
         <Route path="/about" render={() => <div>About</div>}/>
       </Switch>

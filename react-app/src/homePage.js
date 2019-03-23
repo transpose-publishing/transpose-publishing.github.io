@@ -1,23 +1,76 @@
-import React, {Fragment} from 'react';
+import React, {useState, Fragment} from 'react';
 
-const spreadSheetUrl = 'https://docs.google.com/spreadsheets/d/19fuw6MEVPgoTgqY5Vh8JFEvW_HA4oPaDE_g3BZhB7Ek/edit#gid=0';
 
-export default function HomePage ({loading, data, error}) {
-  return (
+
+export default function HomePage ({loading, data, error, ...routerProps}) {
+  const [searchInput, setInputValue] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchFocused, setSearchFocused] = useState(false);
+
+  function filterData () {
+    let filteredData = data;
+    if(searchTerm) {
+      filteredData = data.filter( item => {
+        for (const key in item) {
+          if(item[key].indexOf(searchTerm) > -1) return true
+        }
+        return false
+      })
+    }
+    return filteredData.map( (item, index) =>
+      <div key={index} className="list-item">
+        {index + 1}. {item.title}{item.publisher ? ` - ${item.publisher}` : ''}{item.doi ? ` - ${item.doi}` : ''}{item.issn ? ` - ${item.issn}` : ''}
+      </div>)
+  }
+
+  function selectSearchTerm (title) {
+    setSearchTerm(title);
+    setInputValue(title)
+  }
+
+  return routerProps.location.pathname !== '/' ? null : (
     <div>
-      <p>Hello World!</p>
-      <p>{loading ? 'Fetching spreadsheet data, please wait...' : 'Tada!'}</p>
-      {!loading &&
-      <div>
-        {error
-          ? 'Oops, something went wrong!'
-          : <Fragment>
-            {!!data.length && data.map( item => <div>{item.name}-{item.age}</div>)}
-            <br/>
-            <p>Try it out! Go to the source spreadsheet below and add some names / ages</p>
-            <a target="_blank" href={spreadSheetUrl}>{spreadSheetUrl}</a>
-          </Fragment>}
-      </div>}
+      <div className="home-banner">
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchInput}
+            onFocus={() => setSearchFocused(true)}
+            onBlur={() => {
+              if(!searchInput) {
+                setSearchTerm("")
+              }
+              setSearchFocused(false)
+            }}
+            onChange={e => setInputValue(e.target.value)}/>
+
+          {!loading && searchInput.length > 2 && searchFocused &&
+          <div className="search-suggestions">
+            {data
+              .filter( item => {
+                return item.title.toLowerCase().indexOf(searchInput.toLowerCase()) > -1
+              })
+              .map( item =>
+                <div key={`${item.title}-${item.publisher}-${Math.random()}`} className="search-suggestion" onMouseDown={() => selectSearchTerm(item.title)}>{item.title}</div>
+              )}
+          </div>}
+        </div>
+      </div>
+
+      <div className="home-content">
+        {loading
+          ? <p>Fetching spreadsheet data, please wait...</p>
+          : <div>
+              {error
+                ? error
+                : <Fragment>
+                  {!!data.length && filterData()}
+                </Fragment>}
+            </div>}
+
+      </div>
+
     </div>
   )
 }
