@@ -10,7 +10,7 @@ export default function HomePage ({loading, data, error, ...routerProps}) {
   return routerProps.location.pathname !== '/' ? null : (
     <div>
       <div className="home-banner">
-        <Search data={data} loading={loading} setSearchTerm={setSearchTerm}/>
+        <Search data={data} loading={loading} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
       </div>
 
       <div className="home-content">

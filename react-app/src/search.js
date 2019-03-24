@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import {KEYCODE} from './constants';
 
 
-export default function Search ({setSearchTerm, loading, data}) {
+export default function Search ({searchTerm, setSearchTerm, loading, data}) {
   const [searchInputValue, setInputValue] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
   const [listItemFocused, setListFocus] = useState(false);
@@ -16,6 +16,10 @@ export default function Search ({setSearchTerm, loading, data}) {
     return () => document.removeEventListener('mousedown', handleClick)
   }, []);
 
+  useEffect(function onMount_populateSearchTerm() {
+    setInputValue(searchTerm);
+  }, []);
+
   useEffect(function onListFocusChange_focusItem() {
     if(listItemFocused !== false) {
       focusedItemNode.current.focus()
@@ -26,9 +30,6 @@ export default function Search ({setSearchTerm, loading, data}) {
     const container = searchContainerNode.current;
     if(!container.contains(e.target)) {
       resetFocus();
-      if(searchInputValue === "") {
-        setSearchTerm("")
-      }
     }
   }
 
@@ -100,6 +101,7 @@ export default function Search ({setSearchTerm, loading, data}) {
         onFocus={onInputFocus}
         onKeyDown={keyDownOnInput}
         onChange={e => setInputValue(e.target.value)}
+        autoComplete="off"
       />
 
       {!loading && searchInputValue.length > 2 && searchFocused &&
