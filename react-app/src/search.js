@@ -11,10 +11,12 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
   const searchInputNode = useRef(null);
   const focusedItemNode = useRef(null);
 
-  useEffect(function onMount_addClickOutsideListener() {
-    document.addEventListener('mousedown', handleClick);
+  useEffect(function onFocus_addClickOutsideListener() {
+    if(searchFocused) {
+      document.addEventListener('mousedown', handleClick);
+    }
     return () => document.removeEventListener('mousedown', handleClick)
-  }, []);
+  }, [searchFocused]);
 
   useEffect(function onMount_populateSearchTerm() {
     setInputValue(searchTerm);
