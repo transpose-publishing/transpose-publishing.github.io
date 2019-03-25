@@ -11,20 +11,14 @@ function App () {
   const [error, setError] = useState();
 
   useEffect(() => {
-    try {
-      Tabletop.init({
-        key: spreadSheetUrl,
-        callback: function(data, tabletop) {
-          setLoading(false);
-          setData(data);
-        },
-        simpleSheet: true
-      });
-    } catch (e) {
-      setLoading(false);
-      setError('Sorry, something went wrong!')
-    }
-
+    Tabletop.init({
+      key: spreadSheetUrl,
+      callback: function(data, tabletop) {
+        setLoading(false);
+        setData(data);
+      },
+      simpleSheet: true
+    });
   }, []);
 
   return (
