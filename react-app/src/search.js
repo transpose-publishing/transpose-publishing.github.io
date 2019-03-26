@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {KEYCODE} from './constants';
-import {useMergeState, keyboardControls} from './utils';
+import {useMergeState, useClickOutside, keyboardControls} from './utils';
 
 
 export default function Search ({searchTerm, setSearchTerm, loading, data}) {
@@ -11,25 +11,18 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
   const searchInputNode = useRef(null);
   const focusedItemNode = useRef(null);
 
-  useEffect(function onFocus_addClickOutsideListener() {
-    if(searchFocused) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [searchFocused]);
+  useClickOutside({
+    container: searchContainerNode.current,
+    handler: resetFocus,
+    dependencies: [searchFocused],
+    conditional: searchFocused === true
+  });
 
   useEffect(function onListFocusChange_focusItem() {
     if(listItemFocused !== false) {
       focusedItemNode.current.focus()
     }
   }, [listItemFocused]);
-
-  function handleClickOutside (e) {
-    const container = searchContainerNode.current;
-    if(!container.contains(e.target)) {
-      resetFocus();
-    }
-  }
 
   function resetFocus() {
     updateFocus({searchFocused: false, listItemFocused: false})

@@ -13,7 +13,7 @@ function App () {
   useEffect(() => {
     Tabletop.init({
       key: spreadSheetUrl,
-      callback: function(data, tabletop) {
+      callback: function(data) {
         setLoading(false);
         setData(data);
       },
@@ -29,8 +29,8 @@ function App () {
         <Link to="/about">About</Link>
       </div>
 
+      {/*Keeping HomePage route outside of switch to preserve its state regardless of current url path*/}
       <Route path="/" render={ routerProps => {
-        //Keeping HomePage route outside of switch to preserve its state regardless of current url path
         return <HomePage loading={loading} data={data} error={error} {...routerProps}/>
       }}/>
 
