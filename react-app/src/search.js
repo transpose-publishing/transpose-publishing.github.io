@@ -50,22 +50,19 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
       e.preventDefault();
       const suggestionsExist = document.getElementsByClassName("search-suggestion").length;
       const nextItem = focusedItemNode.current && focusedItemNode.current.nextSibling;
-      if(listItemFocused === false && suggestionsExist || nextItem) {
-        updateFocus({listItemFocused: listItemFocused === false ? 0 : listItemFocused + 1})
+      if((listItemFocused === false && suggestionsExist) || nextItem) {
+        updateFocus({listItemFocused: listItemFocused !== false ? listItemFocused + 1 : 0})
       }
     },
     [KEYCODE.UP_ARROW]: (e) => {
-      if(listItemFocused > 0) {
+      if(listItemFocused !== false) {
         e.preventDefault();
-        updateFocus({listItemFocused: listItemFocused - 1});
-      } else if (listItemFocused === 0) {
-        e.preventDefault();
-        updateFocus({listItemFocused: false});
-        searchInputNode.current.focus()
+        updateFocus({listItemFocused: listItemFocused > 0 ? listItemFocused - 1 : false});
+        if(listItemFocused === 0) searchInputNode.current.focus();
       }
     },
     [KEYCODE.ENTER]: (e) => {
-      if(focusedItemNode.current) {
+      if(listItemFocused !== false) {
         e.preventDefault();
         selectSearchTerm(e.target.innerHTML);
         resetFocus();
