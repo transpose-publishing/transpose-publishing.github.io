@@ -1,11 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {KEYCODE} from './constants';
+import {useMergeState, keyboardControls} from './utils';
 
 
 export default function Search ({searchTerm, setSearchTerm, loading, data}) {
-  const [searchInputValue, setInputValue] = useState("");
-  const [searchFocused, setSearchFocused] = useState(false);
-  const [listItemFocused, setListFocus] = useState(false);
+  const [searchInputValue, setInputValue] = useState(searchTerm);
+  const [{searchFocused, listItemFocused}, updateFocus] = useMergeState({searchFocused: false, listItemFocused: false});
 
   const searchContainerNode = useRef(null);
   const searchInputNode = useRef(null);
@@ -13,14 +13,10 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
 
   useEffect(function onFocus_addClickOutsideListener() {
     if(searchFocused) {
-      document.addEventListener('mousedown', handleClick);
+      document.addEventListener('mousedown', handleClickOutside);
     }
-    return () => document.removeEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [searchFocused]);
-
-  useEffect(function onMount_populateSearchTerm() {
-    setInputValue(searchTerm);
-  }, []);
 
   useEffect(function onListFocusChange_focusItem() {
     if(listItemFocused !== false) {
@@ -28,7 +24,7 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
     }
   }, [listItemFocused]);
 
-  function handleClick (e) {
+  function handleClickOutside (e) {
     const container = searchContainerNode.current;
     if(!container.contains(e.target)) {
       resetFocus();
@@ -36,54 +32,11 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
   }
 
   function resetFocus() {
-    setListFocus(false);
-    setSearchFocused(false);
-  }
-
-  function keyDownOnInput (e) {
-    if(e.keyCode === KEYCODE.DOWN_ARROW) {
-      const searchSuggestions = document.getElementsByClassName("search-suggestion");
-      if(searchSuggestions.length) {
-        setListFocus(0);
-      }
-    }
-    if(e.keyCode === KEYCODE.TAB) {
-      setSearchFocused(false);
-    }
-    if(e.keyCode === KEYCODE.ENTER) {
-      setSearchTerm(searchInputValue);
-    }
-  }
-
-  function keyDownOnListItem (e) {
-    if(e.keyCode === KEYCODE.DOWN_ARROW) {
-      e.preventDefault();
-      const nextItem = focusedItemNode.current.nextSibling;
-      if(nextItem) {
-        setListFocus(listItemFocused + 1);
-      }
-    }
-    if(e.keyCode === KEYCODE.UP_ARROW) {
-      e.preventDefault();
-      if(listItemFocused > 0) {
-        setListFocus(listItemFocused - 1);
-      } else if (listItemFocused === 0) {
-        searchInputNode.current.focus()
-      }
-    }
-    if(e.keyCode === KEYCODE.ENTER) {
-      e.preventDefault();
-      selectSearchTerm(e.target.innerHTML);
-      resetFocus();
-    }
-    if(e.keyCode === KEYCODE.TAB) {
-      resetFocus()
-    }
+    updateFocus({searchFocused: false, listItemFocused: false})
   }
 
   function onInputFocus () {
-    setSearchFocused(true);
-    setListFocus(false);
+    updateFocus({searchFocused: true, listItemFocused: false})
   }
 
   function selectSearchTerm (title) {
@@ -91,6 +44,37 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
     setInputValue(title);
     resetFocus()
   }
+
+  const keyDownHandler = keyboardControls({
+    [KEYCODE.DOWN_ARROW]: (e) => {
+      e.preventDefault();
+      const suggestionsExist = document.getElementsByClassName("search-suggestion").length;
+      const nextItem = focusedItemNode.current && focusedItemNode.current.nextSibling;
+      if(listItemFocused === false && suggestionsExist || nextItem) {
+        updateFocus({listItemFocused: listItemFocused === false ? 0 : listItemFocused + 1})
+      }
+    },
+    [KEYCODE.UP_ARROW]: (e) => {
+      if(listItemFocused > 0) {
+        e.preventDefault();
+        updateFocus({listItemFocused: listItemFocused - 1});
+      } else if (listItemFocused === 0) {
+        e.preventDefault();
+        updateFocus({listItemFocused: false});
+        searchInputNode.current.focus()
+      }
+    },
+    [KEYCODE.ENTER]: (e) => {
+      if(focusedItemNode.current) {
+        e.preventDefault();
+        selectSearchTerm(e.target.innerHTML);
+        resetFocus();
+      } else {
+        setSearchTerm(searchInputValue);
+      }
+    },
+    [KEYCODE.TAB]: () => resetFocus()
+  });
 
   return (
     <div id="search-container" ref={searchContainerNode}>
@@ -101,7 +85,7 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
         placeholder="Search"
         value={searchInputValue}
         onFocus={onInputFocus}
-        onKeyDown={keyDownOnInput}
+        onKeyDown={keyDownHandler}
         onChange={e => setInputValue(e.target.value)}
         autoComplete="off"
       />
@@ -120,7 +104,7 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
                 tabIndex={listItemFocused === index ? "0" : "-1"}
                 ref={listItemFocused === index ? focusedItemNode : void 0}
                 onClick={() => selectSearchTerm(item.title)}
-                onKeyDown={keyDownOnListItem}
+                onKeyDown={keyDownHandler}
               >
                 {item.title}
               </li>)}
