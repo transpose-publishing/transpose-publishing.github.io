@@ -11,7 +11,7 @@ export default function ResultsList ({loading, error, data, searchTerm}) {
   }, [searchTerm]);
 
   function filterData () {
-    let filteredData = [...data];
+    let filteredData = data;
     if(searchTerm) {
       let titleMatches = [];
       let publisherMatches = [];
@@ -27,10 +27,9 @@ export default function ResultsList ({loading, error, data, searchTerm}) {
     }
 
     totalPages = filteredData.length ? Math.floor(filteredData.length / 50) : 0;
+    const pagedData = filteredData.slice((page * 50), ((page + 1) * 50));
 
-    filteredData = filteredData.slice((page * 50), ((page + 1) * 50));
-
-    return filteredData.map( (item, index) =>
+    return pagedData.map( (item, index) =>
       <div key={index} className="list-item" tabIndex="0">
         {index + 1}. {item.title}{item.publisher ? ` - ${item.publisher}` : ''}{item.doi ? ` - ${item.doi}` : ''}{item.issn ? ` - ${item.issn}` : ''}
       </div>)
