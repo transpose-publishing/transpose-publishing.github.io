@@ -57,3 +57,24 @@ a {
 .search-suggestion {
   cursor: pointer;
 }
+
+.home-content {
+  padding-bottom: 20px;
+}
+
+.results-list {
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.paging-container {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 20px;
+}
+
+.paging-container > p {
+  display: inline-block;
+  margin: 0;
+  margin-left: 10px;
+}

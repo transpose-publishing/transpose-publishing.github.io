@@ -80,7 +80,7 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
         autoComplete="off"
       />
 
-      {!loading && searchInputValue.length > 2 && searchFocused &&
+      {false && !loading && searchInputValue.length > 2 && searchFocused &&
       <div className="search-suggestions">
         <ul>
           {data

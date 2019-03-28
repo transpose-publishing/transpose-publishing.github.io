@@ -32,3 +32,10 @@ export function keyboardControls (keyHandlers) {
     return keyHandlers[e.keyCode] ? keyHandlers[e.keyCode](e) : null
   }
 }
+
+
+//utils
+export function searchString (searchTerm, source) {
+  if(typeof searchTerm !== 'string' || typeof source !== 'string' || searchTerm === "" || source === "") return false;
+  return source.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+}
