@@ -2,6 +2,7 @@ import React, {useEffect, useState, useReducer} from 'react';
 import ReactDom from 'react-dom';
 import {HashRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import HomePage from './homePage';
+import Header from "./header";
 import {fetchContent, fetchData} from './googleApi';
 
 
@@ -21,7 +22,7 @@ function appStateReducer (state, action) {
 export const AppState = React.createContext(initialState);
 
 function App () {
-  const [appState, dispatchAppState] = useReducer(appStateReducer, initialState);
+  const [{content, ...appState}, dispatchAppState] = useReducer(appStateReducer, initialState);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState();
@@ -41,27 +42,13 @@ function App () {
   }, []);
 
   return (
-    <AppState.Provider value={{appState, dispatchAppState}}>
+    <AppState.Provider value={{appState, content, dispatchAppState}}>
       <Router>
-        <Route path="/" render={ routerProps => {
-          const pathname = routerProps.location.pathname;
-          const homeClass = `header-link ${pathname === '/' ? 'active' : ''}`;
-          const userStoriesClass = `header-link ${pathname === '/user-stories' ? 'active' : ''}`;
-          const aboutClass = `header-link ${pathname === '/about' ? 'active' : ''}`;
-          return (
-            <div className="header">
-              <div className="link-container">
-                <Link to="/" className={homeClass}>Home</Link>
-                <Link to="/user-stories" className={userStoriesClass}>User Stories</Link>
-                <Link to="/about" className={aboutClass}>About</Link>
-              </div>
-              <img className="header-logo" src={'./assets/Icons/Transpose-Logo.png'}/>
-            </div>)
-        }}/>
+        <Route path="/" component={Header}/>
 
         <Switch>
           <Route exact path="/" render={ routerProps => {
-            return <HomePage loading={loading} data={data} error={error} content={appState.content} {...routerProps}/>
+            return <HomePage loading={loading} data={data} error={error} content={content} {...routerProps}/>
           }}/>
           <Route path="/user-stories" render={() => <div>User stories</div>}/>
           <Route path="/about" render={() => <div>About</div>}/>
