@@ -152,7 +152,8 @@ p, pre, div, h1, h2, h3, h4, h5, h6, a {
 }
 
 .results-list {
-  position: relative;
+  position: absolute;
+  width: 992px;
   background-color: #F7F7F7;
   padding: 16px 16px 0px 16px;
 }
