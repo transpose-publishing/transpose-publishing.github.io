@@ -4,6 +4,7 @@ body {
 
 p, pre, div, h1, h2, h3, h4, h5, h6, a {
   font-family: 'Arial';
+  margin: 0;
 }
 
 .header {
@@ -11,7 +12,7 @@ p, pre, div, h1, h2, h3, h4, h5, h6, a {
   justify-content: space-between;
   height: 58px;
   box-sizing: border-box;
-  border-bottom: 4px solid darkgrey;
+  border-bottom: 4px solid rgb(0,0,0,.2);
   padding-right: calc(calc(100% - 992px)/2);
   padding-left: calc(calc(100% - 992px)/2);
 }
@@ -86,6 +87,14 @@ p, pre, div, h1, h2, h3, h4, h5, h6, a {
   background-color: #50555D;
   box-shadow: 0px 3px 3px 0px rgb(0,0,0,.5);
 }
+.shadow-canvas {
+  position: relative;
+  z-index: -1;
+  height: 16px;
+  background-color: #F7F7F7;
+  margin-right: calc(calc(100% - 992px)/2);
+  margin-left: calc(calc(100% - 992px)/2);
+}
 
 #search-container {
   width: 100%;
@@ -143,19 +152,17 @@ p, pre, div, h1, h2, h3, h4, h5, h6, a {
 }
 
 .home-content {
-  position: relative;
-  z-index: -1;
   padding-bottom: 20px;
   padding-right: calc(calc(100% - 992px)/2);
   padding-left: calc(calc(100% - 992px)/2);
-
 }
 
 .results-list {
-  position: absolute;
+  min-height: 500px;
   width: 992px;
   background-color: #F7F7F7;
-  padding: 16px 16px 0px 16px;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 .paging-container {

@@ -36,24 +36,17 @@ export default function ResultsList ({loading, error, data, searchTerm}) {
   }
 
   return (
-    <Fragment>
-      {loading
-        ? <p>Fetching spreadsheet data, please wait...</p>
-        : <div className="results-list">
-            {error
-              ? error
-              : <Fragment>
-                  {!!data.length && filterData()}
-                  {!!data.length &&
-                  <div className="paging-container">
-                    <button onClick={() => page > 0 && setPage(page - 1)}>{'<'}</button>
-                    <button onClick={() => page < totalPages && setPage(page + 1)}>{'>'}</button>
-                    <p>Page {page + 1}</p>
-                  </div>}
-                </Fragment>}
-
-
-          </div>}
-    </Fragment>
+    <div className="results-list">
+      {!loading &&
+      <Fragment>
+        {!!data.length && filterData()}
+        {!!data.length &&
+        <div className="paging-container">
+          <button onClick={() => page > 0 && setPage(page - 1)}>{'<'}</button>
+          <button onClick={() => page < totalPages && setPage(page + 1)}>{'>'}</button>
+          <p>Page {page + 1}</p>
+        </div>}
+      </Fragment>}
+    </div>
   )
 }
