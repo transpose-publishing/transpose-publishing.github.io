@@ -26,6 +26,8 @@ export default function HomePage ({loading, data, error, content, ...routerProps
         <div className="banner-row row-4"></div>
       </div>
 
+      <div className="filter-section"></div>
+
       <div className="home-content">
         <ResultsList loading={loading} data={data} error={error} searchTerm={searchTerm}/>
       </div>
