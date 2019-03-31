@@ -66,12 +66,10 @@ function App () {
         <Link to="/about">About</Link>
       </div>
 
-      {/*Keeping HomePage route outside of switch to preserve its state regardless of current url path*/}
-      <Route path="/" render={ routerProps => {
-        return <HomePage loading={loading} data={data} error={error} {...routerProps}/>
-      }}/>
-
       <Switch>
+        <Route path="/" render={ routerProps => {
+          return <HomePage loading={loading} data={data} error={error} {...routerProps}/>
+        }}/>
         <Route path="/user-stories" render={() => <div>User stories</div>}/>
         <Route path="/about" render={() => <div>About</div>}/>
       </Switch>

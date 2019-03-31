@@ -24,6 +24,15 @@ export function useClickOutside ({container, handler, dependencies, conditional 
   }
 }
 
+const persistedCache = {};
+export function usePersistedState(key, initial) {
+  persistedCache[key] = persistedCache[key] || initial;
+  const [state, setState] = useState(persistedCache[key]);
+  return [state, (value) => {
+    persistedCache[key] = value;
+    setState(value)
+  }]
+}
 
 
 //Component Functionality

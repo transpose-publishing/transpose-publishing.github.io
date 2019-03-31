@@ -1,13 +1,14 @@
 import React, {useState, Fragment} from 'react';
 import Search from './search';
 import ResultsList from './resultsList';
+import {usePersistedState} from './utils';
 
 
 
 export default function HomePage ({loading, data, error, ...routerProps}) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
 
-  return routerProps.location.pathname !== '/' ? null : (
+  return (
     <div>
       <div className="home-banner">
         <Search data={data} loading={loading} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
