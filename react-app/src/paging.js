@@ -8,7 +8,7 @@ export default function Paging ({page, totalPages, setPage}) {
   return (
     <div className="paging-container">
       <button onClick={() => page > 0 && setPage(page - 1)}>
-        <img className="page-arrow left-arrow" src={'../assets/Icons/page-arrow.png'}/>
+        <img className="page-arrow left-arrow" src={'./assets/Icons/page-arrow.png'}/>
       </button>
 
       {pagesArray.map( (_, i) =>
@@ -22,7 +22,7 @@ export default function Paging ({page, totalPages, setPage}) {
       )}
 
       <button onClick={() => page < totalPages && setPage(page + 1)}>
-        <img className="page-arrow right-arrow" src={'../assets/Icons/page-arrow.png'}/>
+        <img className="page-arrow right-arrow" src={'./assets/Icons/page-arrow.png'}/>
       </button>
     </div>
   )
