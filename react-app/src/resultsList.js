@@ -1,16 +1,16 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import {searchString} from './utils';
+import Paging from "./paging";
 
 
 export default function ResultsList ({loading, error, data, searchTerm}) {
   const [page, setPage] = useState(0);
-  let totalPages;
 
   useEffect(function onSearchTermChange_resetPage () {
     setPage(0)
   }, [searchTerm]);
 
-  function filterData () {
+  function generateFilteredList () {
     let filteredData = data;
     if(searchTerm) {
       let titleMatches = [];
@@ -26,26 +26,25 @@ export default function ResultsList ({loading, error, data, searchTerm}) {
       filteredData = [...titleMatches, ...publisherMatches, ...otherMatches];
     }
 
-    totalPages = filteredData.length ? Math.floor(filteredData.length / 50) : 0;
+    const totalPages = filteredData.length ? Math.floor(filteredData.length / 50) : 0;
     const pagedData = filteredData.slice((page * 50), ((page + 1) * 50));
 
-    return pagedData.map( (item, index) =>
+    const resultsList = pagedData.map( (item, index) =>
       <div key={index} className="list-item" tabIndex="0">
         {index + 1}. {item.title}{item.publisher ? ` - ${item.publisher}` : ''}{item.doi ? ` - ${item.doi}` : ''}{item.issn ? ` - ${item.issn}` : ''}
-      </div>)
+      </div>);
+
+    return {resultsList, totalPages}
   }
+
+  const {resultsList, totalPages} = !!data.length ? generateFilteredList() : {resultsList: null, totalPages: null};
 
   return (
     <div className="results-list">
       {!loading &&
       <Fragment>
-        {!!data.length && filterData()}
-        {!!data.length &&
-        <div className="paging-container">
-          <button onClick={() => page > 0 && setPage(page - 1)}>{'<'}</button>
-          <button onClick={() => page < totalPages && setPage(page + 1)}>{'>'}</button>
-          <p>Page {page + 1}</p>
-        </div>}
+        {resultsList}
+        {resultsList && <Paging page={page} totalPages={totalPages} setPage={setPage}/>}
       </Fragment>}
     </div>
   )

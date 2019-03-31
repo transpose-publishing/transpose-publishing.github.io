@@ -7,6 +7,13 @@ p, pre, div, h1, h2, h3, h4, h5, h6, a {
   margin: 0;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -168,10 +175,23 @@ p, pre, div, h1, h2, h3, h4, h5, h6, a {
 .paging-container {
   width: 100%;
   height: 64px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 9px;
+}
+.page-button {
+  font-weight: bold;
+  color: #B8BCBC;
+  width: 34px;
+  height: 34px;
+  font-size: 12px;
+}
+.page-button.active-page {
+  color: #4F5858
 }
 
-.paging-container > p {
-  display: inline-block;
-  margin: 0;
-  margin-left: 10px;
+.paging-container .page-arrow.left-arrow {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
