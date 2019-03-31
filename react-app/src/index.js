@@ -1,52 +1,30 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useReducer} from 'react';
 import ReactDom from 'react-dom';
 import {HashRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import HomePage from './homePage';
+import {fetchContent, fetchData} from './googleApi';
 
-const startTime = Date.now();
-const spreadSheetUrl = 'https://docs.google.com/spreadsheets/d/19fuw6MEVPgoTgqY5Vh8JFEvW_HA4oPaDE_g3BZhB7Ek/edit?usp=sharing';
 
-function fetchData ({rows = 0}) {
-  return new Promise((resolve, reject) => {
-    sheetrock({
-      url: spreadSheetUrl + "#gid=0",
-      fetchSize: rows,
-      callback: (errors, optiosn, resp) => {
-        const dataArray = [];
-        for (const row of resp.rows) {
-          if(row.num !== 0) {
-            const item = {};
-            let labelIndex = 0;
-            for (const label of row.labels) {
-              item[label] = row.cellsArray[labelIndex];
-              labelIndex++
-            }
-            dataArray.push(item);
-          }
-        }
-        console.log('timer', Date.now() - startTime);
-        resolve(dataArray);
-      }
-    });
-  });
+const initialState = {
+  content: {}
+};
+
+function appStateReducer (state, action) {
+  switch (action.type) {
+    case 'content':
+      return {...state, content: action.content};
+    default:
+      return state;
+  }
 }
 
+export const AppState = React.createContext(initialState);
+
 function App () {
+  const [appState, dispatchAppState] = useReducer(appStateReducer, initialState);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState();
-
-  // useEffect(() => {
-  //   Tabletop.init({
-  //     key: spreadSheetUrl,
-  //     callback: function(data) {
-  //       console.log('time', Date.now() - startTime);
-  //       setLoading(false);
-  //       setData(data);
-  //     },
-  //     simpleSheet: true
-  //   });
-  // }, []);
 
   useEffect(() => {
     fetchData({rows: 50})
@@ -58,23 +36,40 @@ function App () {
       })
   }, []);
 
-  return (
-    <Router>
-      <div style={{display: 'flex', flexDirection: 'row'}}>
-        <Link to="/">Home</Link>
-        <Link to="/user-stories">User Stories</Link>
-        <Link to="/about">About</Link>
-      </div>
+  useEffect(() => {
+    fetchContent().then( content => dispatchAppState({type: 'content', content}))
+  }, []);
 
-      <Switch>
+  return (
+    <AppState.Provider value={{appState, dispatchAppState}}>
+      <Router>
         <Route path="/" render={ routerProps => {
-          return <HomePage loading={loading} data={data} error={error} {...routerProps}/>
+          const pathname = routerProps.location.pathname;
+          const homeClass = `header-link ${pathname === '/' ? 'active' : ''}`;
+          const userStoriesClass = `header-link ${pathname === '/user-stories' ? 'active' : ''}`;
+          const aboutClass = `header-link ${pathname === '/about' ? 'active' : ''}`;
+          return (
+            <div className="header">
+              <div className="link-container">
+                <Link to="/" className={homeClass}>Home</Link>
+                <Link to="/user-stories" className={userStoriesClass}>User Stories</Link>
+                <Link to="/about" className={aboutClass}>About</Link>
+              </div>
+              <img className="header-logo" src={'./assets/Icons/Transpose-Logo.png'}/>
+            </div>)
         }}/>
-        <Route path="/user-stories" render={() => <div>User stories</div>}/>
-        <Route path="/about" render={() => <div>About</div>}/>
-      </Switch>
-    </Router>
+
+        <Switch>
+          <Route exact path="/" render={ routerProps => {
+            return <HomePage loading={loading} data={data} error={error} content={appState.content} {...routerProps}/>
+          }}/>
+          <Route path="/user-stories" render={() => <div>User stories</div>}/>
+          <Route path="/about" render={() => <div>About</div>}/>
+        </Switch>
+      </Router>
+    </AppState.Provider>
   )
+
 }
 
 ReactDom.render(

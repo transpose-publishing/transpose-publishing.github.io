@@ -44,14 +44,15 @@ export default function ResultsList ({loading, error, data, searchTerm}) {
               ? error
               : <Fragment>
                   {!!data.length && filterData()}
+                  {!!data.length &&
+                  <div className="paging-container">
+                    <button onClick={() => page > 0 && setPage(page - 1)}>{'<'}</button>
+                    <button onClick={() => page < totalPages && setPage(page + 1)}>{'>'}</button>
+                    <p>Page {page + 1}</p>
+                  </div>}
                 </Fragment>}
 
-            {!!data.length &&
-            <div className="paging-container">
-              <button onClick={() => page > 0 && setPage(page - 1)}>{'<'}</button>
-              <button onClick={() => page < totalPages && setPage(page + 1)}>{'>'}</button>
-              <p>Page {page + 1}</p>
-            </div>}
+
           </div>}
     </Fragment>
   )

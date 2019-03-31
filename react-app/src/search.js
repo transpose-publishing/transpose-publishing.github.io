@@ -1,9 +1,11 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import {KEYCODE} from './constants';
 import {useMergeState, useClickOutside, keyboardControls} from './utils';
+import {AppState} from './index';
 
 
 export default function Search ({searchTerm, setSearchTerm, loading, data}) {
+  const {appState, dispatchAppState} = useContext(AppState);
   const [searchInputValue, setInputValue] = useState(searchTerm);
   const [{searchFocused, listItemFocused}, updateFocus] = useMergeState({searchFocused: false, listItemFocused: false});
 
@@ -14,8 +16,8 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
   useClickOutside({
     container: searchContainerNode.current,
     handler: resetFocus,
-    dependencies: [searchFocused],
-    conditional: searchFocused === true
+    conditional: searchFocused === true,
+    dependencies: [searchFocused]
   });
 
   useEffect(function onListFocusChange_focusItem() {
@@ -72,7 +74,7 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
         id="search-input"
         ref={searchInputNode}
         type="text"
-        placeholder="Search"
+        placeholder={appState.content.search_placeholder}
         value={searchInputValue}
         onFocus={onInputFocus}
         onKeyDown={keyDownHandler}
@@ -80,6 +82,9 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
         autoComplete="off"
       />
 
+      <img className="search-glass" src={'./assets/Icons/search-glass.png'}/>
+
+      {/*results list turned off pending further discussion of how it would work*/}
       {false && !loading && searchInputValue.length > 2 && searchFocused &&
       <div className="search-suggestions">
         <ul>
