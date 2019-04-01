@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+}
+
+p, pre, div, h1, h2, h3, h4, h5, h6, a {
+  font-family: 'Arial';
+  margin: 0;
+  font-weight: normal;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 58px;
+  box-sizing: border-box;
+  border-bottom: 4px solid rgba(0,0,0,.2);
+  padding-right: $containerPadding;
+  padding-left: $containerPadding;
+
+  .link-container {
+    height: 100%;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .header-link {
+      margin: auto 25px;
+      color: $color-darkGrey;
+      text-decoration: none;
+
+      &.active {
+        color: $color-teal
+      }
+    }
+  }
+
+  .header-logo {
+    height: 48px;
+    margin: auto 0;
+  }
+
+}

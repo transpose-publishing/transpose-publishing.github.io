@@ -1,3 +1,6 @@
+import "@babel/polyfill";
+import './styles/index.scss';
+
 import React, {useEffect, useState, useReducer} from 'react';
 import ReactDom from 'react-dom';
 import {HashRouter as Router, Switch, Route, Link} from 'react-router-dom';
