@@ -3,7 +3,7 @@ import './styles/index.scss';
 
 import React, {useEffect, useState, useReducer} from 'react';
 import ReactDom from 'react-dom';
-import {HashRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './homePage';
 import Header from "./header";
 import {fetchContent, fetchData} from './googleApi';
