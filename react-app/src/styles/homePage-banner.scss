@@ -1,7 +1,6 @@
 .home-banner {
   height: 229px;
   width: 100%;
-  box-sizing: border-box;
   padding-top: 21px;
   display: flex;
   flex-direction: column;
@@ -95,7 +94,6 @@
   background-color: white;
   z-index: 1;
   border: 1px solid black;
-  box-sizing: border-box;
   padding-top: 13px;
   padding-left: 10px;
   overflow-y: scroll;

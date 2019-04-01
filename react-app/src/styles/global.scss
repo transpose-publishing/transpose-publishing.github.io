@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 
-div, input, p, pre, div, h1, h2, h3, h4, h5, h6, a {
+div, span, input, p, pre, div, h1, h2, h3, h4, h5, h6, a {
   font-family: 'Arial';
   margin: 0;
   font-weight: normal;
@@ -20,7 +20,6 @@ button {
   display: flex;
   justify-content: space-between;
   height: 58px;
-  box-sizing: border-box;
   border-bottom: 4px solid rgba(0,0,0,.2);
   padding-right: $containerPadding;
   padding-left: $containerPadding;
