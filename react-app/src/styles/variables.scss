@@ -1,6 +1,11 @@
 $publicPath: '../';
+
+$containerWidth: 992px;
 $containerPadding: calc((100% - 992px)/2);
 
 //Colors
 $color-teal: #00A7A1;
-$color-darkGrey: #4F5858;
+$color-text-darkGrey: #4F5858;
+$color-text-lightGrey: #B8BCBC;
+$color-whiteGrey: #F7F7F7;
+$color-background-darkGrey: #50555D;

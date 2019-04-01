@@ -1,13 +1,13 @@
 .home-content {
   padding-bottom: 20px;
-  padding-right: calc((100% - 992px)/2);
-  padding-left: calc((100% - 992px)/2);
+  padding-right: $containerPadding;
+  padding-left: $containerPadding;
 }
 
 .results-list {
   min-height: 500px;
-  width: 992px;
-  background-color: #F7F7F7;
+  width: $containerWidth;
+  background-color: $color-whiteGrey;
   padding: 0 16px;
   box-sizing: border-box;
 }
@@ -22,13 +22,13 @@
 }
 .page-button {
   font-weight: bold;
-  color: #B8BCBC;
+  color: $color-text-lightGrey;
   width: 34px;
   height: 34px;
   font-size: 12px;
 }
 .page-button.active-page {
-  color: #4F5858
+  color: $color-text-darkGrey
 }
 
 .paging-container .page-arrow.left-arrow {

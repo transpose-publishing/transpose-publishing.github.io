@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #50555D;
+  background-color: $color-background-darkGrey;
   background-image: url("#{$publicPath}assets/Banner/banner.png");
   background-size: cover;
 }
@@ -47,16 +47,16 @@
 .filter-section {
   width: 100%;
   height: 32px;
-  background-color: #50555D;
+  background-color: $color-background-darkGrey;
   box-shadow: 0px 3px 3px 0px rgba(0,0,0,.5);
 }
 .shadow-canvas {
   position: relative;
   z-index: -1;
   height: 16px;
-  background-color: #F7F7F7;
-  margin-right: calc((100% - 992px)/2);
-  margin-left: calc((100% - 992px)/2);
+  background-color: $color-whiteGrey;
+  margin-right: $containerPadding;
+  margin-left: $containerPadding;
 }
 
 #search-container {

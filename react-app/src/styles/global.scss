@@ -2,10 +2,11 @@ body {
   margin: 0;
 }
 
-p, pre, div, h1, h2, h3, h4, h5, h6, a {
+div, input, p, pre, div, h1, h2, h3, h4, h5, h6, a {
   font-family: 'Arial';
   margin: 0;
   font-weight: normal;
+  box-sizing: border-box;
 }
 
 button {
@@ -33,7 +34,7 @@ button {
 
     .header-link {
       margin: auto 25px;
-      color: $color-darkGrey;
+      color: $color-text-darkGrey;
       text-decoration: none;
 
       &.active {
