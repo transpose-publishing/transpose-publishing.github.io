@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import {searchString} from './utils';
 import Paging from "./paging";
-
+import Result from './result';
 
 export default function ResultsList ({loading, error, data, searchTerm}) {
   const [page, setPage] = useState(0);
@@ -27,24 +27,18 @@ export default function ResultsList ({loading, error, data, searchTerm}) {
     }
 
     const totalPages = filteredData.length ? Math.floor(filteredData.length / 50) : 0;
-    const pagedData = filteredData.slice((page * 50), ((page + 1) * 50));
-
-    const resultsList = pagedData.map( (item, index) =>
-      <div key={index} className="list-item" tabIndex="0">
-        {index + 1}. {item.title}{item.publisher ? ` - ${item.publisher}` : ''}{item.doi ? ` - ${item.doi}` : ''}{item.issn ? ` - ${item.issn}` : ''}
-      </div>);
-
-    return {resultsList, totalPages}
+    const pagedList = filteredData.slice((page * 50), ((page + 1) * 50));
+    return {resultsList: pagedList, totalPages}
   }
 
   const {resultsList, totalPages} = !!data.length ? generateFilteredList() : {resultsList: null, totalPages: null};
 
   return (
     <div className="results-list">
-      {!loading &&
+      {!loading && resultsList &&
       <Fragment>
-        {resultsList}
-        {resultsList && <Paging page={page} totalPages={totalPages} setPage={setPage}/>}
+        {resultsList.map((item, index) => <Result key={index} item={item}/>)}
+        <Paging page={page} totalPages={totalPages} setPage={setPage}/>
       </Fragment>}
     </div>
   )

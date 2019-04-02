@@ -59,7 +59,6 @@ function App () {
       </Router>
     </AppState.Provider>
   )
-
 }
 
 ReactDom.render(

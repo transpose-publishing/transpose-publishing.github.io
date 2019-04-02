@@ -2,18 +2,21 @@ body {
   margin: 0;
 }
 
-div, span, input, p, pre, div, h1, h2, h3, h4, h5, h6, a {
+div, span, input, p, pre, div, h1, h2, h3, h4, h5, h6, a, button {
   font-family: 'Arial';
   margin: 0;
   font-weight: normal;
   box-sizing: border-box;
 }
 
+a, button {
+  cursor: pointer;
+}
+
 button {
   background-color: transparent;
   border: none;
   outline: none;
-  cursor: pointer;
 }
 
 .header {

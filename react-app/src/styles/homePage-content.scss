@@ -9,6 +9,57 @@
   width: $containerWidth;
   background-color: $color-whiteGrey;
   padding: 0 16px;
+
+  .result-item {
+    display: flex;
+    width: 100%;
+    height: 48px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,.2);
+    padding: 8px 16px 8px 8px;
+    font-size: 12px;
+
+    .result-section-verified {
+      width: 24px;
+      img {
+        width: 18px;
+        margin-top: -2px;
+      }
+    }
+    .result-section-title {
+      width: 336px;
+      font-weight: bold;
+    }
+    .result-section-publisher {
+      width: 112px;
+      padding-right: 10px;
+    }
+    .result-section-doi {
+      width: 256px;
+      color: $color-default-link;
+      text-decoration: underline;
+      a:visited {
+        color: $color-default-visited-link;
+      }
+    }
+    .result-section-issn {
+      width: 96px;
+      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+    .result-section-oa {
+      width: 16px;
+      img {width: 16px}
+    }
+    .result-section-date {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
 }
 
 .paging-container {
