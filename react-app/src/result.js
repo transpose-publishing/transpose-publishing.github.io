@@ -15,10 +15,8 @@ export default function Result ({item}) {
       <div className="result-section-doi"><a href={item.doi} target="_blank">{item.doi}</a></div>
 
       <div className="result-section-issn">
-        {item.issn && item.issn.split(', ')
-          .map(
-            (issn, index) => index === 0 ? <span>{`O:${issn}`}</span> : <span>{`P:${issn}`}</span>
-          )}
+        {item.issn &&
+          item.issn.split(', ').map(issn => <span key={issn}>{issn}</span>)}
       </div>
 
       <div className="result-section-oa">

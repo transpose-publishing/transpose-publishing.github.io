@@ -41,9 +41,53 @@
 
 .banner-row.row-4 {
   height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-family: "Helvetica Neue";
+
+  .advanced-filter-container {
+    color: white;
+  }
+
+  .verified-filter-container {
+    width: 130px;
+    height: 32px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+
+    .verified-filter {
+      width: 64px;
+      height: 32px;
+      background-color: white;
+      border: $color-border-lightGrey 1px solid;
+      border-radius: 3px;
+      padding: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: inherit;
+      font-size: 12px;
+
+      span {
+        margin: 5px;
+      }
+
+      .verified-filter-switch {
+        height: 22px;
+        width: 22px;
+        background-color: $color-teal;
+        border-radius: 2px;
+      }
+    }
+  }
 }
 
-.filter-section {
+.order-section {
   width: 100%;
   height: 32px;
   background-color: $color-background-darkGrey;

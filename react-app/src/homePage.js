@@ -1,12 +1,16 @@
 import React from 'react';
 import Search from './search';
 import ResultsList from './resultsList';
-import {usePersistedState} from './utils';
+import VerifiedFilter from './verifiedFilter';
+import {usePersistedState, useMergeState} from './utils';
 
 
 
 export default function HomePage ({loading, data, error, content, ...routerProps}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
+  const [filters, updateFilters] = useMergeState({
+    verified: false
+  });
 
   return (
     <div>
@@ -23,16 +27,28 @@ export default function HomePage ({loading, data, error, content, ...routerProps
           <Search data={data} loading={loading} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
         </div>
 
-        <div className="banner-row row-4"></div>
+        <div className="banner-row row-4">
+          <div className="advanced-filter-container">Advanced Filters</div>
+
+          <VerifiedFilter
+            label={content.filter_verified}
+            verifiedFilter={filters.verified}
+            toggleVerifiedFilter={() => updateFilters({verified: !filters.verified})}/>
+        </div>
       </div>
 
-      <div className="filter-section-container">
-        <div className="filter-section"></div>
+      <div className="order-section-container">
+        <div className="order-section"></div>
         <div className="shadow-canvas"/>
       </div>
 
       <div className="home-content">
-        <ResultsList loading={loading} data={data} error={error} searchTerm={searchTerm}/>
+        <ResultsList
+          loading={loading}
+          data={data}
+          error={error}
+          searchTerm={searchTerm}
+          filters={filters}/>
       </div>
     </div>
   )
