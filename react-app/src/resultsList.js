@@ -2,12 +2,13 @@ import React, {useState, useEffect, Fragment} from 'react';
 import {searchString} from './utils';
 import Paging from "./paging";
 import Result from './result';
+import {itemsPerPage} from './constants';
+
 
 
 const filterRules = {
   verified: item => item.verified === "Yes"
 };
-
 
 export default function ResultsList ({loading, error, data, searchTerm, filters}) {
   const [page, setPage] = useState(0);
@@ -37,8 +38,8 @@ export default function ResultsList ({loading, error, data, searchTerm, filters}
       filteredData = filteredData.filter( item => filterItem(item) === false)
     }
 
-    const totalPages = filteredData.length ? Math.floor(filteredData.length / 50) : 0;
-    const pagedList = filteredData.slice((page * 50), ((page + 1) * 50));
+    const totalPages = filteredData.length ? Math.floor(filteredData.length / itemsPerPage) : 0;
+    const pagedList = filteredData.slice((page * itemsPerPage), ((page + 1) * itemsPerPage));
     return {resultsList: pagedList, totalPages}
   }
 
@@ -51,7 +52,13 @@ export default function ResultsList ({loading, error, data, searchTerm, filters}
     return false;
   }
 
-  const {resultsList, totalPages} = !!data.length ? generateFilteredList() : {resultsList: null, totalPages: null};
+  const {resultsList, totalPages} = !!data.length ? generateFilteredList() : {resultsList: null, totalPages: 0};
+
+  useEffect(function onFiltersChange_adjustPage () {
+    if(page > totalPages) {
+      setPage(totalPages)
+    }
+  }, [filters]);
 
   return (
     <div className="results-list">

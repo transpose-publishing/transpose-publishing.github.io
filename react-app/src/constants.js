@@ -4,3 +4,5 @@ export const KEYCODE = {
   DOWN_ARROW: 40,
   TAB: 9
 };
+
+export const itemsPerPage = 50;

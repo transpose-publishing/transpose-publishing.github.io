@@ -1,9 +1,7 @@
 import React from 'react';
 
 export default function Paging ({page, totalPages, setPage}) {
-  const pagesArray = [];
-  pagesArray.length = totalPages + 1;
-  pagesArray.fill(null);
+  const pagesArray = Array(totalPages + 1).fill(null);
 
   return (
     <div className="paging-container">
