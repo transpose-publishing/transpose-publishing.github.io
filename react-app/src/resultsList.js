@@ -13,17 +13,11 @@ const filterRules = {
 export default function ResultsList ({loading, error, data, searchTerm, filters}) {
   const [page, setPage] = useState(0);
 
-  useEffect(function onSearchTermChange_resetPage () {
+  useEffect(function resetPage () {
     setPage(0)
-  }, [searchTerm]);
+  }, [searchTerm, filters]);
 
   const {resultsList, totalPages} = !!data.length ? generateFilteredList() : {resultsList: null, totalPages: 0};
-
-  useEffect(function onFiltersChange_adjustPage () {
-    if(page > totalPages) {
-      setPage(totalPages)
-    }
-  }, [filters]);
 
   function generateFilteredList () {
     let filteredData = data;
