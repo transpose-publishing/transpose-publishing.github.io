@@ -17,6 +17,14 @@ export default function ResultsList ({loading, error, data, searchTerm, filters}
     setPage(0)
   }, [searchTerm]);
 
+  const {resultsList, totalPages} = !!data.length ? generateFilteredList() : {resultsList: null, totalPages: 0};
+
+  useEffect(function onFiltersChange_adjustPage () {
+    if(page > totalPages) {
+      setPage(totalPages)
+    }
+  }, [filters]);
+
   function generateFilteredList () {
     let filteredData = data;
     const filtersOn = Object.values(filters).indexOf(true) > -1;
@@ -51,14 +59,6 @@ export default function ResultsList ({loading, error, data, searchTerm, filters}
     }
     return false;
   }
-
-  const {resultsList, totalPages} = !!data.length ? generateFilteredList() : {resultsList: null, totalPages: 0};
-
-  useEffect(function onFiltersChange_adjustPage () {
-    if(page > totalPages) {
-      setPage(totalPages)
-    }
-  }, [filters]);
 
   return (
     <div className="results-list">
