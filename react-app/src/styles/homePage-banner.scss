@@ -47,21 +47,25 @@
   font-size: 14px;
   font-family: "Helvetica Neue";
 
-  .add-filters-button {
+  .add-filters-button-container {
     position: relative;
-    background-color: white;
-    color: $color-teal;
-    height: 32px;
-    width: 144px;
-    border-radius: 4px;
-    font-family: "Helvetica Neue";
-    font-size: 14px;
-    background-image: url("#{$publicPath}assets/Icons/Dropdown-Arrow-Icon-Grey.svg");
 
-    img {
-      position: absolute;
-      right: 8px; top: 8px;
-      width: 18px
+    .add-filters-button {
+      position: relative;
+      background-color: white;
+      color: $color-teal;
+      height: 32px;
+      width: 144px;
+      border-radius: 4px;
+      font-family: "Helvetica Neue";
+      font-size: 14px;
+      background-image: url("#{$publicPath}assets/Icons/Dropdown-Arrow-Icon-Grey.svg");
+
+      img {
+        position: absolute;
+        right: 8px; top: 8px;
+        width: 18px
+      }
     }
 
     .filter-list {
@@ -83,6 +87,10 @@
         padding-left: 16px;
         padding-right: 16px;
         display: flex;
+        color: $color-teal;
+        font-family: "Helvetica Neue";
+        font-size: 14px;
+        padding-bottom: 5px;
 
         &:hover, &.active {
           background-color: $color-background-lightGrey;
@@ -94,6 +102,8 @@
           transform: rotate(-90deg);
           height: 14px;
           padding-left: 2px;
+          position: absolute;
+          right: 8px; top: 8px;
         }
       }
     }

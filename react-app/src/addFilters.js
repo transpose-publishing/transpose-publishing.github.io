@@ -31,14 +31,16 @@ export default function AddFilters ({content, addFilter}) {
   }
 
   return (
-    <button className="add-filters-button" onClick={toggleMenu} ref={buttonRef}>
-      Add Filter
-      <img src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Grey.svg`}/>
+    <div  className="add-filters-button-container" ref={buttonRef}>
+      <button className="add-filters-button" onClick={toggleMenu} >
+        Add Filter
+        <img src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Grey.svg`}/>
+      </button>
 
       {menuOpen &&
       <div className="filter-list filter-types-list">
         {filterTypesList.map( item =>
-          <span className={`filter-item filter-type-item ${item.typeName === filterType.typeName ? 'active' : ''}`}
+          <button className={`filter-item filter-type-item ${item.typeName === filterType.typeName ? 'active' : ''}`}
             key={item.typeName}
             onClick={e => {
               e.stopPropagation();
@@ -47,19 +49,22 @@ export default function AddFilters ({content, addFilter}) {
           >
             {item.contentGetter(content)}
             <img src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Grey.svg`}/>
-          </span>)}
+          </button>)}
 
-          {filterType.filters &&
-          <div className="filter-list expanded-filter-list">
-            {filterType.filters.map( filter =>
-              <span className="filter-item filter-list-item"
-                key={filter.name}
-                onClick={() => addFilter(filter.name)}
-              >
-                {filter.contentGetter(content)}
-              </span>)}
-          </div>}
+        {filterType.filters &&
+        <div className="filter-list expanded-filter-list">
+          {filterType.filters.map( filter =>
+            <button className="filter-item filter-list-item"
+              key={filter.name}
+              onClick={() => {
+                addFilter(filter.name);
+                toggleMenu();
+              }}
+            >
+              {filter.contentGetter(content)}
+            </button>)}
+        </div>}
       </div>}
-    </button>
+    </div>
   )
 }
