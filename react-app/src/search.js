@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, useContext} from 'react';
-import {KEYCODE} from './constants';
+import {iconAssetPath, KEYCODE} from './constants';
 import {useMergeState, useClickOutside, keyboardControls} from './utils';
 import {AppState} from './index';
 
@@ -82,7 +82,7 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
         autoComplete="off"
       />
 
-      <img className="search-glass" src={'./assets/Icons/search-glass.png'}/>
+      <img className="search-glass" src={`./${iconAssetPath}/search-glass.png`}/>
 
       {/*results list turned off pending further discussion of how it would work*/}
       {false && !loading && searchInputValue.length > 2 && searchFocused &&

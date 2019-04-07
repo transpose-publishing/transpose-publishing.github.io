@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {iconAssetPath} from "./constants";
 
 
 export default function Header ({...routerProps}) {
@@ -14,6 +15,6 @@ export default function Header ({...routerProps}) {
         <Link to="/user-stories" className={userStoriesClass}>User Stories</Link>
         <Link to="/about" className={aboutClass}>About</Link>
       </div>
-      <img className="header-logo" src={'./assets/Icons/Transpose-Logo.png'}/>
+      <img className="header-logo" src={`./${iconAssetPath}/Transpose-Logo.png`}/>
     </div>)
 }

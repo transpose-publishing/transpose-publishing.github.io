@@ -2,12 +2,12 @@ import React, {useState, useEffect, Fragment} from 'react';
 import {searchString} from './utils';
 import Paging from "./paging";
 import Result from './result';
-import {itemsPerPage} from './constants';
+import {itemsPerPage, FILTERNAMES as FN} from './constants';
 
 
 
 const filterRules = {
-  verified: item => item.verified === "Yes"
+  [FN.VERIFIED]: item => item.verified === "Yes"
 };
 
 export default function ResultsList ({loading, error, data, searchTerm, filters}) {
@@ -47,7 +47,7 @@ export default function ResultsList ({loading, error, data, searchTerm, filters}
 
   function filterItem (item) {
     for (const filter in filters) {
-      if(filters[filter] === true && filterRules[filter](item) === false) {
+      if(filters[filter] === true && filterRules[filter] && filterRules[filter](item) === false) {
         return true
       }
     }

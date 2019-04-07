@@ -3,14 +3,20 @@ import Search from './search';
 import ResultsList from './resultsList';
 import VerifiedFilter from './verifiedFilter';
 import {usePersistedState, useMergeState} from './utils';
+import AddFilters from './addFilters';
+import {FILTERNAMES as FN} from './constants';
 
+
+//Converts FILTERNAMES into state object where every filter is set to false
+const initialFilterState = Object.values(FN).reduce((accumulator, currentValue) => {
+  accumulator[currentValue] = false;
+  return accumulator
+}, {});
 
 
 export default function HomePage ({loading, data, error, content, ...routerProps}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
-  const [filters, updateFilters] = useMergeState({
-    verified: false
-  });
+  const [filters, updateFilters] = useMergeState(initialFilterState);
 
   return (
     <div>
@@ -28,12 +34,12 @@ export default function HomePage ({loading, data, error, content, ...routerProps
         </div>
 
         <div className="banner-row row-4">
-          <div className="advanced-filter-container">Advanced Filters</div>
+          <AddFilters content={content} updateFilters={updateFilters}/>
 
           <VerifiedFilter
             label={content.filter_verified}
-            verifiedFilter={filters.verified}
-            toggleVerifiedFilter={() => updateFilters({verified: !filters.verified})}/>
+            verifiedFilter={filters[FN.VERIFIED]}
+            toggleVerifiedFilter={() => updateFilters({[FN.VERIFIED]: !filters[FN.VERIFIED]})}/>
         </div>
       </div>
 

@@ -44,11 +44,84 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   font-family: "Helvetica Neue";
 
-  .advanced-filter-container {
-    color: white;
+  .add-filters-button {
+    position: relative;
+    background-color: white;
+    color: $color-teal;
+    height: 32px;
+    width: 144px;
+    border-radius: 4px;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    background-image: url("#{$publicPath}assets/Icons/Dropdown-Arrow-Icon-Grey.svg");
+
+    img {
+      position: absolute;
+      right: 8px; top: 8px;
+      width: 18px
+    }
+
+    .filter-list {
+      box-shadow: 0 3px 6px 0 rgba(0,0,0,.5);
+      background-color: white;
+      border-radius: 4px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      padding-top: 12px;
+      padding-bottom: 8px;
+      min-width: 176px;;
+
+      .filter-item {
+        height: 27px;
+        width: auto;
+        padding-top: 5px;
+        padding-left: 16px;
+        padding-right: 16px;
+        display: flex;
+
+        &:hover, &.active {
+          background-color: $color-background-lightGrey;
+        }
+
+        img {
+          visibility: hidden;
+          -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+          height: 14px;
+          padding-left: 2px;
+        }
+      }
+    }
+
+    .filter-types-list {
+      top: 36px;
+      left: 0;
+
+      .filter-type-item {
+        min-width: 176px;
+        position: relative;
+
+        &.active {
+          img {
+            visibility: visible;
+          }
+        }
+      }
+
+      .expanded-filter-list {
+        top: 0;
+        left: 176px;
+
+        .filter-list-item {
+          white-space: nowrap;
+          width: 100%;
+        }
+      }
+    }
   }
 
   .verified-filter-container {
@@ -71,9 +144,10 @@
       justify-content: space-between;
       align-items: center;
       font-family: inherit;
-      font-size: 12px;
+      font-size: 14px;
 
       span {
+        font-family: "Helvetica Neue";
         margin: 5px;
       }
 
