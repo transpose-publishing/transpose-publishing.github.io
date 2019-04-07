@@ -1,7 +1,9 @@
 $publicPath: '../';
 
 $containerWidth: 992px;
-$containerPadding: calc((100% - 992px)/2);
+$bannerWidth: 768px;
+$containerPadding: calc((100% - #{$containerWidth})/2);
+$bannerPadding: calc((100% - #{$bannerWidth})/2);
 
 //Colors
 $color-teal: #00A7A1;

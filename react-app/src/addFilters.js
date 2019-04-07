@@ -5,7 +5,7 @@ import filterTypesList from './filterTypesModel';
 
 
 
-export default function AddFilters ({content, updateFilters}) {
+export default function AddFilters ({content, addFilter}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [filterType, setFilterType] = useState({
     typeName: null,
@@ -54,7 +54,7 @@ export default function AddFilters ({content, updateFilters}) {
             {filterType.filters.map( filter =>
               <span className="filter-item filter-list-item"
                 key={filter.name}
-                onClick={() => updateFilters({[filter.name]: true})}
+                onClick={() => addFilter(filter.name)}
               >
                 {filter.contentGetter(content)}
               </span>)}

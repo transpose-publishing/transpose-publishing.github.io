@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Search from './search';
 import ResultsList from './resultsList';
 import VerifiedFilter from './verifiedFilter';
 import {usePersistedState, useMergeState} from './utils';
 import AddFilters from './addFilters';
+import ActiveFilterDisplay from './activeFilterDisplay'
 import {FILTERNAMES as FN} from './constants';
 
 
@@ -16,6 +17,7 @@ const initialFilterState = Object.values(FN).reduce((accumulator, currentValue) 
 
 export default function HomePage ({loading, data, error, content, ...routerProps}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
+  const [verifiedFilter, setVerifiedFilter] = useState(false);
   const [filters, updateFilters] = useMergeState(initialFilterState);
 
   return (
@@ -34,14 +36,21 @@ export default function HomePage ({loading, data, error, content, ...routerProps
         </div>
 
         <div className="banner-row row-4">
-          <AddFilters content={content} updateFilters={updateFilters}/>
+          <AddFilters
+            content={content}
+            addFilter={name => updateFilters({[name]: true})}/>
 
           <VerifiedFilter
             label={content.filter_verified}
-            verifiedFilter={filters[FN.VERIFIED]}
-            toggleVerifiedFilter={() => updateFilters({[FN.VERIFIED]: !filters[FN.VERIFIED]})}/>
+            verifiedFilter={verifiedFilter}
+            toggleVerifiedFilter={() => setVerifiedFilter(!verifiedFilter)}/>
         </div>
       </div>
+
+      <ActiveFilterDisplay
+        filters={filters}
+        removeFilter={name => updateFilters({[name]: false})}
+        clearFilters={() => updateFilters(initialFilterState)}/>
 
       <div className="order-section-container">
         <div className="order-section"></div>
@@ -54,7 +63,10 @@ export default function HomePage ({loading, data, error, content, ...routerProps
           data={data}
           error={error}
           searchTerm={searchTerm}
-          filters={filters}/>
+          filters={{
+            ...filters,
+            [FN.VERIFIED]: verifiedFilter
+          }}/>
       </div>
     </div>
   )
