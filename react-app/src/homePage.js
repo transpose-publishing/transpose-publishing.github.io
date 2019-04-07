@@ -2,23 +2,29 @@ import React, {useState} from 'react';
 import Search from './search';
 import ResultsList from './resultsList';
 import VerifiedFilter from './verifiedFilter';
-import {usePersistedState, useMergeState} from './utils';
+import {usePersistedState} from './utils';
 import AddFilters from './addFilters';
 import ActiveFilterDisplay from './activeFilterDisplay'
 import {FILTERNAMES as FN} from './constants';
 
 
-//Converts FILTERNAMES into state object where every filter is set to false
-const initialFilterState = Object.values(FN).reduce((accumulator, currentValue) => {
-  accumulator[currentValue] = false;
-  return accumulator
-}, {});
-
 
 export default function HomePage ({loading, data, error, content, ...routerProps}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
   const [verifiedFilter, setVerifiedFilter] = useState(false);
-  const [filters, updateFilters] = useMergeState(initialFilterState);
+  const [activeFilters, setFilters] = useState([]);
+
+  function addFilter (name) {
+    if(!activeFilters.includes(name)) {
+      setFilters([...activeFilters, name])
+    }
+  }
+
+  function removeFilter (index) {
+    const newArray = [...activeFilters];
+    newArray.splice(index, 1);
+    setFilters(newArray)
+  }
 
   return (
     <div>
@@ -38,7 +44,7 @@ export default function HomePage ({loading, data, error, content, ...routerProps
         <div className="banner-row row-4">
           <AddFilters
             content={content}
-            addFilter={name => updateFilters({[name]: true})}/>
+            addFilter={addFilter}/>
 
           <VerifiedFilter
             label={content.filter_verified}
@@ -48,9 +54,10 @@ export default function HomePage ({loading, data, error, content, ...routerProps
       </div>
 
       <ActiveFilterDisplay
-        filters={filters}
-        removeFilter={name => updateFilters({[name]: false})}
-        clearFilters={() => updateFilters(initialFilterState)}/>
+        activeFilters={activeFilters}
+        content={content}
+        removeFilter={removeFilter}
+        clearFilters={() => setFilters([])}/>
 
       <div className="order-section-container">
         <div className="order-section"></div>
@@ -63,10 +70,7 @@ export default function HomePage ({loading, data, error, content, ...routerProps
           data={data}
           error={error}
           searchTerm={searchTerm}
-          filters={{
-            ...filters,
-            [FN.VERIFIED]: verifiedFilter
-          }}/>
+          activeFilters={verifiedFilter ? [FN.VERIFIED, ...activeFilters] : activeFilters}/>
       </div>
     </div>
   )

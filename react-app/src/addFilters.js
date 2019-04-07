@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import {iconAssetPath} from "./constants";
 import {useClickOutside} from './utils';
-import filterTypesList from './filterTypesModel';
+import {filterTypesList} from './filtersModel';
 
 
 

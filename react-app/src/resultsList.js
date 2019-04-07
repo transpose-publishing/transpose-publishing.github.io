@@ -10,18 +10,18 @@ const filterRules = {
   [FN.VERIFIED]: item => item.verified === "Yes"
 };
 
-export default function ResultsList ({loading, error, data, searchTerm, filters}) {
+export default function ResultsList ({loading, error, data, searchTerm, activeFilters}) {
   const [page, setPage] = useState(0);
 
   useEffect(function resetPage () {
     setPage(0)
-  }, [searchTerm, filters]);
+  }, [searchTerm, activeFilters]);
 
   const {resultsList, totalPages} = !!data.length ? generateFilteredList() : {resultsList: null, totalPages: 0};
 
   function generateFilteredList () {
     let filteredData = data;
-    const filtersOn = Object.values(filters).indexOf(true) > -1;
+    const filtersOn = !!activeFilters.length;
     if(searchTerm) {
       let titleMatches = [];
       let publisherMatches = [];
@@ -46,8 +46,8 @@ export default function ResultsList ({loading, error, data, searchTerm, filters}
   }
 
   function filterItem (item) {
-    for (const filter in filters) {
-      if(filters[filter] === true && filterRules[filter] && filterRules[filter](item) === false) {
+    for (const filter of activeFilters) {
+      if(filterRules[filter] && filterRules[filter](item) === false) {
         return true
       }
     }

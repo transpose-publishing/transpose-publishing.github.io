@@ -1,57 +1,33 @@
 import React, {useState, useRef, useEffect} from 'react';
+import {filterList} from './filtersModel';
+import {FILTERNAMES, iconAssetPath} from './constants';
 
 
 
-export default function ActiveFilterDisplay ({filters, removeFilter, clearFilters}) {
+export default function ActiveFilterDisplay ({activeFilters, content, removeFilter, clearFilters}) {
   const [{overflow, lastVisibleFilter}, setOverflow] = useState({overflow: false, lastVisibleFilter: null});
   const [showAll, setShowAll] = useState(false);
 
   const buttonRefs = {};
-  const buttonElements = [];
-
-  Object.entries(filters).forEach(([filter, isActive]) => {
-    buttonRefs[filter] = useRef(null);
-    if(isActive) buttonElements.push(
-      <button
-        className="active-filter-button"
-        onClick={() => removeFilter(filter)}
-        key={filter}
-        ref={buttonRefs[filter]}
-      >
-        {filter}
-
-        {filter === lastVisibleFilter && !showAll &&
-        <button
-          className="overflow-button"
-          onClick={e => {
-            e.stopPropagation();
-            setShowAll(true)
-          }}
-        >
-          ...
-        </button>}
-      </button>)
-  });
+  Object.keys(FILTERNAMES).forEach( filter => buttonRefs[filter] = useRef(null));
 
   useEffect(function onFiltersChange_updateOverflowState () {
     let yOffset = null;
     let prevFilter = null;
-    for(const filter in buttonRefs) {
-      if(buttonRefs[filter].current) {
-        const {y} = buttonRefs[filter].current.getBoundingClientRect();
-        if(!yOffset) {
-          yOffset = y;
-        } else if (y > yOffset) {
-          if(!overflow) {
-            setOverflow({
-              overflow: true,
-              lastVisibleFilter: prevFilter
-            });
-          }
-          return;
+    for(const filter of activeFilters) {
+      const {y} = buttonRefs[filter].current.getBoundingClientRect();
+      if(!yOffset) {
+        yOffset = y;
+      } else if (y > yOffset) {
+        if(!overflow) {
+          setOverflow({
+            overflow: true,
+            lastVisibleFilter: prevFilter
+          });
         }
-        prevFilter = filter;
+        return;
       }
+      prevFilter = filter;
     }
     if(overflow) {
       setOverflow({
@@ -60,15 +36,35 @@ export default function ActiveFilterDisplay ({filters, removeFilter, clearFilter
       });
       setShowAll(false)
     }
-  }, [filters]);
+  }, [activeFilters]);
 
 
-  return buttonElements.length ? (
+  return activeFilters.length ? (
     <div className="active-filter-bar">
       <div className={`active-filter-container ${showAll ? 'show-all' : ''}`}>
 
         <div className="active-filter-list">
-          {buttonElements}
+          {activeFilters.map((filter, index) =>
+            <button
+              className="active-filter-button"
+              onClick={() => removeFilter(index)}
+              key={filter}
+              ref={buttonRefs[filter]}
+            >
+              {filterList[filter].contentGetter(content)}
+              <img src={`./${iconAssetPath}/Close-Icon-1.svg`}/>
+
+              {filter === lastVisibleFilter && !showAll &&
+              <button
+                className="overflow-button"
+                onClick={e => {
+                  e.stopPropagation();
+                  setShowAll(true)
+                }}
+              >
+                ...
+              </button>}
+            </button>)}
         </div>
 
         <div className="all-filter-controls">
