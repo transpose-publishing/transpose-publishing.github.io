@@ -45,26 +45,24 @@ export default function ActiveFilterDisplay ({activeFilters, content, removeFilt
 
         <div className="active-filter-list">
           {activeFilters.map((filter, index) =>
-            <button
-              className="active-filter-button"
-              onClick={() => removeFilter(index)}
-              key={filter}
-              ref={buttonRefs[filter]}
-            >
-              {filterList[filter].contentGetter(content)}
-              <img src={`./${iconAssetPath}/Close-Icon-1.svg`}/>
+            <div key={filter} className="active-filter-button-container">
+              <button
+                className="active-filter-button"
+                onClick={() => removeFilter(index)}
+                ref={buttonRefs[filter]}
+              >
+                {filterList[filter].contentGetter(content)}
+                <img src={`./${iconAssetPath}/Close-Icon-1.svg`}/>
+              </button>
 
               {filter === lastVisibleFilter && !showAll &&
               <button
                 className="overflow-button"
-                onClick={e => {
-                  e.stopPropagation();
-                  setShowAll(true)
-                }}
+                onClick={() => setShowAll(true)}
               >
-                ...
+                <span>...</span>
               </button>}
-            </button>)}
+            </div>)}
         </div>
 
         <div className="all-filter-controls">

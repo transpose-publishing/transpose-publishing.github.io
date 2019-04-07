@@ -1,13 +1,15 @@
+//Config constants
+export const itemsPerPage = 50;
+export const iconAssetPath = 'assets/Icons';
+
+
+//STRING constants
 export const KEYCODE = {
   ENTER: 13,
   UP_ARROW: 38,
   DOWN_ARROW: 40,
   TAB: 9
 };
-
-export const itemsPerPage = 50;
-
-export const iconAssetPath = 'assets/Icons';
 
 export const FILTERNAMES = {
   VERIFIED: 'VERIFIED',

@@ -183,34 +183,41 @@
       flex-wrap: wrap;
       overflow: hidden;
 
-      .active-filter-button {
-        border: 1px solid $color-background-darkGrey;
-        border-radius: 4px;
-        margin-right: 8px;
-        min-width: 128px;
-        height: 32px;
+      .active-filter-button-container {
         position: relative;
-        font-size: 14px;
-        font-family: "Helvetica Neue";
-        color: $color-background-darkGrey;
-        padding-right: 28px;
-        padding-left: 16px;
 
-        img {
-          width: 12px;
-          position: absolute;
-          top: 10px;
-          right: 10px;
+        .active-filter-button {
+          border: 1px solid $color-background-darkGrey;
+          border-radius: 4px;
+          margin-right: 8px;
+          min-width: 128px;
+          height: 32px;
+          position: relative;
+          font-size: 14px;
+          font-family: "Helvetica Neue";
+          color: $color-background-darkGrey;
+          padding-right: 28px;
+          padding-left: 16px;
+
+          img {
+            width: 12px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+          }
         }
 
         .overflow-button {
           position: absolute;
-          right: -48px;
-          top: -1px;
           width: 40px;
           height: 32px;
           border: 1px solid $color-background-darkGrey;
           border-radius: 4px;
+          padding-left: 0;
+
+          span {
+            font-size: 24px;
+          }
         }
       }
     }
