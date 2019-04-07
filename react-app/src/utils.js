@@ -48,3 +48,7 @@ export function searchString (searchTerm, source) {
   if(typeof searchTerm !== 'string' || typeof source !== 'string' || searchTerm === "" || source === "") return false;
   return source.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
 }
+
+export function isNot(value, array) {
+  return !array.some( condition => condition === value);
+}

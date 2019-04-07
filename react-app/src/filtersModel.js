@@ -1,4 +1,5 @@
 import {FILTERNAMES as FN} from "./constants";
+import {isNot} from "./utils";
 
 
 export const filterList = {
@@ -75,3 +76,33 @@ export const filterTypesList = [
     ]
   }
 ];
+
+
+const no_blank = ["No", ""];
+const no_notSpecified_blank = ["No", "Not specified", ""];
+
+export const filterRules = {
+  [FN.VERIFIED]: item => item.verified === "Yes",
+  [FN.PR_POLICY]: item => item['pr-policy'] !== "",
+  [FN.PR_DATABASE]: item => isNot(item['pr-database'], no_blank),
+  [FN.PR_TRANSFER_POLICY]: item => isNot(item['pr-transfer-policy'], no_blank),
+  [FN.OPR_REPORTS]: item => isNot(item['opr-reports'], no_notSpecified_blank),
+  [FN.OPR_RESPONSES]: item => isNot(item['opr-responses'], no_notSpecified_blank),
+  [FN.OPR_LETTERS]: item => isNot(item['opr-letters'], no_notSpecified_blank),
+  [FN.OPR_VERSIONS]: item => isNot(item['opr-versions'], no_notSpecified_blank),
+  [FN.OPR_IDENTITIES_PUBLISHED]: item => isNot(item['opr-identities-published'], no_notSpecified_blank),
+  [FN.OPR_IDENTITIES_AUTHOR]: item => isNot(item['opr-indenties-author'], no_notSpecified_blank),
+  [FN.OPR_COMMENTS]: item => isNot(item['opr-comments'], no_notSpecified_blank),
+  [FN.OPR_INTERACTION]: item => isNot(item['opr-interaction'], no_notSpecified_blank),
+  [FN.COREVIEW_POLICY]: item => item['coreview-policy'] !== "",
+  [FN.COREVIEW_EMAIL]: item => item['coreview-email'] === "Yes",
+  [FN.COREVIEW_FORM]: item => item['coreview-form'] === "Yes",
+  [FN.COREVIEW_DATABASE]: item => isNot(item['coreview-database'], no_blank),
+  [FN.PREPRINT_POLICY]: item => item['preprint-policy'] !== "",
+  [FN.PREPRINT_VERSION]: item => isNot(item['preprint-version'], no_blank),
+  [FN.PREPRINT_CITATION]: item => isNot(item['preprint-citation'], no_blank),
+  [FN.PREPRINT_MEDIA]: item => item['preprint-media'] !== "",
+  [FN.PREPRINT_LICENSING]: item => item['preprint-licensing'] !== "",
+  [FN.PREPRINT_SCOOP]: item => item['preprint-scoop'] !== "",
+  [FN.PREPRINT_REVIEW]: item => item['preprint-review'] !== ""
+};

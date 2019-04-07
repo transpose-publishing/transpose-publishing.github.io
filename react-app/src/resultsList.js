@@ -2,13 +2,9 @@ import React, {useState, useEffect, Fragment} from 'react';
 import {searchString} from './utils';
 import Paging from "./paging";
 import Result from './result';
-import {itemsPerPage, FILTERNAMES as FN} from './constants';
+import {itemsPerPage} from './constants';
+import {filterRules} from './filtersModel';
 
-
-
-const filterRules = {
-  [FN.VERIFIED]: item => item.verified === "Yes"
-};
 
 export default function ResultsList ({loading, error, data, searchTerm, activeFilters}) {
   const [page, setPage] = useState(0);
