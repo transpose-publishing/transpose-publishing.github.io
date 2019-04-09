@@ -1,11 +1,9 @@
-import React, {useState, useEffect, useRef, useContext} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {iconAssetPath, KEYCODE} from './constants';
 import {useMergeState, useClickOutside, keyboardControls} from './utils';
-import {AppState} from './index';
 
 
-export default function Search ({searchTerm, setSearchTerm, loading, data}) {
-  const {content, dispatchAppState} = useContext(AppState);
+export default function Search ({placeholder, searchTerm, setSearchTerm, loading, data}) {
   const [searchInputValue, setInputValue] = useState(searchTerm);
   const [{searchFocused, listItemFocused}, updateFocus] = useMergeState({searchFocused: false, listItemFocused: false});
 
@@ -74,7 +72,7 @@ export default function Search ({searchTerm, setSearchTerm, loading, data}) {
         id="search-input"
         ref={searchInputNode}
         type="text"
-        placeholder={content.search_placeholder}
+        placeholder={placeholder}
         value={searchInputValue}
         onFocus={onInputFocus}
         onKeyDown={keyDownHandler}

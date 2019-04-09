@@ -38,7 +38,12 @@ export default function HomePage ({loading, data, error, content, ...routerProps
         </div>
 
         <div className="banner-row row-3">
-          <Search data={data} loading={loading} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+          <Search
+            placeholder={content.search_placeholder}
+            data={data}
+            loading={loading}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}/>
         </div>
 
         <div className="banner-row row-4">
