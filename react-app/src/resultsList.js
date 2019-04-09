@@ -9,7 +9,7 @@ import {filterRules} from './filtersModel';
 export default function ResultsList ({loading, error, data, searchTerm, activeFilters}) {
   const [page, setPage] = useState(0);
 
-  useLayoutEffect(function resetPage () {
+  useLayoutEffect(function onSearchOrFilterChange_resetPage () {
     setPage(0)
   }, [searchTerm, activeFilters]);
 
