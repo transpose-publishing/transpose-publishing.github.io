@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, {useState, useLayoutEffect, Fragment} from 'react';
 import {searchString} from './utils';
 import Paging from "./paging";
 import Result from './result';
@@ -9,7 +9,7 @@ import {filterRules} from './filtersModel';
 export default function ResultsList ({loading, error, data, searchTerm, activeFilters}) {
   const [page, setPage] = useState(0);
 
-  useEffect(function resetPage () {
+  useLayoutEffect(function resetPage () {
     setPage(0)
   }, [searchTerm, activeFilters]);
 

@@ -44,6 +44,7 @@ export default function HomePage ({loading, data, error, content, ...routerProps
         <div className="banner-row row-4">
           <AddFilters
             content={content}
+            activeFilters={activeFilters}
             addFilter={addFilter}/>
 
           <VerifiedFilter

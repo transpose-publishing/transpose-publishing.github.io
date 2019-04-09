@@ -1,17 +1,20 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useRef, useLayoutEffect} from 'react';
 import {filterList} from './filtersModel';
 import {FILTERNAMES, iconAssetPath} from './constants';
+import {useMergeState} from './utils';
 
 
 
 export default function ActiveFilterDisplay ({activeFilters, content, removeFilter, clearFilters}) {
-  const [{overflow, lastVisibleFilter}, setOverflow] = useState({overflow: false, lastVisibleFilter: null});
-  const [showAll, setShowAll] = useState(false);
+  const [{lastVisibleFilter, showAll}, updateState] = useMergeState({
+    lastVisibleFilter: null,
+    showAll: false
+  });
 
   const buttonRefs = {};
   Object.keys(FILTERNAMES).forEach( filter => buttonRefs[filter] = useRef(null));
 
-  useEffect(function onFiltersChange_updateOverflowState () {
+  useLayoutEffect(function onFiltersChange_calculateLastVisibleFilter () {
     let yOffset = null;
     let prevFilter = null;
     for(const filter of activeFilters) {
@@ -19,9 +22,8 @@ export default function ActiveFilterDisplay ({activeFilters, content, removeFilt
       if(!yOffset) {
         yOffset = y;
       } else if (y > yOffset) {
-        if(!overflow) {
-          setOverflow({
-            overflow: true,
+        if(!lastVisibleFilter || lastVisibleFilter !== prevFilter) {
+          updateState({
             lastVisibleFilter: prevFilter
           });
         }
@@ -29,14 +31,13 @@ export default function ActiveFilterDisplay ({activeFilters, content, removeFilt
       }
       prevFilter = filter;
     }
-    if(overflow) {
-      setOverflow({
-        overflow: false,
-        lastVisibleFilter: null
+    if(lastVisibleFilter) {
+      updateState({
+        lastVisibleFilter: null,
+        showAll: false
       });
-      setShowAll(false)
     }
-  }, [activeFilters]);
+  }, [activeFilters, lastVisibleFilter]);
 
 
   return activeFilters.length ? (
@@ -58,7 +59,7 @@ export default function ActiveFilterDisplay ({activeFilters, content, removeFilt
               {filter === lastVisibleFilter && !showAll &&
               <button
                 className="overflow-button"
-                onClick={() => setShowAll(true)}
+                onClick={() => updateState({showAll: true})}
               >
                 <span>...</span>
               </button>}
@@ -67,7 +68,11 @@ export default function ActiveFilterDisplay ({activeFilters, content, removeFilt
 
         <div className="all-filter-controls">
           <button onClick={clearFilters}>Clear all filters</button>
-          {overflow && <button onClick={() => setShowAll(!showAll)}>Show all filters</button>}
+
+          {lastVisibleFilter &&
+          <button onClick={() => updateState({showAll: !showAll})}>
+            {showAll ? 'Collapse filters' : 'Show all filters'}
+          </button>}
         </div>
       </div>
     </div>)

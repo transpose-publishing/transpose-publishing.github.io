@@ -1,13 +1,13 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 import {iconAssetPath} from "./constants";
-import {useClickOutside} from './utils';
+import {useClickOutside, useMergeState} from './utils';
 import {filterTypesList} from './filtersModel';
 
 
 
-export default function AddFilters ({content, addFilter}) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [filterType, setFilterType] = useState({
+export default function AddFilters ({content, activeFilters, addFilter}) {
+  const [{menuOpen, typeName, filters}, updateState] = useMergeState({
+    menuOpen: false,
     typeName: null,
     filters: null
   });
@@ -22,12 +22,11 @@ export default function AddFilters ({content, addFilter}) {
   });
 
   function toggleMenu () {
-    if(menuOpen) setFilterType({type: null, filters: null});
-    setMenuOpen(!menuOpen)
+    updateState({menuOpen: !menuOpen, typeName: null, filters: null})
   }
 
   function selectType ({typeName, filters}) {
-    setFilterType({typeName, filters})
+    updateState({typeName, filters})
   }
 
   return (
@@ -39,30 +38,35 @@ export default function AddFilters ({content, addFilter}) {
 
       {menuOpen &&
       <div className="filter-list filter-types-list">
-        {filterTypesList.map( item =>
-          <button className={`filter-item filter-type-item ${item.typeName === filterType.typeName ? 'active' : ''}`}
-            key={item.typeName}
-            onClick={e => {
-              e.stopPropagation();
-              selectType(item)
-            }}
-          >
-            {item.contentGetter(content)}
-            <img src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Grey.svg`}/>
-          </button>)}
-
-        {filterType.filters &&
-        <div className="filter-list expanded-filter-list">
-          {filterType.filters.map( filter =>
-            <button className="filter-item filter-list-item"
-              key={filter.name}
-              onClick={() => {
-                addFilter(filter.name);
-                toggleMenu();
-              }}
+        {filterTypesList.map( item => {
+          if(item.filters.every( filter => activeFilters.includes(filter.name))) return null;
+          return (
+            <button className={`filter-item filter-type-item ${item.typeName === typeName ? 'active' : ''}`}
+              key={item.typeName}
+              onClick={() => selectType(item)}
             >
-              {filter.contentGetter(content)}
-            </button>)}
+              {item.contentGetter(content)}
+              <img src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Grey.svg`}/>
+            </button>
+          )
+        })}
+
+        {filters &&
+        <div className="filter-list expanded-filter-list">
+          {filters.map( filter => {
+            if(activeFilters.includes(filter.name)) return null;
+            return (
+              <button className="filter-item filter-list-item"
+                key={filter.name}
+                onClick={() => {
+                  addFilter(filter.name);
+                  toggleMenu();
+                }}
+              >
+                {filter.contentGetter(content)}
+              </button>
+            )
+          })}
         </div>}
       </div>}
     </div>
