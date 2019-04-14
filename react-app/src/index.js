@@ -1,7 +1,7 @@
 import "@babel/polyfill";
 import './styles/index.scss';
 
-import React, {useEffect, useState, useReducer} from 'react';
+import React, {useEffect, useState, useReducer, useMemo} from 'react';
 import ReactDom from 'react-dom';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './homePage';
@@ -10,25 +10,33 @@ import {fetchContent, fetchData} from './googleApi';
 
 
 const initialState = {
-  content: {}
+  compare: []
 };
 
+//TODO: Move reducer to separate file and set up action constants
 function appStateReducer (state, action) {
   switch (action.type) {
-    case 'content':
-      return {...state, content: action.content};
+    case 'ADD_COMPARE':
+      if(state.compare.length === 3) return state;
+      return {...state, compare: [...state.compare, action.item]};
+    case 'REMOVE_COMPARE':
+      const newCompare = [...state.compare];
+      newCompare.splice(action.index, 1);
+      return {...state, compare: newCompare};
     default:
       return state;
   }
 }
 
 export const AppState = React.createContext(initialState);
+export const Content = React.createContext({});
 
 function App () {
-  const [{content, ...appState}, dispatchAppState] = useReducer(appStateReducer, initialState);
+  const [appState, dispatchAppState] = useReducer(appStateReducer, initialState);
+  const [content, setContent] = useState({});
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null); //TODO: set up error handling for fetch catches
 
   useEffect(() => {
     fetchData({rows: 50})
@@ -41,23 +49,27 @@ function App () {
   }, []);
 
   useEffect(() => {
-    fetchContent().then( content => dispatchAppState({type: 'content', content}))
+    fetchContent().then( content => setContent(content))
   }, []);
 
-  return (
-    <AppState.Provider value={{appState, content, dispatchAppState}}>
-      <Router>
-        <Route path="/" component={Header}/>
+  const MemoizedHomePage = useMemo(() =>
+    <HomePage loading={loading} data={data} error={error} content={content}/>,
+    [loading, data, error, content]);
 
-        <Switch>
-          <Route exact path="/" render={ routerProps => {
-            return <HomePage loading={loading} data={data} error={error} content={content} {...routerProps}/>
-          }}/>
-          <Route path="/user-stories" render={() => <div>User stories</div>}/>
-          <Route path="/about" render={() => <div>About</div>}/>
-        </Switch>
-      </Router>
-    </AppState.Provider>
+  return (
+    <Content.Provider value={content}>
+      <AppState.Provider value={{appState, dispatchAppState}}>
+        <Router>
+          <Route path="/" component={Header}/>
+
+          <Switch>
+            <Route exact path="/" render={() => MemoizedHomePage}/>
+            <Route path="/user-stories" render={() => <div>User stories</div>}/>
+            <Route path="/about" render={() => <div>About</div>}/>
+          </Switch>
+        </Router>
+      </AppState.Provider>
+    </Content.Provider>
   )
 }
 

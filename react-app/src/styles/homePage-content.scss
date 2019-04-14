@@ -18,7 +18,7 @@
     background-color: white;
     border-radius: 5px;
     margin-bottom: 8px;
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,.2);
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.2);
     padding: 8px 16px 8px 8px;
     font-size: 12px;
 
@@ -59,6 +59,82 @@
       flex: 1;
       display: flex;
       justify-content: flex-end;
+    }
+
+    &.expanded {
+      background-color: $color-background-lighterGrey;
+    }
+  }
+
+  .result-details {
+
+    .compare-checkbox-bar {
+      height: 24px;
+      margin-left: 16px;
+      position: relative;
+
+      .compare-checkbox-container {
+        input {
+          opacity: 0;
+          position: absolute;
+        }
+
+        label {
+          padding-left: 24px;
+          font-family: "Helvetica Neue";
+          cursor: pointer;
+          font-size: 11px;
+          display: block;
+          padding-top: 2px;
+
+          &:before {
+            content: "";
+            position: absolute;
+            box-sizing: border-box;
+            left: 0; top: 0;
+            width: 16px;
+            height: 16px;
+            border: 1px solid $color-checkbox-grey;
+            border-radius: 2px;
+            background-color: white;
+            margin-right: 8px;
+          }
+
+          &.checked {
+            &:before {
+              background-color: $color-teal;
+            }
+          }
+        }
+      }
+    }
+
+    .details-section {
+      margin-bottom: 8px;
+      min-height: 152px;
+      background-color: white;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+
+      .header-bar {
+        background-color: $color-background-lightGrey;
+        height: 24px;
+      }
+    }
+
+    .pr-section {
+
+    }
+
+    .opr-section {
+
+    }
+
+    .coreview-section {
+
+    }
+
+    .preprint-section {
+
     }
   }
 }

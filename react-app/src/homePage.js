@@ -9,7 +9,7 @@ import {FILTERNAMES as FN} from './constants';
 
 
 
-export default function HomePage ({loading, data, error, content, ...routerProps}) {
+export default function HomePage ({loading, data, error, content}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
   const [verifiedFilter, setVerifiedFilter] = useState(false);
   const [activeFilters, setFilters] = useState([]);
@@ -65,8 +65,8 @@ export default function HomePage ({loading, data, error, content, ...routerProps
         removeFilter={removeFilter}
         clearFilters={() => setFilters([])}/>
 
-      <div className="order-section-container">
-        <div className="order-section"></div>
+      <div className="sort-order-section-container">
+        <div className="sort-order-section"></div>
         <div className="shadow-canvas"/>
       </div>
 

@@ -13,7 +13,8 @@ export default function ResultsList ({loading, error, data, searchTerm, activeFi
     setPage(0)
   }, [searchTerm, activeFilters]);
 
-  const {resultsList, totalPages} = !!data.length ? generateFilteredList() : {resultsList: null, totalPages: 0};
+  const {resultsList, totalPages} = !!data.length ? generateFilteredList()
+    : {resultsList: null, totalPages: 0};
 
   function generateFilteredList () {
     let filteredData = data;
@@ -54,7 +55,7 @@ export default function ResultsList ({loading, error, data, searchTerm, activeFi
     <div className="results-list">
       {!loading && resultsList &&
       <Fragment>
-        {resultsList.map((item, index) => <Result key={index} item={item}/>)}
+        {resultsList.map((item) => <Result key={item.uid} item={item}/>)}
         <Paging page={page} totalPages={totalPages} setPage={setPage}/>
       </Fragment>}
     </div>

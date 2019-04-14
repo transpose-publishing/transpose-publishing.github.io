@@ -52,3 +52,13 @@ export function searchString (searchTerm, source) {
 export function isNot(value, array) {
   return !array.some( condition => condition === value);
 }
+
+const uids = {};
+export function generateUid (uidPrefix) {
+  if(uids[uidPrefix] === void 0) {
+    uids[uidPrefix] = 0
+  } else {
+    uids[uidPrefix]++
+  }
+  return `${uidPrefix}-${uids[uidPrefix]}`
+}

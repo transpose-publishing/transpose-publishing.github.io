@@ -1,3 +1,6 @@
+import {JOURNAL_UID_PREFIX} from './constants';
+import {generateUid} from './utils';
+
 const startTime = Date.now();
 const spreadSheetUrl = 'https://docs.google.com/spreadsheets/d/19fuw6MEVPgoTgqY5Vh8JFEvW_HA4oPaDE_g3BZhB7Ek/edit?usp=sharing';
 
@@ -16,6 +19,7 @@ export function fetchData ({rows = 0}) {
               item[label] = row.cellsArray[labelIndex];
               labelIndex++
             }
+            item.uid = generateUid(JOURNAL_UID_PREFIX);
             dataArray.push(item);
           }
         }
