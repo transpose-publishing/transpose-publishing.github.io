@@ -9,11 +9,14 @@
   min-height: 500px;
   width: $containerWidth;
   background-color: $color-whiteGrey;
-  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .result-item {
+    cursor: pointer;
     display: flex;
-    width: 100%;
+    width: calc(100% - 32px);
     height: 48px;
     background-color: white;
     border-radius: 5px;
@@ -67,6 +70,17 @@
   }
 
   .result-details {
+    transition:max-height 0.5s linear;
+    max-height: 1200px;
+    overflow: hidden;
+    width: calc(100% - 32px);
+    padding-left: 16px;
+    padding-right: 16px;
+
+    &.collapsed {
+      transition:max-height 0.3s linear;
+      max-height: 0;
+    }
 
     .compare-checkbox-bar {
       height: 24px;
@@ -117,24 +131,60 @@
 
       .header-bar {
         background-color: $color-background-lightGrey;
+        color: $color-background-darkGrey;
+        font-weight: 600;
         height: 24px;
+        font-family: "Helvetica Neue";
+        font-size: 12px;
+        padding-left: 15px;
+        display: flex;
+        align-items: center;
       }
-    }
 
-    .pr-section {
+      .details-content {
+        padding: 10px 15px 15px 15px;
 
-    }
+        span, a, div {
+          font-family: "Helvetica Neue";
+          font-size: 12px;
+        }
 
-    .opr-section {
+        a {
+          text-decoration: none;
+          color: $color-text-link;
+        }
 
-    }
+        .details-content-label, .details-content-type-label {
+          font-weight: 600;
+        }
 
-    .coreview-section {
+        .details-content-type-label {
+          color: $color-teal;
+          margin-top: 8px;
+        }
 
-    }
+        .left-column {
+          margin-right: 15px;
+          width: 448px;
+          display: inline-block;
+          vertical-align: top;
 
-    .preprint-section {
+          .x-icon, .check-icon {
+            width: 16px;
+            height: 16px;
+            margin-bottom: -3px;
+          }
+          .x-icon {
+            margin-top: 10px;
+          }
+        }
 
+        .right-column {
+          width: 435px;
+          display: inline-block;
+          vertical-align: top;
+        }
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 
 //Custom Hooks
@@ -61,4 +61,22 @@ export function generateUid (uidPrefix) {
     uids[uidPrefix]++
   }
   return `${uidPrefix}-${uids[uidPrefix]}`
+}
+
+export function parseLinksInString (str) {
+  if(typeof str !== 'string' || str.indexOf('http') === -1) {
+    return str
+  }
+  const split = [str.substring(0, str.indexOf('http')), str.substring(str.indexOf('http'))];
+  split[1] = split[1].replace(/\r?\n|\r/g, ' ');
+  const url = split[1].slice(0, split[1].indexOf(' ') > -1 ? split[1].indexOf(' ') : void 0);
+  split[1] = split[1].indexOf(' ') > -1 ? split[1].substring(split[1].indexOf(' ')) : split[1];
+  if(split[1].indexOf('http') > -1) {
+    if(split[1].indexOf(' ') > -1) {
+      split[1] = parseLinksInString(split[1]);
+    } else {
+      return [split[0], <a href={split[1]} target="_blank">{split[1]}</a>]
+    }
+  }
+  return [split[0], <a href={url} target="_blank">{url}</a>, split[1]].flat()
 }

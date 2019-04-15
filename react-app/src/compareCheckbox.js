@@ -1,10 +1,9 @@
 import React, {useContext} from 'react';
-import {AppState, Content} from './index';
+import {AppState} from './index';
 
 
 
-export default function CompareCheckbox ({item}) {
-  const content = useContext(Content);
+export default function CompareCheckbox ({item, checkboxLabel}) {
   const {appState, dispatchAppState} = useContext(AppState);
   const {compare} = appState;
   const compareIndex = compare.findIndex(compareItem => compareItem.uid === item.uid);
@@ -21,7 +20,7 @@ export default function CompareCheckbox ({item}) {
   return (
     <div className="compare-checkbox-container">
       <input onClick={onClick} type="checkbox" id={`${item.uid}-checkmark`}/>
-      <label className={`${checked ? 'checked' : ''}`} htmlFor={`${item.uid}-checkmark`}>{content.compare_checkbox_label}</label>
+      <label className={`${checked ? 'checked' : ''}`} htmlFor={`${item.uid}-checkmark`}>{checkboxLabel}</label>
     </div>
   )
 }

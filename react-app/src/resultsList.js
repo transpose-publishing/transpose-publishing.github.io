@@ -1,7 +1,7 @@
 import React, {useState, useLayoutEffect, Fragment} from 'react';
 import {searchString} from './utils';
 import Paging from "./paging";
-import Result from './result';
+import Result from './results/result';
 import {itemsPerPage} from './constants';
 import {filterRules} from './filtersModel';
 
