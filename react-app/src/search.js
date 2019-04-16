@@ -14,7 +14,7 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
   useClickOutside({
     container: searchContainerNode.current,
     handler: resetFocus,
-    conditional: searchFocused === true,
+    addListenerConditional: searchFocused === true,
     dependencies: [searchFocused]
   });
 
@@ -92,7 +92,7 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
             })
             .map( (item, index) =>
               <li
-                key={`${item.title}-${item.publisher}-${Math.random()}`}
+                key={item.uid}
                 className="search-suggestion"
                 tabIndex={listItemFocused === index ? "0" : "-1"}
                 ref={listItemFocused === index ? focusedItemNode : void 0}

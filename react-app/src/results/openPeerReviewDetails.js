@@ -4,7 +4,7 @@ import {isNot} from '../utils';
 import {iconAssetPath} from '../constants';
 
 
-const haveHaveNot = [
+const policies = [
   'opr-reports',
   'opr-responses',
   'opr-letters',
@@ -15,14 +15,16 @@ const haveHaveNot = [
   'opr-interaction',
 ];
 
-const noOptions = ['', 'No', 'Not specified'];
-
 export default function PeerReviewDetails ({item, content}) {
-  const hasData = [];
-  const noData = [];
+  const specifiedPolicy = [];
+  const noPolicy = [];
 
-  for (const key of haveHaveNot) {
-    isNot(item[key], noOptions) ? hasData.push(key) : noData.push(key)
+  for (const key of policies) {
+    if(item[key] === 'No' || item[key].includes('No ') || item[key].includes('No,')) {
+      noPolicy.push(key)
+    } else if(isNot(item[key], ['', 'Not specified'])) {
+      specifiedPolicy.push(key)
+    }
   }
 
   return (
@@ -31,11 +33,11 @@ export default function PeerReviewDetails ({item, content}) {
       <div className="details-content">
         <div className="left-column">
           <img className="check-icon" src={`./${iconAssetPath}/check-icon.png`}/>
-          {hasData.map( key =>
+          {specifiedPolicy.map( key =>
             <DetailsItem key={key} label={content[key]} text={item[key]}/>)}
 
           <img className="x-icon" src={`./${iconAssetPath}/x-icon.png`}/>
-          {noData.map(key =>
+          {noPolicy.map(key =>
             <p key={key}><span className="details-content-label">{content[key]}</span></p>)}
         </div>
 

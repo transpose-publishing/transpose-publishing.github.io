@@ -9,9 +9,9 @@ export function useMergeState (initialState) {
   }]
 }
 
-export function useClickOutside ({container, handler, dependencies, conditional = true}) {
+export function useClickOutside ({container, handler, dependencies, addListenerConditional = true}) {
   useEffect(() => {
-    if(conditional) {
+    if(addListenerConditional) {
       document.addEventListener('mousedown', handleClickOutside);
     }
     return () => document.removeEventListener('mousedown', handleClickOutside)

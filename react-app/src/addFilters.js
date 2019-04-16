@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
-import {iconAssetPath} from "./constants";
+import {iconAssetPath, FILTERNAMES as FN} from "./constants";
 import {useClickOutside, useMergeState} from './utils';
-import {filterTypesList} from './filtersModel';
+import {filterTypesList, filterList} from './filtersModel';
 
 
 
@@ -17,7 +17,7 @@ export default function AddFilters ({content, activeFilters, addFilter}) {
   useClickOutside({
     container: buttonRef.current,
     handler: toggleMenu,
-    conditional: menuOpen === true,
+    addListenerConditional: menuOpen === true,
     dependencies: [menuOpen]
   });
 
@@ -28,6 +28,8 @@ export default function AddFilters ({content, activeFilters, addFilter}) {
   function selectType ({typeName, filters}) {
     updateState({typeName, filters})
   }
+
+  const OAFilter = filterList[FN.OA];
 
   return (
     <div  className="add-filters-button-container" ref={buttonRef}>
@@ -50,6 +52,17 @@ export default function AddFilters ({content, activeFilters, addFilter}) {
             </button>
           )
         })}
+
+        {!activeFilters.includes(OAFilter.name) &&
+        <button className={`filter-item filter-list-item`}
+          key={OAFilter.name}
+          onClick={() => {
+            addFilter(OAFilter.name);
+            toggleMenu();
+          }}
+        >
+          {OAFilter.contentGetter(content)}
+        </button>}
 
         {filters &&
         <div className="filter-list expanded-filter-list">

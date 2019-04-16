@@ -3,6 +3,7 @@ import {isNot} from "./utils";
 
 
 export const filterList = {
+  [FN.OA]: {name: FN.OA, contentGetter: content => content.oa},
   [FN.PR_POLICY]: {name: FN.PR_POLICY, contentGetter: content => content.pr_policy},
   [FN.PR_DATABASE]: {name: FN.PR_DATABASE, contentGetter: content => content.pr_database},
   [FN.PR_TRANSFER_POLICY]: {name: FN.PR_TRANSFER_POLICY, contentGetter: content => content.pr_transfer_policy},
@@ -83,6 +84,7 @@ const no_notSpecified_blank = ["No", "Not specified", ""];
 
 export const filterRules = {
   [FN.VERIFIED]: item => item.verified === "Yes",
+  [FN.OA]: item => item.oa === "Yes" || item.oa === "OA",
   [FN.PR_POLICY]: item => item['pr-policy'] !== "",
   [FN.PR_DATABASE]: item => isNot(item['pr-database'], no_blank),
   [FN.PR_TRANSFER_POLICY]: item => isNot(item['pr-transfer-policy'], no_blank),
