@@ -12,7 +12,7 @@ export default function ActiveFilterDisplay ({activeFilters, content, removeFilt
   });
 
   const buttonRefs = {};
-  Object.keys(FILTERNAMES).forEach( filter => buttonRefs[filter] = useRef(null));
+  Object.values(FILTERNAMES).forEach( filter => buttonRefs[filter] = useRef(null));
 
   useLayoutEffect(function onFiltersChange_calculateLastVisibleFilter () {
     let yOffset = null;

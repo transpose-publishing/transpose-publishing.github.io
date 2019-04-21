@@ -5,6 +5,7 @@ import VerifiedFilter from './verifiedFilter';
 import {usePersistedState} from './utils';
 import AddFilters from './addFilters';
 import ActiveFilterDisplay from './activeFilterDisplay'
+import SortBar from './sortBar';
 import {FILTERNAMES as FN} from './constants';
 
 
@@ -13,6 +14,7 @@ export default function HomePage ({loading, data, error, content}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
   const [verifiedFilter, setVerifiedFilter] = useState(false);
   const [activeFilters, setFilters] = useState([]);
+  const [sort, setSort] = useState(null);
 
   function addFilter (name) {
     if(!activeFilters.includes(name)) {
@@ -65,10 +67,7 @@ export default function HomePage ({loading, data, error, content}) {
         removeFilter={removeFilter}
         clearFilters={() => setFilters([])}/>
 
-      <div className="sort-order-section-container">
-        <div className="sort-order-section"></div>
-        <div className="shadow-canvas"/>
-      </div>
+      <SortBar sort={sort} setSort={setSort}/>
 
       <div className="home-content">
         <ResultsList
