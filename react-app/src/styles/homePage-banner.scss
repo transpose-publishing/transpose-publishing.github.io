@@ -156,6 +156,7 @@
       align-items: center;
       font-family: inherit;
       font-size: 14px;
+      position: relative;
 
       span {
         font-family: "Helvetica Neue";
@@ -165,8 +166,16 @@
       .verified-filter-switch {
         height: 22px;
         width: 22px;
-        background-color: $color-teal;
+        background-color: $color-background-lighterGrey;
         border-radius: 2px;
+        position: absolute;
+        left: 5px;
+        transition: all .05s linear;
+
+        &.on {
+          transform: translate(30px, 0);
+          background-color: $color-teal;
+        }
       }
     }
   }

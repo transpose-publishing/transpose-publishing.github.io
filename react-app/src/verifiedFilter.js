@@ -7,9 +7,9 @@ export default function VerifiedFilter ({label, verifiedFilter, toggleVerifiedFi
       <span>{label}</span>
       <button onClick={toggleVerifiedFilter}>
         <div className="verified-filter">
-          {verifiedFilter && <span>On</span>}
-          <div className="verified-filter-switch"/>
-          {!verifiedFilter && <span>Off</span>}
+          <span>On</span>
+          <span>Off</span>
+          <div className={`verified-filter-switch ${verifiedFilter ? 'on' : ''}`}/>
         </div>
       </button>
     </div>
