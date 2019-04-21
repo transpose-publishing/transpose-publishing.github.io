@@ -6,6 +6,7 @@ import ReactDom from 'react-dom';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './homePage';
 import Header from "./header";
+import MainFooter from './mainFooter';
 import {fetchContent, fetchData} from './googleApi';
 
 
@@ -23,6 +24,8 @@ function appStateReducer (state, action) {
       const newCompare = [...state.compare];
       newCompare.splice(action.index, 1);
       return {...state, compare: newCompare};
+    case 'CLEAR_COMPARE':
+      return {...state, compare: []};
     default:
       return state;
   }
@@ -68,6 +71,8 @@ function App () {
             <Route path="/about" render={() => <div>About</div>}/>
           </Switch>
         </Router>
+
+        <MainFooter/>
       </AppState.Provider>
     </Content.Provider>
   )

@@ -1,5 +1,4 @@
 .home-content {
-  padding-bottom: 20px;
   padding-right: $containerPadding;
   padding-left: $containerPadding;
   min-height: 800px;
@@ -211,4 +210,69 @@
 .paging-container .page-arrow.left-arrow {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+}
+
+.compare-footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 64px;
+  background-color: $color-background-lightGrey;
+  border-top: 1px solid $color-border-lightGrey;
+  box-shadow: 0 3px 6px 0 rgba(0,0,0,.8);
+  display: flex;
+  align-items: center;
+
+  .buttons-container {
+    width: $containerWidth;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+
+    .compare-footer-button {
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: "Helvetica Neue";
+      height: 100%;
+    }
+
+    .compare-button {
+      width: 235px;
+      background-color: $color-teal;
+      color: white;
+
+      &.disabled {
+        opacity: .5;
+        pointer-events: none;
+        cursor: none;
+      }
+    }
+
+    .clear-button {
+      position: absolute;
+      right: 16px;
+      width: 147px;
+      background-color: white;
+      color: $color-background-darkGrey;
+    }
+  }
+}
+
+.compare-modal {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 37px;
+  margin-bottom: 32px;
+  border: 1px solid $color-compare-border;
+  height: 1000px;
+  background-color: white;
+  box-shadow: 0 3px 6px 0 rgba(0,0,0,.4);
+  padding: 15px 16px 30px 16px;
+
+  .close-icon {
+    height: 42px;
+  }
 }
