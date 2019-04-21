@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-
+import {SORT_ORDER} from './constants';
+const {ASC} = SORT_ORDER;
 
 //Custom Hooks
 export function useMergeState (initialState) {
@@ -79,4 +80,18 @@ export function parseLinksInString (str) {
     }
   }
   return [split[0], <a href={url} target="_blank">{url}</a>, split[1]].flat()
+}
+
+export function sortGenerator (field, order = ASC, {ignoreBlanks} = {}) {
+  return function sortFunction (a, b){
+    const aValue = a[field].toLowerCase();
+    const bValue = b[field].toLowerCase();
+    if(ignoreBlanks) {
+      if(aValue === "") return 1;
+      if(bValue === "") return -1;
+    }
+    if(aValue < bValue) { return order === ASC ? -1 : 1; }
+    if(aValue > bValue) { return order === ASC ? 1 : -1; }
+    return 0;
+  }
 }

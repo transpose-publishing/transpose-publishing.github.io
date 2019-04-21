@@ -41,8 +41,13 @@ export const FILTERNAMES = {
 export const JOURNAL_UID_PREFIX = 'JOURNAL-ITEM';
 
 export const SORT_FIELDS = {
-  JOURNAL: 'JOURNAL',
-  PUBLISHER: 'PUBLISHER',
-  OA: 'OA',
-  DATE: 'DATE'
+  TITLE: 'title',
+  PUBLISHER: 'publisher',
+  OA: 'oa',
+  DATE: 'date'
+};
+
+export const SORT_ORDER = {
+  ASC: 'ASC',
+  DESC: 'DESC'
 };

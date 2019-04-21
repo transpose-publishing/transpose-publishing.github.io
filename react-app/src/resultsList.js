@@ -1,12 +1,14 @@
 import React, {useState, useLayoutEffect, Fragment} from 'react';
-import {searchString} from './utils';
+import {searchString, sortGenerator} from './utils';
 import Paging from "./paging";
 import Result from './results/result';
 import {itemsPerPage} from './constants';
 import {filterRules} from './filtersModel';
+import {sortOptions} from './sortModels';
+import {SORT_FIELDS} from './constants';
 
 
-export default function ResultsList ({loading, error, data, searchTerm, activeFilters}) {
+export default function ResultsList ({loading, error, data, searchTerm, sort, activeFilters}) {
   const [page, setPage] = useState(0);
 
   useLayoutEffect(function onSearchOrFilterChange_resetPage () {
@@ -19,21 +21,31 @@ export default function ResultsList ({loading, error, data, searchTerm, activeFi
   function generateFilteredList () {
     let filteredData = data;
     const filtersOn = !!activeFilters.length;
-    if(searchTerm) {
+
+    if (!searchTerm) {
+      if(filtersOn) filteredData = filteredData.filter( item => filterItem(item) === false);
+      if(sort.field) {
+        filteredData.sort(sortGenerator(sort.field, sort.order, sortOptions[sort.field]));
+      } else {
+        filteredData.sort(sortGenerator(SORT_FIELDS.DATE, 'desc'));
+      }
+
+    } else if (searchTerm) {
       let titleMatches = [];
       let publisherMatches = [];
       let otherMatches = [];
-      data.forEach( item => {
-        if(filtersOn && filterItem(item) === true) return;
-        if(searchString(searchTerm, item.title)) return titleMatches.push(item);
-        if(searchString(searchTerm, item.publisher)) return publisherMatches.push(item);
+      data.forEach(item => {
+        if (filtersOn && filterItem(item) === true) return;
+        if (searchString(searchTerm, item.title)) return titleMatches.push(item);
+        if (searchString(searchTerm, item.publisher)) return publisherMatches.push(item);
         for (const key in item) {
-          if(searchString(searchTerm, item[key])) otherMatches.push(item)
+          if (searchString(searchTerm, item[key])) otherMatches.push(item)
         }
       });
       filteredData = [...titleMatches, ...publisherMatches, ...otherMatches];
+      if(sort.field) filteredData.sort(sortGenerator(sort.field, sort.order))
 
-    } else if (!searchTerm && filtersOn) {
+    } else if (filtersOn) {
       filteredData = filteredData.filter( item => filterItem(item) === false)
     }
 

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Search from './search';
 import ResultsList from './resultsList';
 import VerifiedFilter from './verifiedFilter';
-import {usePersistedState} from './utils';
+import {usePersistedState, useMergeState} from './utils';
 import AddFilters from './addFilters';
 import ActiveFilterDisplay from './activeFilterDisplay'
 import SortBar from './sortBar';
@@ -14,7 +14,7 @@ export default function HomePage ({loading, data, error, content}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
   const [verifiedFilter, setVerifiedFilter] = useState(false);
   const [activeFilters, setFilters] = useState([]);
-  const [sort, setSort] = useState(null);
+  const [sort, updateSort] = useMergeState({field: null, order: null});
 
   function addFilter (name) {
     if(!activeFilters.includes(name)) {
@@ -67,7 +67,7 @@ export default function HomePage ({loading, data, error, content}) {
         removeFilter={removeFilter}
         clearFilters={() => setFilters([])}/>
 
-      <SortBar sort={sort} setSort={setSort}/>
+      <SortBar sort={sort} updateSort={updateSort} content={content}/>
 
       <div className="home-content">
         <ResultsList
@@ -75,6 +75,7 @@ export default function HomePage ({loading, data, error, content}) {
           data={data}
           error={error}
           searchTerm={searchTerm}
+          sort={sort}
           activeFilters={verifiedFilter ? [FN.VERIFIED, ...activeFilters] : activeFilters}/>
       </div>
     </div>

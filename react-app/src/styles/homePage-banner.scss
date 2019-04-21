@@ -270,22 +270,30 @@
     height: 100%;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
 
     .sort-section {
-      display: inline-block;
+      display: flex;
+      align-items: center;
       height: 100%;
-      padding-top: 8px;
+      padding-top: 4px;
 
       button, span {
         font-family: "Helvetica Neue";
         font-size: 14px;
         color: white;
         padding-left: 0;
+        display: flex;
+        align-items: center;
       }
 
       img {
-        height: 10px;
-        width: 18px;
+        height: 20px;
+        margin-left: 5px;
+
+        &.asc {
+          transform:rotate(180deg)
+        }
       }
     }
 
@@ -302,12 +310,12 @@
       width: 272px;
     }
 
-    .oa-sort-section {
+    .issn-sort-section {
       width: 80px;
     }
 
-    .issn-sort-section {
-      width: 48px;
+    .oa-sort-section {
+      width: 54px;
     }
 
     .date-sort-section {
