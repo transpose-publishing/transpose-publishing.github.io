@@ -11,5 +11,7 @@ export const orderDefaults = {
 };
 
 export const sortOptions = {
-  [PUBLISHER]: {ignoreBlanks: true}
+  [DATE]: {secondaryField: TITLE, secondaryOrder: ASC},
+  [PUBLISHER]: {ignoreBlanks: true, secondaryField: TITLE, secondaryOrder: ASC},
+  [OA]: {secondaryField: TITLE, secondaryOrder: ASC}
 };

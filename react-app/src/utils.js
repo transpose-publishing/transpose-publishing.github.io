@@ -82,16 +82,28 @@ export function parseLinksInString (str) {
   return [split[0], <a href={url} target="_blank">{url}</a>, split[1]].flat()
 }
 
-export function sortGenerator (field, order = ASC, {ignoreBlanks} = {}) {
+export function sortGenerator (field, order = ASC, {ignoreBlanks, secondaryField, secondaryOrder} = {}) {
   return function sortFunction (a, b){
     const aValue = a[field].toLowerCase();
     const bValue = b[field].toLowerCase();
     if(ignoreBlanks) {
+      if(aValue === "" && bValue === "" && secondaryField) {
+        const secondaryFieldAValue = a[secondaryField].toLowerCase();
+        const secondaryFieldBValue = b[secondaryField].toLowerCase();
+        if(secondaryFieldAValue < secondaryFieldBValue) { return secondaryOrder === ASC ? -1 : 1; }
+        if(secondaryFieldAValue > secondaryFieldBValue) { return secondaryOrder === ASC ? 1 : -1; }
+      }
       if(aValue === "") return 1;
       if(bValue === "") return -1;
     }
     if(aValue < bValue) { return order === ASC ? -1 : 1; }
     if(aValue > bValue) { return order === ASC ? 1 : -1; }
+    if(secondaryField) {
+      const secondaryFieldAValue = a[secondaryField].toLowerCase();
+      const secondaryFieldBValue = b[secondaryField].toLowerCase();
+      if(secondaryFieldAValue < secondaryFieldBValue) { return secondaryOrder === ASC ? -1 : 1; }
+      if(secondaryFieldAValue > secondaryFieldBValue) { return secondaryOrder === ASC ? 1 : -1; }
+    }
     return 0;
   }
 }

@@ -5,7 +5,7 @@ import Result from './results/result';
 import {itemsPerPage} from './constants';
 import {filterRules} from './filtersModel';
 import {sortOptions} from './sortModels';
-import {SORT_FIELDS} from './constants';
+import {SORT_FIELDS, SORT_ORDER} from './constants';
 
 
 export default function ResultsList ({loading, error, data, searchTerm, sort, activeFilters}) {
@@ -27,7 +27,7 @@ export default function ResultsList ({loading, error, data, searchTerm, sort, ac
       if(sort.field) {
         filteredData.sort(sortGenerator(sort.field, sort.order, sortOptions[sort.field]));
       } else {
-        filteredData.sort(sortGenerator(SORT_FIELDS.DATE, 'desc'));
+        filteredData.sort(sortGenerator(SORT_FIELDS.DATE, SORT_ORDER.DESC, sortOptions[SORT_FIELDS.DATE]));
       }
 
     } else if (searchTerm) {
@@ -43,7 +43,7 @@ export default function ResultsList ({loading, error, data, searchTerm, sort, ac
         }
       });
       filteredData = [...titleMatches, ...publisherMatches, ...otherMatches];
-      if(sort.field) filteredData.sort(sortGenerator(sort.field, sort.order))
+      if(sort.field) filteredData.sort(sortGenerator(sort.field, sort.order, sortOptions[sort.field]))
 
     } else if (filtersOn) {
       filteredData = filteredData.filter( item => filterItem(item) === false)
