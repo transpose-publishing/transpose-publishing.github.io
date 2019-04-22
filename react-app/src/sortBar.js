@@ -19,14 +19,18 @@ export default function SortBar ({sort, updateSort, content}) {
           <div className="journal-sort-section sort-section">
             <button onClick={() => toggleSort(SORT_FIELDS.TITLE)}>
               {content.title}
-              {sort.field === SORT_FIELDS.TITLE && <SortArrow order={sort.order}/>}
+              <SortArrow
+                order={sort.field === SORT_FIELDS.TITLE ? sort.order : DESC}
+                active={sort.field === SORT_FIELDS.TITLE}/>
             </button>
           </div>
 
           <div className="publisher-sort-section sort-section">
             <button onClick={() => toggleSort(SORT_FIELDS.PUBLISHER)}>
               {content.publisher}
-              {sort.field === SORT_FIELDS.PUBLISHER && <SortArrow order={sort.order}/>}
+              <SortArrow
+                order={sort.field === SORT_FIELDS.PUBLISHER ? sort.order : DESC}
+                active={sort.field === SORT_FIELDS.PUBLISHER}/>
             </button>
           </div>
 
@@ -41,14 +45,18 @@ export default function SortBar ({sort, updateSort, content}) {
           <div className="oa-sort-section sort-section">
             <button onClick={() => toggleSort(SORT_FIELDS.OA)}>
               {content.oa}
-              {sort.field === SORT_FIELDS.OA && <SortArrow order={sort.order}/>}
+              <SortArrow
+                order={sort.field === SORT_FIELDS.OA ? sort.order : DESC}
+                active={sort.field === SORT_FIELDS.OA}/>
             </button>
           </div>
 
           <div className="date-sort-section sort-section">
             <button onClick={() => toggleSort(SORT_FIELDS.DATE)}>
               {content.date}
-              {sort.field === SORT_FIELDS.DATE && <SortArrow order={sort.order}/>}
+              <SortArrow
+                order={sort.field === SORT_FIELDS.DATE ? sort.order : DESC}
+                active={sort.field === SORT_FIELDS.DATE}/>
             </button>
           </div>
         </div>
@@ -58,10 +66,10 @@ export default function SortBar ({sort, updateSort, content}) {
   )
 }
 
-function SortArrow ({order}) {
+function SortArrow ({order, active}) {
   return (
     <img className={order === ASC ? 'asc' : ''}
-      src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Green.svg`}/>
+      src={`./${iconAssetPath}/Dropdown-Arrow-Icon-${active ? 'Green' : 'White'}.svg`}/>
   )
 }
 
