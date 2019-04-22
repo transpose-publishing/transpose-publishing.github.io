@@ -32,7 +32,7 @@ export default function HomePage ({loading, data, error, content}) {
   }
 
   return compareModalOpen
-    ? <CompareModal toggleCompareModal={toggleCompareModal}/>
+    ? <CompareModal toggleCompareModal={toggleCompareModal} content={content}/>
     : <Fragment>
         <div className="home-banner">
           <div className="banner-row row-1">

@@ -100,6 +100,22 @@
           display: block;
           padding-top: 2px;
 
+          &.disabled {
+            opacity: .3;
+            pointer-events: none;
+            cursor: none;
+          };
+
+          .checkmark {
+            transform: rotate(40deg);
+            height: 12px;
+            width: 6px;
+            border-bottom: 2px solid $color-teal;
+            border-right: 2px solid $color-teal;
+            position: absolute;
+            left: 5px; top: 1px;
+          }
+
           &:before {
             content: "";
             position: absolute;
@@ -112,78 +128,76 @@
             background-color: white;
             margin-right: 8px;
           }
-
-          &.checked {
-            &:before {
-              background-color: $color-teal;
-            }
-          }
         }
       }
     }
+  }
+}
 
-    .details-section {
-      margin-bottom: 8px;
-      min-height: 152px;
-      background-color: white;
-      box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+.details-section {
+  margin-bottom: 8px;
+  min-height: 152px;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 
-      .header-bar {
-        background-color: $color-background-lightGrey;
-        color: $color-background-darkGrey;
-        font-weight: 600;
-        height: 24px;
-        font-family: "Helvetica Neue";
-        font-size: 12px;
-        padding-left: 15px;
-        display: flex;
-        align-items: center;
+  .header-bar {
+    background-color: $color-background-lightGrey;
+    color: $color-background-darkGrey;
+    font-weight: 600;
+    height: 24px;
+    font-family: "Helvetica Neue";
+    font-size: 12px;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  .details-content {
+    padding: 10px 15px 15px 15px;
+    display: flex;
+    flex-wrap: wrap;
+
+    span, a, div {
+      font-family: "Helvetica Neue";
+      font-size: 12px;
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-text-link;
+    }
+
+    .details-content-label, .details-content-type-label {
+      font-weight: 600;
+    }
+
+    .details-content-type-label {
+      color: $color-teal;
+      margin-top: 8px;
+    }
+
+    .left-column {
+      margin-right: 15px;
+      flex: 1.03;
+      min-width: 250px;
+      display: inline-block;
+      vertical-align: top;
+
+      .x-icon, .check-icon {
+        width: 16px;
+        height: 16px;
+        display: block;
       }
-
-      .details-content {
-        padding: 10px 15px 15px 15px;
-
-        span, a, div {
-          font-family: "Helvetica Neue";
-          font-size: 12px;
-        }
-
-        a {
-          text-decoration: none;
-          color: $color-text-link;
-        }
-
-        .details-content-label, .details-content-type-label {
-          font-weight: 600;
-        }
-
-        .details-content-type-label {
-          color: $color-teal;
-          margin-top: 8px;
-        }
-
-        .left-column {
-          margin-right: 15px;
-          width: 448px;
-          display: inline-block;
-          vertical-align: top;
-
-          .x-icon, .check-icon {
-            width: 16px;
-            height: 16px;
-            display: block;
-          }
-          .x-icon {
-            margin-top: 10px;
-          }
-        }
-
-        .right-column {
-          width: 435px;
-          display: inline-block;
-          vertical-align: top;
-        }
+      .x-icon {
+        margin-top: 10px;
       }
+    }
+
+    .right-column {
+      flex: 1;
+      min-width: 250px;
+      display: inline-block;
+      vertical-align: top;
     }
   }
 }
@@ -267,12 +281,45 @@
   margin-top: 37px;
   margin-bottom: 32px;
   border: 1px solid $color-compare-border;
-  height: 1000px;
   background-color: white;
   box-shadow: 0 3px 6px 0 rgba(0,0,0,.4);
   padding: 15px 16px 30px 16px;
+  position: relative;
 
-  .close-icon {
-    height: 42px;
+  .compare-modal-header {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      img {
+        height: 42px;
+      }
+    }
+  }
+
+  .compare-columns-container {
+    display: flex;
+    margin: 0 -4px;
+
+    .compare-column {
+      flex: 1;
+      margin: 0 4px;
+      border: 1px solid $color-compare-border-2;
+
+      .compare-column-header {
+        height: 79px;
+        width: 100%;
+        background-color: $color-background-darkGrey;
+      }
+
+      .details-section {
+        margin-bottom: 0;
+        box-shadow: none;
+      }
+
+      .right-column {
+        margin-top: 8px !important;
+      }
+    }
   }
 }

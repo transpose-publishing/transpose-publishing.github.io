@@ -8,6 +8,7 @@ export default function CompareCheckbox ({item, checkboxLabel}) {
   const {compare} = appState;
   const compareIndex = compare.findIndex(compareItem => compareItem.uid === item.uid);
   const checked = compareIndex > -1;
+  const disabled = !checked && compare.length === 3;
 
   function onClick () {
     if(!checked) {
@@ -19,8 +20,11 @@ export default function CompareCheckbox ({item, checkboxLabel}) {
 
   return (
     <div className="compare-checkbox-container">
-      <input onClick={onClick} type="checkbox" id={`${item.uid}-checkmark`}/>
-      <label className={`${checked ? 'checked' : ''}`} htmlFor={`${item.uid}-checkmark`}>{checkboxLabel}</label>
+      <input onClick={onClick} type="checkbox" id={`${item.uid}-checkbox`}/>
+      <label htmlFor={`${item.uid}-checkbox`} className={disabled ? 'disabled' : ''}>
+        {checked && <span className="checkmark"/>}
+        {checkboxLabel}
+      </label>
     </div>
   )
 }
