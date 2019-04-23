@@ -3,7 +3,7 @@ import {searchString, sortGenerator} from './utils';
 import Paging from "./paging";
 import Result from './results/result';
 import {itemsPerPage} from './constants';
-import {filterRules} from './filtersModel';
+import {filterRules} from './filterModels';
 import {sortOptions} from './sortModels';
 import {SORT_FIELDS, SORT_ORDER} from './constants';
 

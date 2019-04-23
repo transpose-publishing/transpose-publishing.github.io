@@ -1,5 +1,5 @@
 import React, {useRef, useLayoutEffect} from 'react';
-import {filterList} from './filtersModel';
+import {filterList} from './filterModels';
 import {FILTERNAMES, iconAssetPath} from './constants';
 import {useMergeState} from './utils';
 

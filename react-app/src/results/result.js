@@ -1,7 +1,7 @@
 import React, {Fragment, useState, useContext} from 'react';
 import CompareCheckbox from '../compareCheckbox';
 import {iconAssetPath} from "../constants";
-import {Content} from '../index';
+import {ContentContext} from '../index';
 import PeerReviewDetails from './peerReviewDetails';
 import OpenPeerReviewDetails from './openPeerReviewDetails';
 import CoreviewDetails from './coreviewDetails';
@@ -10,15 +10,15 @@ import PreprintsDetails from './preprintsDetails';
 const timeouts = {};
 
 export default function Result ({item}) {
-  const content = useContext(Content);
+  const content = useContext(ContentContext);
   const [showDetails, setShowDetails] = useState(false);
-  const [collapsedClass, setCollapsed] = useState(true);
+  const [animationClass_collapsed, setCollapsedClass] = useState(true);
 
   function toggleShowDetails () {
     if(!showDetails) {
       setShowDetails(true);
       setTimeout(() => {
-        setCollapsed(false)
+        setCollapsedClass(false)
       })
     }
     if(showDetails) {
@@ -26,8 +26,8 @@ export default function Result ({item}) {
         clearTimeout(timeouts[item.uid]);
         delete timeouts[item.uid]
       }
-      setCollapsed(!collapsedClass);
-      if(!collapsedClass) {
+      setCollapsedClass(!animationClass_collapsed);
+      if(!animationClass_collapsed) {
         timeouts[item.uid] = setTimeout(() => {
           setShowDetails(false)
         }, 600)
@@ -37,7 +37,7 @@ export default function Result ({item}) {
 
   return (
     <Fragment>
-      <div  className={`result-item ${showDetails && !collapsedClass ? 'expanded' : ''}`} onClick={toggleShowDetails}>
+      <div  className={`result-item ${showDetails && !animationClass_collapsed ? 'expanded' : ''}`} onClick={toggleShowDetails}>
         <div className="result-section-verified">
           {item.verified === "Yes" && <img src={`./${iconAssetPath}/Verified-Icon-1.svg`}/>}
         </div>
@@ -61,7 +61,7 @@ export default function Result ({item}) {
       </div>
 
       {showDetails &&
-      <div className={`result-details ${collapsedClass ? 'collapsed' : ''}`}>
+      <div className={`result-details ${animationClass_collapsed ? 'collapsed' : ''}`}>
 
           <div className="compare-checkbox-bar">
             <CompareCheckbox item={item} checkboxLabel={content.compare_checkbox_label}/>

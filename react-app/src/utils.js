@@ -35,6 +35,21 @@ export function usePersistedState(key, initial) {
   }]
 }
 
+export function useArrayState (initialArray = []) {
+  const [array, setArray] = useState(initialArray);
+  function pushUnique (item) {
+    if(!array.includes(item)) {
+      setArray([...array, item])
+    }
+  }
+  function removeByIndex (index) {
+    const newArray = [...array];
+    newArray.splice(index, 1);
+    setArray(newArray)
+  }
+  return [array, {pushUnique, removeByIndex}]
+}
+
 
 //Component Functionality
 export function keyboardControls (keyHandlers) {

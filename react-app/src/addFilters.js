@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {iconAssetPath, FILTERNAMES as FN} from "./constants";
 import {useClickOutside, useMergeState} from './utils';
-import {filterTypesList, filterList} from './filtersModel';
+import {filterTypesList, filterList} from './filterModels';
 
 
 

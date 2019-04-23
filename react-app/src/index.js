@@ -8,34 +8,15 @@ import HomePage from './homePage';
 import Header from "./header";
 import MainFooter from './mainFooter';
 import {fetchContent, fetchData} from './googleApi';
+import {CompareContext, compareReducer} from './compareController';
 
 
-const initialState = {
-  compare: []
-};
 
-//TODO: Move reducer to separate file and set up action constants
-function appStateReducer (state, action) {
-  switch (action.type) {
-    case 'ADD_COMPARE':
-      if(state.compare.length === 3) return state;
-      return {...state, compare: [...state.compare, action.item]};
-    case 'REMOVE_COMPARE':
-      const newCompare = [...state.compare];
-      newCompare.splice(action.index, 1);
-      return {...state, compare: newCompare};
-    case 'CLEAR_COMPARE':
-      return {...state, compare: []};
-    default:
-      return state;
-  }
-}
 
-export const AppState = React.createContext(initialState);
-export const Content = React.createContext({});
+export const ContentContext = React.createContext({});
 
 function App () {
-  const [appState, dispatchAppState] = useReducer(appStateReducer, initialState);
+  const [compare, dispatchCompareAction] = useReducer(compareReducer, []);
   const [content, setContent] = useState({});
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -60,8 +41,8 @@ function App () {
     [loading, data, error, content]);
 
   return (
-    <Content.Provider value={content}>
-      <AppState.Provider value={{appState, dispatchAppState}}>
+    <ContentContext.Provider value={content}>
+      <CompareContext.Provider value={{compare, dispatchCompareAction}}>
         <Router>
           <Route path="/" component={Header}/>
 
@@ -73,8 +54,8 @@ function App () {
         </Router>
 
         <MainFooter/>
-      </AppState.Provider>
-    </Content.Provider>
+      </CompareContext.Provider>
+    </ContentContext.Provider>
   )
 }
 

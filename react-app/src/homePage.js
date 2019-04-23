@@ -2,7 +2,7 @@ import React, {Fragment, useState} from 'react';
 import Search from './search';
 import ResultsList from './resultsList';
 import VerifiedFilter from './verifiedFilter';
-import {usePersistedState, useMergeState} from './utils';
+import {usePersistedState, useMergeState, useArrayState} from './utils';
 import AddFilters from './addFilters';
 import ActiveFilterDisplay from './activeFilterDisplay'
 import SortBar from './sortBar';
@@ -14,25 +14,13 @@ import {FILTERNAMES as FN} from './constants';
 
 export default function HomePage ({loading, data, error, content}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
-  const [verifiedFilter, setVerifiedFilter] = useState(false);
-  const [activeFilters, setFilters] = useState([]);
+  const [verifiedFilter, toggleVerifiedFilter] = useState(false);
+  const [activeFilters, {pushUnique: addFilter, removeByIndex: removeFilter}] = useArrayState([]);
   const [sort, updateSort] = useMergeState({field: null, order: null});
   const [compareModalOpen, toggleCompareModal] = useState(false);
 
-  function addFilter (name) {
-    if(!activeFilters.includes(name)) {
-      setFilters([...activeFilters, name])
-    }
-  }
-
-  function removeFilter (index) {
-    const newArray = [...activeFilters];
-    newArray.splice(index, 1);
-    setFilters(newArray)
-  }
-
   return compareModalOpen
-    ? <CompareModal toggleCompareModal={toggleCompareModal} content={content}/>
+    ? <CompareModal closeCompareModal={() => toggleCompareModal(false)} content={content}/>
     : <Fragment>
         <div className="home-banner">
           <div className="banner-row row-1">
@@ -61,7 +49,7 @@ export default function HomePage ({loading, data, error, content}) {
             <VerifiedFilter
               label={content.filter_verified}
               verifiedFilter={verifiedFilter}
-              toggleVerifiedFilter={() => setVerifiedFilter(!verifiedFilter)}/>
+              toggleVerifiedFilter={() => toggleVerifiedFilter(!verifiedFilter)}/>
           </div>
         </div>
 
@@ -83,6 +71,6 @@ export default function HomePage ({loading, data, error, content}) {
             activeFilters={verifiedFilter ? [FN.VERIFIED, ...activeFilters] : activeFilters}/>
         </div>
 
-        <CompareFooter toggleCompareModal={toggleCompareModal}/>
+        <CompareFooter openCompareModal={() => toggleCompareModal(true)}/>
       </Fragment>
 }

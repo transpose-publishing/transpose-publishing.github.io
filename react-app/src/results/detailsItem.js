@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
-import {Content} from '../index';
+import {ContentContext} from '../index';
 import {parseLinksInString} from '../utils';
 
 
 export default function DetailsItem ({label, text, link, textLink}) {
-  const content = useContext(Content);
+  const content = useContext(ContentContext);
   text = parseLinksInString(text);
 
   return (
