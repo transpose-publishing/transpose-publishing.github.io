@@ -19,6 +19,11 @@ export default function HomePage ({loading, data, error, content}) {
   const [sort, updateSort] = useMergeState({field: null, order: null});
   const [compareModalOpen, toggleCompareModal] = useState(false);
 
+  function openCompareModal () {
+    window.scroll(0, 0);
+    toggleCompareModal(true)
+  }
+
   return compareModalOpen
     ? <CompareModal closeCompareModal={() => toggleCompareModal(false)} content={content}/>
     : <Fragment>
@@ -71,6 +76,6 @@ export default function HomePage ({loading, data, error, content}) {
             activeFilters={verifiedFilter ? [FN.VERIFIED, ...activeFilters] : activeFilters}/>
         </div>
 
-        <CompareFooter openCompareModal={() => toggleCompareModal(true)}/>
+        <CompareFooter openCompareModal={openCompareModal}/>
       </Fragment>
 }

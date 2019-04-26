@@ -9,6 +9,14 @@ import PreprintsDetails from './results/preprintsDetails';
 
 export default function CompareModal ({closeCompareModal, content}) {
   const {compare} = useContext(CompareContext);
+  const tableRows = [[], [], [], [], []];
+  compare.forEach( item => {
+    tableRows[0].push(<ColumnHeader item={item}/>);
+    tableRows[1].push(<PeerReviewDetails item={item} content={content}/>);
+    tableRows[2].push(<OpenPeerReviewDetails item={item} content={content}/>);
+    tableRows[3].push(<CoreviewDetails item={item} content={content}/>);
+    tableRows[4].push(<PreprintsDetails item={item} content={content}/>)
+  });
 
   return (
     <div className="compare-modal">
@@ -17,21 +25,29 @@ export default function CompareModal ({closeCompareModal, content}) {
         <button onClick={closeCompareModal}><img src={`./${iconAssetPath}/Close-Icon-1.svg`}/></button>
       </div>
 
-      <div className="compare-columns-container">
-        {compare.map( item =>
-          <div className="compare-column" key={item.uid}>
-            <div className="compare-column-header">
+      <div className="compare-table-container">
+        <table className="compare-table">
+          {tableRows.map( row =>
+            <tr>
+              {row.map( section => <td>{section}</td>)}
+            </tr>
+          )}
+        </table>
+      </div>
+    </div>
+  )
+}
 
-            </div>
 
-            <PeerReviewDetails item={item} content={content}/>
-
-            <OpenPeerReviewDetails item={item} content={content}/>
-
-            <CoreviewDetails item={item} content={content}/>
-
-            <PreprintsDetails item={item} content={content}/>
-          </div>)}
+function ColumnHeader ({item}) {
+  return (
+    <div className="compare-column-header">
+      <div className="verified-icon-container">
+        {item.verified && <img src={`./${iconAssetPath}/Verified-Icon-1.svg`}/>}
+      </div>
+      <div className="header-title">
+        <span><b>Journal: </b>{item.title}</span>
+        <span><b>Publisher: </b>{item.publisher}</span>
       </div>
     </div>
   )
