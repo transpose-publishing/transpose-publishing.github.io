@@ -313,10 +313,11 @@
 
     .compare-table {
       border-spacing: 8px 0;
+      table-layout: fixed;
+      width: 942px;
 
       tr {
         td {
-          width: 5000px;
           padding: 0;
           vertical-align: top;
           border-left: 1px solid $color-compare-border-2;
