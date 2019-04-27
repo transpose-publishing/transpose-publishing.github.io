@@ -17,12 +17,25 @@
 
 .banner-row.row-1 {
   height: 48px;
+  display: flex;
+  justify-content: space-between;
+
+  .banner-description {
+    margin: 0;
+    color: white;
+    width: 432px;
+  }
+
+  .new-record-button {
+    @extend %big-white-button;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 160px;
+  }
 }
-.banner-description {
-  margin: 0;
-  color: white;
-  width: 432px;
-}
+
 
 .banner-row.row-2 {
   height: 48px;
@@ -66,14 +79,9 @@
     position: relative;
 
     .add-filters-button {
+      @extend %big-white-button;
       position: relative;
-      background-color: white;
-      color: $color-teal;
-      height: 32px;
       width: 144px;
-      border-radius: 4px;
-      font-family: "Helvetica Neue";
-      font-size: 14px;
       background-image: url("#{$publicPath}assets/Icons/Dropdown-Arrow-Icon-Grey.svg");
 
       img {

@@ -1,12 +1,12 @@
+const startTime = Date.now();
 import {JOURNAL_UID_PREFIX} from './constants';
 import {generateUid} from './utils';
 
-const startTime = Date.now();
 const spreadSheetUrl = 'https://docs.google.com/spreadsheets/d/19fuw6MEVPgoTgqY5Vh8JFEvW_HA4oPaDE_g3BZhB7Ek';
 const gid = "#gid=1234798369"; //sheet id
-
-
+export const newRecordUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSf2VsvytNSGrYLwKmsdN3SYAIYSHo71A1-RppjlyIuLcIKepw/viewform';
 export const downloadUrl = `${spreadSheetUrl}/export?format=xlsx&id=19fuw6MEVPgoTgqY5Vh8JFEvW_HA4oPaDE_g3BZhB7Ek`;
+
 
 export function fetchData ({rows = 0}) {
   return new Promise((resolve, reject) => {
