@@ -28,11 +28,26 @@
   height: 48px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-}
-.search-header {
-  color: white;
-  margin: 0;
+
+  .search-header {
+    color: white;
+    margin: 0;
+  }
+
+  .download-button {
+    font-size: 14px;
+    font-family: "Helvetica Neue";
+    color: white;
+    text-decoration: none;
+    margin-top: 5px;
+
+    img {
+      height: 13px;
+      margin-right: 5px;
+    }
+  }
 }
 
 .banner-row.row-3 {

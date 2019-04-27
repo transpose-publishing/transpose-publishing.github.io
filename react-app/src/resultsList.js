@@ -5,7 +5,6 @@ import Result from './results/result';
 import {itemsPerPage} from './constants';
 import {filterRules} from './filterModels';
 import {sortOptions} from './sortModels';
-import {SORT_FIELDS, SORT_ORDER} from './constants';
 
 
 export default function ResultsList ({loading, error, data, searchTerm, sort, activeFilters}) {
@@ -22,13 +21,9 @@ export default function ResultsList ({loading, error, data, searchTerm, sort, ac
     let filteredData = data;
     const filtersOn = !!activeFilters.length;
 
-    if (!searchTerm) {
+    if (!searchTerm && sort.field) {
       if(filtersOn) filteredData = filteredData.filter( item => filterItem(item) === false);
-      if(sort.field) {
-        filteredData.sort(sortGenerator(sort.field, sort.order, sortOptions[sort.field]));
-      } else {
-        filteredData.sort(sortGenerator(SORT_FIELDS.DATE, SORT_ORDER.DESC, sortOptions[SORT_FIELDS.DATE]));
-      }
+      filteredData.sort(sortGenerator(sort.field, sort.order, sortOptions[sort.field]));
 
     } else if (searchTerm) {
       let titleMatches = [];

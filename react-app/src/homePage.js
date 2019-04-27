@@ -8,7 +8,8 @@ import ActiveFilterDisplay from './activeFilterDisplay'
 import SortBar from './sortBar';
 import CompareFooter from './compareFooter';
 import CompareModal from './compareModal';
-import {FILTERNAMES as FN} from './constants';
+import {FILTERNAMES as FN, iconAssetPath} from './constants';
+import {downloadUrl} from './googleApi';
 
 
 
@@ -34,6 +35,11 @@ export default function HomePage ({loading, data, error, content}) {
 
           <div className="banner-row row-2">
             <h2 className="search-header">{content.search_header}</h2>
+
+            <a className="download-button" href={downloadUrl}>
+              <img src={`./${iconAssetPath}/Download-Icon.svg`}/>
+              {content.download_button}
+            </a>
           </div>
 
           <div className="banner-row row-3">
