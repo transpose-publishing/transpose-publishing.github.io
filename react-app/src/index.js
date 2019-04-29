@@ -7,6 +7,7 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './homePage';
 import Header from "./header";
 import MainFooter from './mainFooter';
+import Glossary from './glossary';
 import {fetchContent, fetchData} from './googleApi';
 import {CompareContext, compareReducer} from './compareController';
 
@@ -36,10 +37,6 @@ function App () {
     fetchContent().then( content => setContent(content))
   }, []);
 
-  const MemoizedHomePage = useMemo(() =>
-    <HomePage loading={loading} data={data} error={error} content={content}/>,
-    [loading, data, error, content]);
-
   return (
     <ContentContext.Provider value={content}>
       <CompareContext.Provider value={{compare, dispatchCompareAction}}>
@@ -47,7 +44,18 @@ function App () {
           <Route path="/" component={Header}/>
 
           <Switch>
-            <Route exact path="/" render={() => MemoizedHomePage}/>
+            <Route exact path="/" render={() =>
+              <HomePage loading={loading} data={data} error={error} content={content}/>
+            }/>
+
+            <Route path="/glossary/:anchor" render={(routerProps) =>
+              <Glossary content={content} anchor={routerProps.match.params.anchor} routerProps={routerProps} />}
+            />
+
+            <Route path="/glossary" render={() =>
+              <Glossary content={content}/>}
+            />
+
             <Route path="/user-stories" render={() => <div>User stories</div>}/>
             <Route path="/about" render={() => <div>About</div>}/>
           </Switch>

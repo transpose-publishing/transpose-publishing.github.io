@@ -1,14 +1,10 @@
 .home-banner {
-  height: 229px;
-  width: 100%;
+  @extend %banner;
   padding-top: 21px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: $color-background-darkGrey;
-  background-image: url("#{$publicPath}assets/Banner/banner.png");
-  background-size: cover;
 }
 
 .banner-row {

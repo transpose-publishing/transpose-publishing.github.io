@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useMemo} from 'react';
 import Search from './search';
 import ResultsList from './resultsList';
 import VerifiedFilter from './verifiedFilter';
@@ -12,8 +12,12 @@ import {FILTERNAMES as FN, iconAssetPath} from './constants';
 import {downloadUrl, newRecordUrl} from './googleApi';
 
 
+export default function MemoizedHomePage(props) {
+  return useMemo(() => <HomePage {...props}/>, Object.values(props))
+}
 
-export default function HomePage ({loading, data, error, content}) {
+
+function HomePage ({loading, data, error, content}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
   const [verifiedFilter, toggleVerifiedFilter] = useState(false);
   const [activeFilters, {pushUnique: addFilter, removeByIndex: removeFilter}] = useArrayState([]);

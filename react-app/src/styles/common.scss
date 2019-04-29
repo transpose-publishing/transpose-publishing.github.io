@@ -1,5 +1,13 @@
 
 
+%banner {
+  height: 229px;
+  width: 100%;
+  background-image: url("#{$publicPath}assets/Banner/banner.png");
+  background-size: cover;
+}
+
+
 %big-white-button {
   background-color: white;
   color: $color-teal;
