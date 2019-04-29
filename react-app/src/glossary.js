@@ -1,9 +1,9 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment, useLayoutEffect} from 'react';
 
 
 export default function Glossary ({content, anchor, routerProps}) {
 
-  useEffect(function scrollToAnchor () {
+  useLayoutEffect(function scrollToAnchor () {
     if(anchor) {
       const element = document.getElementById(anchor);
       if(element) element.scrollIntoView()
