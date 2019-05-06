@@ -16,6 +16,10 @@ import {CompareContext, compareReducer} from './compareController';
 
 export const ContentContext = React.createContext({});
 
+function MemoizedHomePage(props) {
+  return useMemo(() => <HomePage {...props}/>, Object.values(props))
+}
+
 function App () {
   const [compare, dispatchCompareAction] = useReducer(compareReducer, []);
   const [content, setContent] = useState({});
@@ -45,7 +49,7 @@ function App () {
 
           <Switch>
             <Route exact path="/" render={() =>
-              <HomePage loading={loading} data={data} error={error} content={content}/>
+              <MemoizedHomePage loading={loading} data={data} error={error} content={content}/>
             }/>
 
             <Route path="/glossary/:anchor" render={(routerProps) =>
