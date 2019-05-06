@@ -85,6 +85,13 @@
       height: 24px;
       margin-left: 16px;
       position: relative;
+      display: flex;
+
+      .report-error-link {
+        font-family: $normal-text;
+        font-size: 11px;
+        margin-left: 22px;
+      }
 
       .compare-checkbox-container {
         width: 160px;

@@ -1,4 +1,5 @@
 import React, {Fragment, useState, useContext} from 'react';
+import contentNew from '../content/content';
 import CompareCheckbox from '../compareCheckbox';
 import {iconAssetPath} from "../constants";
 import {ContentContext} from '../index';
@@ -65,6 +66,8 @@ export default function Result ({item}) {
 
           <div className="compare-checkbox-bar">
             <CompareCheckbox item={item} checkboxLabel={content.compare_checkbox_label}/>
+
+            <a className="report-error-link" href={contentNew.report_error_link.link}>{contentNew.report_error_link.text}</a>
           </div>
 
           <PeerReviewDetails item={item} content={content}/>
