@@ -1,3 +1,4 @@
+import {editRecordUrl} from '../googleApi';
 
 const content = {
   //banner
@@ -43,6 +44,28 @@ const content = {
   tech_provider_story_1: 'As the developer of a reference manager, I want to know which journals allow citations to preprints so that I can code citation styles appropriately, or notify users when they try to add a disallowed citation.',
   tech_provider_story_2: 'As the representative of a manuscript tracking system, I want to learn journal peer review policies so that I can better serve the peer review needs of my clients.',
 
+  //about page
+  primary_description: 'TRANSPOSE is a grassroots initiative to build a crowdsourced database of journal policies. We’re focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and publishers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.',
+  more_info_header: 'More about Transpose',
+  application_link: {
+    text: 'Read our application for the Scholarly Communications Institute.',
+    link: ''
+  },
+  preview_info_link: {
+    text: 'Preview all the information collected (pdf).',
+    link: ''
+  },
+  use_cases_link_text: 'Read potential use cases to learn how these data could be useful to different stakeholder groups.',
+  get_involved_header: 'Get involved',
+  edit_link: {
+    text:'📝Edit and add new records to the TRANSPOSE policy database',
+    link: editRecordUrl
+  },
+  follow_link: {
+    text: '💬 Follow us on Twitter',
+    link: 'https://twitter.com/TRANSPOSEsci'
+  },
+  contributors_header: 'Contributors'
 };
 
 export default content;

@@ -6,6 +6,7 @@ import ReactDom from 'react-dom';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './homePage';
 import UserStories from './userStories';
+import AboutPage from './aboutPage';
 import Header from "./header";
 import MainFooter from './mainFooter';
 import Glossary from './glossary';
@@ -62,7 +63,7 @@ function App () {
             />
 
             <Route path="/user-stories" render={() => <UserStories/>}/>
-            <Route path="/about" render={() => <div>About</div>}/>
+            <Route path="/about" render={() => <AboutPage/>}/>
           </Switch>
         </Router>
 
