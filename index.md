@@ -5,6 +5,7 @@ TRANSPOSE is a grassroots initiative to build a crowdsourced database of journal
 - Read [potential use cases](./usecases.html) to learn how these data could be useful to different stakeholder groups.
 
 ### Articles and more
+- [CSE2019 Poster](transpose-publishing.github.io/images/CSE2019 Transpose poster v2019-05-06.pdf)
 - ["Opening Up Peer-Review Policies" at ScienceEditor (2019-04-18)](https://www.csescienceeditor.org/article/opening-up-peer-review-policies/)
 - ["Charting the Dimensions of
 Preprint Policies" Editorial Office News (2019-03-11)](https://cdn.ymaws.com/www.ismte.org/resource/resmgr/eon_shared_articles/Charting_the_Dinemsions.pdf)
