@@ -1,43 +1,19 @@
 
 
-.glossary-banner {
-  @extend %banner;
+.glossary-section {
+  width: 100%;
+  margin-bottom: 56px;
 
-  .banner-content {
-    width: $containerWidth;
-    margin-left: $containerPadding;
-    padding-top: 83px;
-
-    h2 {
-      color: white;
-      font-size: 38px
-    }
+  h2 {
+    font-family: $normal-text;
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: block;
+    font-weight: 500;
   }
-}
 
-.glossary-content {
-  width: $containerWidth;
-  margin-right: $containerPadding;
-  margin-left: $containerPadding;
-  background-color: $color-whiteGrey;
-  padding: 42px 16px 100px 16px;
-  min-height: 800px;
-
-  .glossary-section {
-    width: 100%;
-    margin-bottom: 56px;
-
-    h2 {
-      font-family: $normal-text;
-      font-size: 24px;
-      margin-bottom: 10px;
-      display: block;
-      font-weight: 500;
-    }
-
-    p {
-      font-family: $normal-text;
-      font-size: 18px;
-    }
+  p {
+    font-family: $normal-text;
+    font-size: 18px;
   }
 }

@@ -1,4 +1,5 @@
 import React, {Fragment, useLayoutEffect} from 'react';
+import StandardBanner from './standardBanner';
 
 
 export default function Glossary ({content, anchor, routerProps}) {
@@ -12,13 +13,9 @@ export default function Glossary ({content, anchor, routerProps}) {
 
   return (
     <Fragment>
-      <div className="glossary-banner">
-        <div className="banner-content">
-          <h2 dangerouslySetInnerHTML={{__html: content.banner_description}}/>
-        </div>
-      </div>
+      <StandardBanner/>
 
-      <div className="glossary-content">
+      <div className="standard-content">
 
         <div className="glossary-section">
           <h2>Overview</h2>
