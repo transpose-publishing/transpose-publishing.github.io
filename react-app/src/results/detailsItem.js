@@ -1,10 +1,9 @@
-import React, {useContext} from 'react';
-import {ContentContext} from '../index';
+import React from 'react';
 import {parseLinksInString} from '../utils';
+import content from '../content/content';
 
 
 export default function DetailsItem ({label, text, link, textLink}) {
-  const content = useContext(ContentContext);
   text = parseLinksInString(text);
 
   return (
@@ -14,7 +13,7 @@ export default function DetailsItem ({label, text, link, textLink}) {
       {text && <span className="details-content-text">
         {text} {textLink && <a className="details-content-link" href={textLink} target="_blank">Source</a>}
       </span>}
-      {!link && !text && <span className="details-content-text">{content['no-data']}</span>}
+      {!link && !text && <span className="details-content-text">{content.no_data}</span>}
     </p>
   )
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 import {SORT_FIELDS, iconAssetPath, SORT_ORDER} from './constants';
 import {orderDefaults} from './sortModels';
+import content from './content/content';
 const {ASC, DESC} = SORT_ORDER;
 
 
-export default function SortBar ({sort, updateSort, content}) {
+export default function SortBar ({sort, updateSort}) {
 
   function toggleSort (field) {
     const order = field !== sort.field ? orderDefaults[field] : (sort.order === ASC ? DESC : ASC);

@@ -34,20 +34,3 @@ export function fetchData ({rows = 0}) {
     });
   });
 }
-
-export function fetchContent () {
-  return new Promise((resolve, reject) => {
-    sheetrock({
-      url: spreadSheetUrl + "#gid=1450529732",
-      callback: (errors, options, resp) => {
-        const obj = {};
-        resp.rows.forEach( (row, index) => {
-          if(index !== 0) {
-            obj[row.cellsArray[0]] = row.cellsArray[1]
-          }
-        });
-        resolve(obj)
-      }
-    })
-  })
-}

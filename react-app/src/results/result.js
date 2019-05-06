@@ -1,5 +1,5 @@
-import React, {Fragment, useState, useContext} from 'react';
-import contentNew from '../content/content';
+import React, {Fragment, useState} from 'react';
+import content from '../content/content';
 import CompareCheckbox from '../compareCheckbox';
 import {iconAssetPath} from "../constants";
 import {ContentContext} from '../index';
@@ -11,7 +11,6 @@ import PreprintsDetails from './preprintsDetails';
 const timeouts = {};
 
 export default function Result ({item}) {
-  const content = useContext(ContentContext);
   const [showDetails, setShowDetails] = useState(false);
   const [animationClass_collapsed, setCollapsedClass] = useState(true);
 
@@ -67,16 +66,16 @@ export default function Result ({item}) {
           <div className="compare-checkbox-bar">
             <CompareCheckbox item={item} checkboxLabel={content.compare_checkbox_label}/>
 
-            <a className="report-error-link" href={contentNew.report_error_link.link}>{contentNew.report_error_link.text}</a>
+            <a className="report-error-link" href={content.report_error_link.link}>{content.report_error_link.text}</a>
           </div>
 
-          <PeerReviewDetails item={item} content={content}/>
+          <PeerReviewDetails item={item}/>
 
-          <OpenPeerReviewDetails item={item} content={content}/>
+          <OpenPeerReviewDetails item={item}/>
 
-          <CoreviewDetails item={item} content={content}/>
+          <CoreviewDetails item={item}/>
 
-          <PreprintsDetails item={item} content={content}/>
+          <PreprintsDetails item={item}/>
       </div>}
     </Fragment>
   )

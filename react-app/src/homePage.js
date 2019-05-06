@@ -10,10 +10,11 @@ import CompareFooter from './compareFooter';
 import CompareModal from './compareModal';
 import {FILTERNAMES as FN, iconAssetPath} from './constants';
 import {downloadUrl, newRecordUrl} from './googleApi';
+import content from './content/content';
 
 
 
-export default function HomePage ({loading, data, error, content}) {
+export default function HomePage ({loading, data, error}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
   const [verifiedFilter, toggleVerifiedFilter] = useState(false);
   const [activeFilters, {pushUnique: addFilter, removeByIndex: removeFilter}] = useArrayState([]);
@@ -26,7 +27,7 @@ export default function HomePage ({loading, data, error, content}) {
   }
 
   return compareModalOpen
-    ? <CompareModal closeCompareModal={() => toggleCompareModal(false)} content={content}/>
+    ? <CompareModal closeCompareModal={() => toggleCompareModal(false)}/>
     : <Fragment>
         <div className="home-banner">
           <div className="banner-row row-1">
@@ -55,12 +56,11 @@ export default function HomePage ({loading, data, error, content}) {
 
           <div className="banner-row row-4">
             <AddFilters
-              content={content}
               activeFilters={activeFilters}
               addFilter={addFilter}/>
 
             <VerifiedFilter
-              label={content.filter_verified}
+              label={content.verified}
               verifiedFilter={verifiedFilter}
               toggleVerifiedFilter={() => toggleVerifiedFilter(!verifiedFilter)}/>
           </div>
@@ -68,11 +68,10 @@ export default function HomePage ({loading, data, error, content}) {
 
         <ActiveFilterDisplay
           activeFilters={activeFilters}
-          content={content}
           removeFilter={removeFilter}
           clearFilters={() => setFilters([])}/>
 
-        <SortBar sort={sort} updateSort={updateSort} content={content}/>
+        <SortBar sort={sort} updateSort={updateSort}/>
 
         <div className="home-content">
           <ResultsList

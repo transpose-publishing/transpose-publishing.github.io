@@ -10,13 +10,11 @@ import AboutPage from './aboutPage';
 import Header from "./header";
 import MainFooter from './mainFooter';
 import Glossary from './glossary';
-import {fetchContent, fetchData} from './googleApi';
+import {fetchData} from './googleApi';
 import {CompareContext, compareReducer} from './compareController';
 
 
 
-
-export const ContentContext = React.createContext({});
 
 function MemoizedHomePage(props) {
   return useMemo(() => <HomePage {...props}/>, Object.values(props))
@@ -24,7 +22,6 @@ function MemoizedHomePage(props) {
 
 function App () {
   const [compare, dispatchCompareAction] = useReducer(compareReducer, []);
-  const [content, setContent] = useState({});
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null); //TODO: set up error handling for fetch catches
@@ -39,37 +36,31 @@ function App () {
       })
   }, []);
 
-  useEffect(() => {
-    fetchContent().then( content => setContent(content))
-  }, []);
-
   return (
-    <ContentContext.Provider value={content}>
-      <CompareContext.Provider value={{compare, dispatchCompareAction}}>
-        <Router>
-          <Route path="/" component={Header}/>
+    <CompareContext.Provider value={{compare, dispatchCompareAction}}>
+      <Router>
+        <Route path="/" component={Header}/>
 
-          <Switch>
-            <Route exact path="/" render={() =>
-              <MemoizedHomePage loading={loading} data={data} error={error} content={content}/>
-            }/>
+        <Switch>
+          <Route exact path="/" render={() =>
+            <MemoizedHomePage loading={loading} data={data} error={error}/>
+          }/>
 
-            <Route path="/glossary/:anchor" render={(routerProps) =>
-              <Glossary content={content} anchor={routerProps.match.params.anchor} routerProps={routerProps} />}
-            />
+          <Route path="/glossary/:anchor" render={(routerProps) =>
+            <Glossary anchor={routerProps.match.params.anchor} routerProps={routerProps} />}
+          />
 
-            <Route path="/glossary" render={() =>
-              <Glossary content={content}/>}
-            />
+          <Route path="/glossary" render={() =>
+            <Glossary />}
+          />
 
-            <Route path="/user-stories" render={() => <UserStories/>}/>
-            <Route path="/about" render={() => <AboutPage/>}/>
-          </Switch>
-        </Router>
+          <Route path="/user-stories" render={() => <UserStories/>}/>
+          <Route path="/about" render={() => <AboutPage/>}/>
+        </Switch>
+      </Router>
 
-        <MainFooter/>
-      </CompareContext.Provider>
-    </ContentContext.Provider>
+      <MainFooter/>
+    </CompareContext.Provider>
   )
 }
 

@@ -5,7 +5,7 @@ import {useMergeState} from './utils';
 
 
 
-export default function ActiveFilterDisplay ({activeFilters, content, removeFilter, clearFilters}) {
+export default function ActiveFilterDisplay ({activeFilters, removeFilter, clearFilters}) {
   const [{lastVisibleFilter, showAll}, updateState] = useMergeState({
     lastVisibleFilter: null,
     showAll: false
@@ -52,7 +52,7 @@ export default function ActiveFilterDisplay ({activeFilters, content, removeFilt
                 onClick={() => removeFilter(index)}
                 ref={buttonRefs[filter]}
               >
-                {filterList[filter].contentGetter(content)}
+                {filterList[filter].content}
                 <img src={`./${iconAssetPath}/Close-Icon-1.svg`}/>
               </button>
 

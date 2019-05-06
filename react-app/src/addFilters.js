@@ -5,7 +5,7 @@ import {filterTypesList, filterList} from './filterModels';
 
 
 
-export default function AddFilters ({content, activeFilters, addFilter}) {
+export default function AddFilters ({activeFilters, addFilter}) {
   const [{menuOpen, typeName, filters}, updateState] = useMergeState({
     menuOpen: false,
     typeName: null,
@@ -47,7 +47,7 @@ export default function AddFilters ({content, activeFilters, addFilter}) {
               key={item.typeName}
               onClick={() => selectType(item)}
             >
-              {item.contentGetter(content)}
+              {item.content}
               <img src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Grey.svg`}/>
             </button>
           )
@@ -61,7 +61,7 @@ export default function AddFilters ({content, activeFilters, addFilter}) {
             toggleMenu();
           }}
         >
-          {OAFilter.contentGetter(content)}
+          {OAFilter.content}
         </button>}
 
         {filters &&
@@ -76,7 +76,7 @@ export default function AddFilters ({content, activeFilters, addFilter}) {
                   toggleMenu();
                 }}
               >
-                {filter.contentGetter(content)}
+                {filter.content}
               </button>
             )
           })}

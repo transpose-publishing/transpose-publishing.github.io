@@ -1,38 +1,39 @@
 import {FILTERNAMES as FN} from "./constants";
 import {isNot} from "./utils";
+import content from './content/content';
 
 
 export const filterList = {
-  [FN.OA]: {name: FN.OA, contentGetter: content => content.oa},
-  [FN.PR_POLICY]: {name: FN.PR_POLICY, contentGetter: content => content.pr_policy},
-  [FN.PR_DATABASE]: {name: FN.PR_DATABASE, contentGetter: content => content.pr_database},
-  [FN.PR_TRANSFER_POLICY]: {name: FN.PR_TRANSFER_POLICY, contentGetter: content => content.pr_transfer_policy},
-  [FN.OPR_REPORTS]: {name: FN.OPR_REPORTS, contentGetter: content => content.opr_reports},
-  [FN.OPR_RESPONSES]: {name: FN.OPR_RESPONSES, contentGetter: content => content.opr_responses},
-  [FN.OPR_LETTERS]: {name: FN.OPR_LETTERS, contentGetter: content => content.opr_letters},
-  [FN.OPR_VERSIONS]: {name: FN.OPR_VERSIONS, contentGetter: content => content.opr_versions},
-  [FN.OPR_IDENTITIES_PUBLISHED]: {name: FN.OPR_IDENTITIES_PUBLISHED, contentGetter: content => content.opr_identities_published},
-  [FN.OPR_IDENTITIES_AUTHOR]: {name: FN.OPR_IDENTITIES_AUTHOR, contentGetter: content => content.opr_identities_author},
-  [FN.OPR_COMMENTS]: {name: FN.OPR_COMMENTS, contentGetter: content => content.opr_comments},
-  [FN.OPR_INTERACTION]: {name: FN.OPR_INTERACTION, contentGetter: content => content.opr_interaction},
-  [FN.COREVIEW_POLICY]: {name: FN.COREVIEW_POLICY, contentGetter: content => content.coreview_policy},
-  [FN.COREVIEW_EMAIL]: {name: FN.COREVIEW_EMAIL, contentGetter: content => content.coreview_email},
-  [FN.COREVIEW_FORM]: {name: FN.COREVIEW_FORM, contentGetter: content => content.coreview_form},
-  [FN.COREVIEW_DATABASE]: {name: FN.COREVIEW_DATABASE, contentGetter: content => content.coreview_database},
-  [FN.PREPRINT_POLICY]: {name: FN.PREPRINT_POLICY, contentGetter: content => content.preprint_policy},
-  [FN.PREPRINT_VERSION]: {name: FN.PREPRINT_VERSION, contentGetter: content => content.preprint_version},
-  [FN.PREPRINT_CITATION]: {name: FN.PREPRINT_CITATION, contentGetter: content => content.preprint_citation},
-  [FN.PREPRINT_MEDIA]: {name: FN.PREPRINT_MEDIA, contentGetter: content => content.preprint_media},
-  [FN.PREPRINT_LICENSING]: {name: FN.PREPRINT_LICENSING, contentGetter: content => content.preprint_licensing},
-  [FN.PREPRINT_SCOOP]: {name: FN.PREPRINT_SCOOP, contentGetter: content => content.preprint_scoop},
-  [FN.PREPRINT_REVIEW]: {name: FN.PREPRINT_REVIEW, contentGetter: content => content.preprint_review}
+  [FN.OA]: {name: FN.OA, content: content.oa},
+  [FN.PR_POLICY]: {name: FN.PR_POLICY, content: content.pr_policy},
+  [FN.PR_DATABASE]: {name: FN.PR_DATABASE, content: content.pr_database},
+  [FN.PR_TRANSFER_POLICY]: {name: FN.PR_TRANSFER_POLICY, content: content.pr_transfer_policy},
+  [FN.OPR_REPORTS]: {name: FN.OPR_REPORTS, content: content.opr_reports},
+  [FN.OPR_RESPONSES]: {name: FN.OPR_RESPONSES, content: content.opr_responses},
+  [FN.OPR_LETTERS]: {name: FN.OPR_LETTERS, content: content.opr_letters},
+  [FN.OPR_VERSIONS]: {name: FN.OPR_VERSIONS, content: content.opr_versions},
+  [FN.OPR_IDENTITIES_PUBLISHED]: {name: FN.OPR_IDENTITIES_PUBLISHED, content: content.opr_identities_published},
+  [FN.OPR_IDENTITIES_AUTHOR]: {name: FN.OPR_IDENTITIES_AUTHOR, content: content.opr_identities_author},
+  [FN.OPR_COMMENTS]: {name: FN.OPR_COMMENTS, content: content.opr_comments},
+  [FN.OPR_INTERACTION]: {name: FN.OPR_INTERACTION, content: content.opr_interaction},
+  [FN.COREVIEW_POLICY]: {name: FN.COREVIEW_POLICY, content: content.coreview_policy},
+  [FN.COREVIEW_EMAIL]: {name: FN.COREVIEW_EMAIL, content: content.coreview_email},
+  [FN.COREVIEW_FORM]: {name: FN.COREVIEW_FORM, content: content.coreview_form},
+  [FN.COREVIEW_DATABASE]: {name: FN.COREVIEW_DATABASE, content: content.coreview_database},
+  [FN.PREPRINT_POLICY]: {name: FN.PREPRINT_POLICY, content: content.preprint_policy},
+  [FN.PREPRINT_VERSION]: {name: FN.PREPRINT_VERSION, content: content.preprint_version},
+  [FN.PREPRINT_CITATION]: {name: FN.PREPRINT_CITATION, content: content.preprint_citation},
+  [FN.PREPRINT_MEDIA]: {name: FN.PREPRINT_MEDIA, content: content.preprint_media},
+  [FN.PREPRINT_LICENSING]: {name: FN.PREPRINT_LICENSING, content: content.preprint_licensing},
+  [FN.PREPRINT_SCOOP]: {name: FN.PREPRINT_SCOOP, content: content.preprint_scoop},
+  [FN.PREPRINT_REVIEW]: {name: FN.PREPRINT_REVIEW, content: content.preprint_review}
 };
 
 
 export const filterTypesList = [
   {
     typeName: 'peerReview',
-    contentGetter: content => content.filter_type_pr,
+    content: content.filter_type_pr,
     filters: [
       filterList[FN.PR_POLICY],
       filterList[FN.PR_DATABASE],
@@ -41,7 +42,7 @@ export const filterTypesList = [
   },
   {
     typeName: 'openPeerReview',
-    contentGetter: content => content.filter_type_opr,
+    content: content.filter_type_opr,
     filters: [
       filterList[FN.OPR_REPORTS],
       filterList[FN.OPR_RESPONSES],
@@ -55,7 +56,7 @@ export const filterTypesList = [
   },
   {
     typeName: 'coreview',
-    contentGetter: content => content.filter_type_coreview,
+    content: content.filter_type_coreview,
     filters: [
       filterList[FN.COREVIEW_POLICY],
       filterList[FN.COREVIEW_EMAIL],
@@ -65,7 +66,7 @@ export const filterTypesList = [
   },
   {
     typeName: 'preprint',
-    contentGetter: content => content.filter_type_preprint,
+    content: content.filter_type_preprint,
     filters: [
       filterList[FN.PREPRINT_POLICY],
       filterList[FN.PREPRINT_VERSION],

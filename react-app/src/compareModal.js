@@ -5,17 +5,17 @@ import PeerReviewDetails from "./results/peerReviewDetails";
 import OpenPeerReviewDetails from './results/openPeerReviewDetails';
 import CoreviewDetails from './results/coreviewDetails';
 import PreprintsDetails from './results/preprintsDetails';
+import content from './content/content';
 
-
-export default function CompareModal ({closeCompareModal, content}) {
+export default function CompareModal ({closeCompareModal}) {
   const {compare} = useContext(CompareContext);
   const tableRows = [[], [], [], [], []];
   compare.forEach( item => {
     tableRows[0].push(<ColumnHeader item={item}/>);
-    tableRows[1].push(<PeerReviewDetails item={item} content={content}/>);
-    tableRows[2].push(<OpenPeerReviewDetails item={item} content={content}/>);
-    tableRows[3].push(<CoreviewDetails item={item} content={content}/>);
-    tableRows[4].push(<PreprintsDetails item={item} content={content}/>)
+    tableRows[1].push(<PeerReviewDetails item={item}/>);
+    tableRows[2].push(<OpenPeerReviewDetails item={item}/>);
+    tableRows[3].push(<CoreviewDetails item={item}/>);
+    tableRows[4].push(<PreprintsDetails item={item}/>)
   });
 
   return (
@@ -46,8 +46,8 @@ function ColumnHeader ({item}) {
         {item.verified && <img src={`./${iconAssetPath}/Verified-Icon-1.svg`}/>}
       </div>
       <div className="header-title">
-        <span><b>Journal: </b>{item.title}</span>
-        <span><b>Publisher: </b>{item.publisher}</span>
+        <span><b>{`${content.title}:`}</b>{item.title}</span>
+        <span><b>{`${content.publisher}:`}</b>{item.publisher}</span>
       </div>
     </div>
   )
