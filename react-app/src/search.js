@@ -82,8 +82,7 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
 
       <img className="search-glass" src={`./${iconAssetPath}/search-glass.png`}/>
 
-      {/*results list turned off pending further discussion of how it would work*/}
-      {false && !loading && searchInputValue.length > 2 && searchFocused &&
+      {!loading && searchInputValue.length > 2 && searchFocused &&
       <div className="search-suggestions">
         <ul>
           {data

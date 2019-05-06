@@ -391,7 +391,7 @@
 .search-suggestions {
   position: absolute;
   top: 95%;
-  height: 211px;
+  max-height: 211px;
   width: 100%;
   background-color: white;
   z-index: 1;
