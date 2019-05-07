@@ -92,7 +92,6 @@ const content = {
 
 
   //User Stories Page
-  who_header: 'Who needs a database of detailed preprints policies?',
   why_header: 'Why use TRANSPOSE data?',
   table_description: 'Data on open peer review (OPR), co-review, and detailed preprinting policies could be useful to many different stakeholder groups. Here are a few different examples:',
   //groups
