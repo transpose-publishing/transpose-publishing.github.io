@@ -6,14 +6,14 @@ export const CompareContext = React.createContext([]);
 export const CompareProvider = (props) => {
   const [compare, setCompare] = useState([]);
   return (
-    <CompareContext.Provider value={{compare, setCompare}}>
+    <CompareContext.Provider value={[compare, setCompare]}>
       {props.children}
     </CompareContext.Provider>
   )
 };
 
 export const compareController = () => {
-  const {compare, setCompare} = useContext(CompareContext);
+  const [compare, setCompare] = useContext(CompareContext);
   return {
     compare,
     addCompare: (item) => setCompare( prevCompare => {

@@ -1,7 +1,7 @@
 import "@babel/polyfill";
 import './styles/index.scss';
 
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDom from 'react-dom';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './components/homePage';
@@ -15,13 +15,7 @@ import {CompareProvider} from './compareController';
 
 
 
-
-function MemoizedHomePage(props) {
-  return useMemo(() => <HomePage {...props}/>, Object.values(props))
-}
-
 function App () {
-  // const [compare, dispatchCompareAction] = useReducer(compareReducer, []);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null); //TODO: set up error handling for fetch catches
@@ -43,7 +37,7 @@ function App () {
 
         <Switch>
           <Route exact path="/" render={() =>
-            <MemoizedHomePage loading={loading} data={data} error={error}/>
+            <HomePage loading={loading} data={data} error={error}/>
           }/>
 
           <Route path="/glossary/:anchor" render={(routerProps) =>
