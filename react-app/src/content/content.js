@@ -49,16 +49,17 @@ const content = {
   oa: "OA",
   report_error_link: {
     text: 'Report error',
-    link: 'mailto:transpose-publishing@googlegroups.com.'
+    link: 'mailto:transpose-publishing@googlegroups.com'
   },
   compare_checkbox_label: "Compare up to 3 journals",
   details_label_pr: "Peer review",
   details_label_opr: "Open peer review",
   details_label_coreview: "Co-review",
   details_label_preprint: "Preprints",
-  pr_type: "Type of peer review",
-  pr_form_url: "Peer review form",
-  pr_credit_url: "Peer review credit policy",
+  pr_type_details: "Type of peer review",
+  pr_policy_details: "Peer review policy",
+  pr_form_url_details: "Peer review form",
+  pr_credit_url_details: "Peer review credit policy",
   pr_database_details: "Publons/ORCID credit",
   pr_transfer_policy_details: "Peer review transfer policy",
   opr_reports_details: "Peer review reports published",
@@ -66,7 +67,7 @@ const content = {
   opr_letters_details: "Editorial decision letters published",
   opr_versions_details: "Previous versions of the manuscript published",
   opr_identities_published_details: "Reviewer identities published",
-  opr_indenties_author_details: "Reviewer identities revealed to author",
+  opr_identities_author_details: "Reviewer identities revealed to author",
   opr_comments_details: "Public commenting",
   opr_interaction_details: "Reviewers consult with each other",
   opr_additional_details: "Additional information",
@@ -134,11 +135,11 @@ const content = {
   more_info_header: 'More about Transpose',
   application_link: {
     text: 'Read our application for the Scholarly Communications Institute.',
-    link: ''
+    link: 'https://docs.google.com/document/d/1vcsf2pzQelBVUF6GaSU4FQ8JhDVvq4wrpc4ulZPA7hE/edit#heading=h.v9lrq4a95j57'
   },
   preview_info_link: {
     text: 'Preview all the information collected (pdf).',
-    link: ''
+    link: 'https://transpose-publishing.github.io/images/TRANSPOSE%20policy%20editor%20-%20Google%20Forms%202018%2010%2011.pdf'
   },
   use_cases_link_text: 'Read potential use cases to learn how these data could be useful to different stakeholder groups.',
   get_involved_header: 'Get involved',

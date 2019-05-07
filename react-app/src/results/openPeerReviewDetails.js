@@ -12,7 +12,7 @@ const policies = [
   'opr-letters',
   'opr-versions',
   'opr-identities-published',
-  'opr-indenties-author',
+  'opr-identities-author',
   'opr-comments',
   'opr-interaction',
 ];
@@ -42,7 +42,7 @@ export default function PeerReviewDetails ({item}) {
       </div>
 
       <div className="right-column">
-        <DetailsItem label={content.opr_additional} text={item['opr-additional']}/>
+        <DetailsItem label={content.opr_additional_details} text={item['opr-additional']}/>
       </div>
     </DetailsSection>
   )
@@ -50,5 +50,5 @@ export default function PeerReviewDetails ({item}) {
 
 
 function getDetailsContentKey (key) {
-  return `${key.replace('-', '_')}_details`
+  return `${key.replace(/-/g, '_')}_details`
 }

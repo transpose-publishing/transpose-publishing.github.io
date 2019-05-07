@@ -9,26 +9,7 @@
   font-weight: 500;
 }
 
-.card-section {
-  .card-item {
-    margin-top: 32px;
-    display: flex;
-
-    img {
-      height: 80px;
-    }
-
-    p {
-      font-family: $normal-text;
-      font-size: 18px;
-      margin-right: 40px;
-      margin-left: 40px;
-    }
-  }
-}
-
 .table-section {
-  margin-top: 78px;
 
   .table-description {
     font-family: $normal-text;
