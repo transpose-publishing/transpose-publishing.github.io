@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 import {Link} from "react-router-dom";
 import StandardBanner from './standardBanner';
-import content from './content/content';
-import {contributorsList} from './content/contributorsModels';
+import content from '../content/content';
+import {contributorsList} from '../content/contributors';
 
 
 export default function AboutPage () {

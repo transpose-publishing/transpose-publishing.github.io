@@ -1,4 +1,4 @@
-import {SORT_FIELDS, SORT_ORDER} from "./constants";
+import {SORT_FIELDS, SORT_ORDER} from "../constants";
 const {TITLE, PUBLISHER, OA, DATE} = SORT_FIELDS;
 const {ASC, DESC} = SORT_ORDER;
 

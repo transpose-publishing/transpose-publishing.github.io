@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {iconAssetPath, KEYCODE} from './constants';
-import {useMergeState, useClickOutside, keyboardControls} from './utils';
+import {iconAssetPath, KEYCODE} from '../constants';
+import {useMergeState, useClickOutside, keyboardControls} from '../utils';
 
 
 export default function Search ({placeholder, searchTerm, setSearchTerm, loading, data}) {

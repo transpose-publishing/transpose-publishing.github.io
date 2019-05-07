@@ -1,6 +1,6 @@
 import React, {Fragment, useLayoutEffect} from 'react';
 import StandardBanner from './standardBanner';
-import content from './content/content';
+import content from '../content/content';
 
 
 export default function Glossary ({anchor, routerProps}) {

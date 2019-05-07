@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {iconAssetPath} from "./constants";
+import {iconAssetPath} from "../constants";
 
 
 export default function Header ({...routerProps}) {

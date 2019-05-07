@@ -2,15 +2,15 @@ import React, {Fragment, useState} from 'react';
 import Search from './search';
 import ResultsList from './resultsList';
 import VerifiedFilter from './verifiedFilter';
-import {usePersistedState, useMergeState, useArrayState} from './utils';
+import {usePersistedState, useMergeState, useArrayState} from '../utils';
 import AddFilters from './addFilters';
 import ActiveFilterDisplay from './activeFilterDisplay'
 import SortBar from './sortBar';
 import CompareFooter from './compareFooter';
 import CompareModal from './compareModal';
-import {FILTERNAMES as FN, iconAssetPath} from './constants';
-import {downloadUrl, newRecordUrl} from './googleApi';
-import content from './content/content';
+import {FILTERNAMES as FN, iconAssetPath} from '../constants';
+import {downloadUrl, newRecordUrl} from '../googleApi';
+import content from '../content/content';
 
 
 

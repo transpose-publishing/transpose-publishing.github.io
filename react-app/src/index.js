@@ -1,17 +1,17 @@
 import "@babel/polyfill";
 import './styles/index.scss';
 
-import React, {useEffect, useState, useReducer, useMemo} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import ReactDom from 'react-dom';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
-import HomePage from './homePage';
-import UserStories from './userStories';
-import AboutPage from './aboutPage';
-import Header from "./header";
-import MainFooter from './mainFooter';
-import Glossary from './glossary';
+import HomePage from './components/homePage';
+import UserStories from './components/userStories';
+import AboutPage from './components/aboutPage';
+import Header from "./components/header";
+import MainFooter from './components/mainFooter';
+import Glossary from './components/glossary';
 import {fetchData} from './googleApi';
-import {CompareContext, compareReducer} from './compareController';
+import {CompareProvider} from './compareController';
 
 
 
@@ -21,7 +21,7 @@ function MemoizedHomePage(props) {
 }
 
 function App () {
-  const [compare, dispatchCompareAction] = useReducer(compareReducer, []);
+  // const [compare, dispatchCompareAction] = useReducer(compareReducer, []);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null); //TODO: set up error handling for fetch catches
@@ -37,7 +37,7 @@ function App () {
   }, []);
 
   return (
-    <CompareContext.Provider value={{compare, dispatchCompareAction}}>
+    <CompareProvider>
       <Router>
         <Route path="/" component={Header}/>
 
@@ -60,7 +60,7 @@ function App () {
       </Router>
 
       <MainFooter/>
-    </CompareContext.Provider>
+    </CompareProvider>
   )
 }
 

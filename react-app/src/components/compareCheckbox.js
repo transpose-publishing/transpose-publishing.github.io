@@ -1,19 +1,19 @@
-import React, {useContext} from 'react';
-import {CompareContext, addCompare, removeCompare} from './compareController';
+import React from 'react';
+import {compareController} from '../compareController';
 
 
 
 export default function CompareCheckbox ({item, checkboxLabel}) {
-  const {compare, dispatchCompareAction} = useContext(CompareContext);
+  const {compare, addCompare, removeCompare} = compareController();
   const compareIndex = compare.findIndex(compareItem => compareItem.uid === item.uid);
   const checked = compareIndex > -1;
   const disabled = !checked && compare.length === 3;
 
   function onClick () {
     if(!checked) {
-      dispatchCompareAction(addCompare(item))
+      addCompare(item)
     } else {
-      dispatchCompareAction(removeCompare(compareIndex))
+      removeCompare(compareIndex)
     }
   }
 

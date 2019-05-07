@@ -1,6 +1,6 @@
-import {FILTERNAMES as FN} from "./constants";
-import {isNot} from "./utils";
-import content from './content/content';
+import {FILTERNAMES as FN} from "../constants";
+import {isNot} from "../utils";
+import content from '../content/content';
 
 
 export const filterList = {

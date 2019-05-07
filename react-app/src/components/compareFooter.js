@@ -1,9 +1,9 @@
-import React, {useContext} from 'react';
-import {CompareContext, clearCompare} from './compareController';
+import React from 'react';
+import {compareController} from '../compareController';
 
 
 export default function CompareFooter ({openCompareModal}) {
-  const {compare, dispatchCompareAction} = useContext(CompareContext);
+  const {compare, clearCompare} = compareController();
 
   return !compare.length ? null : (
     <div className="compare-footer">
@@ -13,7 +13,7 @@ export default function CompareFooter ({openCompareModal}) {
           {`Compare 3 policies (${compare.length} of 3)`}
         </button>
         <button className="clear-button compare-footer-button"
-          onClick={() => dispatchCompareAction(clearCompare())}
+          onClick={clearCompare}
         >
           Clear Selection
         </button>

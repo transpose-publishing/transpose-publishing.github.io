@@ -1,26 +1,30 @@
-import React from 'react';
-import {COMPARE_ACTIONS} from './constants';
-const {ADD_COMPARE, CLEAR_COMPARE, REMOVE_COMPARE} = COMPARE_ACTIONS;
+import React, {useContext, useState} from 'react';
 
 
 export const CompareContext = React.createContext([]);
 
-export const addCompare = (item) => ({type: ADD_COMPARE, item});
-export const removeCompare = (index) => ({type: REMOVE_COMPARE, index});
-export const clearCompare = () => ({type: CLEAR_COMPARE});
+export const CompareProvider = (props) => {
+  const [compare, setCompare] = useState([]);
+  return (
+    <CompareContext.Provider value={{compare, setCompare}}>
+      {props.children}
+    </CompareContext.Provider>
+  )
+};
 
-export function compareReducer (compare, action) {
-  switch (action.type) {
-    case ADD_COMPARE:
-      if(compare.length === 3) return compare;
-      return [...compare, action.item];
-    case REMOVE_COMPARE:
-      const newCompare = [...compare];
-      newCompare.splice(action.index, 1);
-      return newCompare;
-    case CLEAR_COMPARE:
-      return [];
-    default:
-      return state;
+export const compareController = () => {
+  const {compare, setCompare} = useContext(CompareContext);
+  return {
+    compare,
+    addCompare: (item) => setCompare( prevCompare => {
+      if(prevCompare.length === 3) return prevCompare;
+      return [...prevCompare, item];
+    }),
+    removeCompare: (index) => setCompare( prevCompare => {
+      const newCompare = [...prevCompare];
+      newCompare.splice(index, 1);
+      return newCompare
+    }),
+    clearCompare: () => setCompare([])
   }
-}
+};
