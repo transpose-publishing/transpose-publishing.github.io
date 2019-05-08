@@ -9,7 +9,7 @@ import SortBar from './sortBar';
 import CompareFooter from './compareFooter';
 import CompareModal from './compareModal';
 import {FILTERNAMES as FN, iconAssetPath} from '../constants';
-import {downloadUrl, newRecordUrl} from '../googleApi';
+import {downloadUrl} from '../googleApi';
 import content from '../content/content';
 
 
@@ -33,7 +33,7 @@ export default function HomePage ({loading, data}) {
           <div className="banner-row row-1">
             <p className="banner-description" dangerouslySetInnerHTML={{__html: content.home_page_banner_description}}/>
 
-            <a className="new-record-button" href={newRecordUrl} target="_blank">{content.new_record_button}</a>
+            <a className="new-record-button" href={content.new_record_link.link} target="_blank">{content.new_record_link.text}</a>
           </div>
 
           <div className="banner-row row-2">

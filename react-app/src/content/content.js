@@ -23,7 +23,10 @@ const content = {
   banner_description: "TRANsparency in Scholarly Publishing for <br/> <b>Open Scholarship Evolution</b>",
   home_page_banner_description: "TRANsparency in Scholarly Publishing for <br/> Open Scholarship Evolution",
   download_button: "Download database",
-  new_record_button: "New record",
+  new_record_link: {
+    text: "New record",
+    link: 'https://docs.google.com/forms/d/e/1FAIpQLSf2VsvytNSGrYLwKmsdN3SYAIYSHo71A1-RppjlyIuLcIKepw/viewform'
+  },
   search_placeholder: "Search journal title, ISSN, DOI, Publisher",
   search_header: "TRANSPOSE database",
 
@@ -57,7 +60,7 @@ const content = {
   preprint_scoop: "Scoop protection",
   preprint_review: "Community review",
 
-  //Results and details
+  //Results section and title details
   date: "Date",
   issn: "ISSN ",
   doi: "DOI",
@@ -102,11 +105,11 @@ const content = {
   preprint_licensing_details: "Preprint licensing policy",
   preprint_scoop_details: "Scoop protection policy",
   preprint_review_details: "Preprint community review policy",
-  no_data: "",
   preprint_label_author_guidelines: "Preprint author guidelines",
   preprint_label_link_citations: "Links & citations",
   preprint_label_media: "Media coverage & review",
   preprint_label_discovery: "Priority of discovery",
+  no_data: "", //What to show when no data
 
 
   //User Stories Page
@@ -162,7 +165,7 @@ const content = {
   get_involved_header: 'Get involved',
   edit_link: {
     text:'📝Edit and add new records to the TRANSPOSE policy database',
-    link: editRecordUrl
+    link: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true'
   },
   follow_link: {
     text: '💬 Follow us on Twitter',
