@@ -9,10 +9,10 @@ import UserStories from './components/userStories';
 import AboutPage from './components/aboutPage';
 import Header from "./components/header";
 import MainFooter from './components/mainFooter';
-import Glossary from './components/glossary';
+import MoreInformation from './components/moreInformation';
 import {fetchData} from './googleApi';
 import {CompareProvider} from './compareController';
-
+import content from './content/content';
 
 
 function App () {
@@ -36,20 +36,20 @@ function App () {
         <Route path="/" render={ ({location}) => <Header pathname={location.pathname}/> }/>
 
         <Switch>
-          <Route exact path="/" render={() =>
+          <Route exact path={content.home_page.path} render={() =>
             <HomePage loading={loading} data={data}/>
           }/>
 
-          <Route path="/glossary/:anchor" render={ ({match}) =>
-            <Glossary anchor={match.params.anchor}/>}
+          <Route path={`${content.more_info_page.path}/:anchor`} render={ ({match}) =>
+            <MoreInformation anchor={match.params.anchor}/>}
           />
 
-          <Route path="/glossary" render={() =>
-            <Glossary />}
+          <Route path={content.more_info_page.path} render={() =>
+            <MoreInformation />}
           />
 
-          <Route path="/user-stories" render={() => <UserStories/>}/>
-          <Route path="/about" render={() => <AboutPage/>}/>
+          <Route path={content.user_stories_page.path} render={() => <UserStories/>}/>
+          <Route path={content.about_page.path} render={() => <AboutPage/>}/>
         </Switch>
       </Router>
 

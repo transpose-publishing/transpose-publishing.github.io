@@ -1,6 +1,24 @@
 import {editRecordUrl} from '../googleApi';
 
 const content = {
+  //Pages
+  home_page: {
+    title: 'Home',
+    path: '/'
+  },
+  more_info_page: {
+    title: 'More Information',
+    path: '/more-information'
+  },
+  user_stories_page: {
+    title: 'User Stories',
+    path: '/user-stories'
+  },
+  about_page: {
+    title: 'About',
+    path: '/about'
+  },
+
   //Banner
   banner_description: "TRANsparency in Scholarly Publishing for <br/> <b>Open Scholarship Evolution</b>",
   home_page_banner_description: "TRANsparency in Scholarly Publishing for <br/> Open Scholarship Evolution",

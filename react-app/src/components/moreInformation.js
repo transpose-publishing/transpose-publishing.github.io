@@ -2,7 +2,7 @@ import React, {Fragment, useLayoutEffect} from 'react';
 import StandardBanner from './standardBanner';
 
 
-export default function Glossary ({anchor}) {
+export default function MoreInformation ({anchor}) {
 
   useLayoutEffect(function scrollToAnchor () {
     if(anchor) {
