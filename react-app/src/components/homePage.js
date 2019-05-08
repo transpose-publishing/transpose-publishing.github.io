@@ -14,7 +14,7 @@ import content from '../content/content';
 
 
 
-export default function HomePage ({loading, data, error}) {
+export default function HomePage ({loading, data}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
   const [verifiedFilter, toggleVerifiedFilter] = useState(false);
   const [activeFilters, {pushUnique: addFilter, removeByIndex: removeFilter}] = useArrayState([]);
@@ -77,7 +77,6 @@ export default function HomePage ({loading, data, error}) {
           <ResultsList
             loading={loading}
             data={data}
-            error={error}
             searchTerm={searchTerm}
             sort={sort}
             activeFilters={verifiedFilter ? [FN.VERIFIED, ...activeFilters] : activeFilters}/>

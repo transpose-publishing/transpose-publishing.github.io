@@ -7,7 +7,7 @@ import {filterRules} from '../models/filterModels';
 import {sortOptions} from '../models/sortModels';
 
 
-export default function ResultsList ({loading, error, data, searchTerm, sort, activeFilters}) {
+export default function ResultsList ({loading, data, searchTerm, sort, activeFilters}) {
   const [page, setPage] = useState(0);
 
   useLayoutEffect(function onSearchOrFilterChange_resetPage () {

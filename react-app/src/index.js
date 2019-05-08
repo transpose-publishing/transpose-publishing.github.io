@@ -18,7 +18,7 @@ import {CompareProvider} from './compareController';
 function App () {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [error, setError] = useState(null); //TODO: set up error handling for fetch catches
+  //TODO: set up error handling for fetch catches
 
   useEffect(() => {
     fetchData({rows: 50})
@@ -37,7 +37,7 @@ function App () {
 
         <Switch>
           <Route exact path="/" render={() =>
-            <HomePage loading={loading} data={data} error={error}/>
+            <HomePage loading={loading} data={data}/>
           }/>
 
           <Route path="/glossary/:anchor" render={ ({match}) =>
