@@ -33,15 +33,15 @@ function App () {
   return (
     <CompareProvider>
       <Router>
-        <Route path="/" component={Header}/>
+        <Route path="/" render={ ({location}) => <Header pathname={location.pathname}/> }/>
 
         <Switch>
           <Route exact path="/" render={() =>
             <HomePage loading={loading} data={data} error={error}/>
           }/>
 
-          <Route path="/glossary/:anchor" render={(routerProps) =>
-            <Glossary anchor={routerProps.match.params.anchor} routerProps={routerProps} />}
+          <Route path="/glossary/:anchor" render={ ({match}) =>
+            <Glossary anchor={match.params.anchor}/>}
           />
 
           <Route path="/glossary" render={() =>

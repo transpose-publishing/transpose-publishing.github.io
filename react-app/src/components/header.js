@@ -3,8 +3,7 @@ import {Link} from "react-router-dom";
 import {iconAssetPath} from "../constants";
 
 
-export default function Header ({...routerProps}) {
-  const pathname = routerProps.location.pathname;
+export default function Header ({pathname}) {
   const homeClass = `header-link ${pathname === '/' ? 'active' : ''}`;
   const glossaryClass = `header-link ${pathname === '/glossary' ? 'active' : ''}`;
   const userStoriesClass = `header-link ${pathname === '/user-stories' ? 'active' : ''}`;

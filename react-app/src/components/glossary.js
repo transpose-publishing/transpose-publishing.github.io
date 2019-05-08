@@ -1,9 +1,8 @@
 import React, {Fragment, useLayoutEffect} from 'react';
 import StandardBanner from './standardBanner';
-import content from '../content/content';
 
 
-export default function Glossary ({anchor, routerProps}) {
+export default function Glossary ({anchor}) {
 
   useLayoutEffect(function scrollToAnchor () {
     if(anchor) {
