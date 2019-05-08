@@ -1,7 +1,7 @@
 import React from 'react';
 import DetailsItem from './detailsItem';
 import DetailsSection from "./detailsSection";
-import content from '../content/content';
+import content from '../../content/content';
 
 
 export default function CoreviewDetails ({item}) {

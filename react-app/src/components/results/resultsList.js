@@ -1,10 +1,10 @@
 import React, {useState, useLayoutEffect, Fragment} from 'react';
-import {searchString, sortGenerator} from '../utils';
+import {searchString, sortGenerator} from '../../utils';
 import Paging from "./paging";
-import Result from '../results/result';
-import {itemsPerPage} from '../constants';
-import {filterRules} from '../models/filterModels';
-import {sortOptions} from '../models/sortModels';
+import Result from './result';
+import {itemsPerPage} from '../../constants';
+import {filterRules} from '../../models/filterModels';
+import {sortOptions} from '../../models/sortModels';
 
 
 export default function ResultsList ({loading, data, searchTerm, sort, activeFilters}) {

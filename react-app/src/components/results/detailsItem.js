@@ -1,6 +1,6 @@
 import React from 'react';
-import {parseLinksInString} from '../utils';
-import content from '../content/content';
+import {parseLinksInString} from '../../utils';
+import content from '../../content/content';
 
 
 export default function DetailsItem ({label, text, link, textLink}) {

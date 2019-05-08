@@ -1,10 +1,10 @@
 import React from 'react';
 import {iconAssetPath} from "../constants";
 import {compareController} from '../compareController';
-import PeerReviewDetails from "../results/peerReviewDetails";
-import OpenPeerReviewDetails from '../results/openPeerReviewDetails';
-import CoreviewDetails from '../results/coreviewDetails';
-import PreprintsDetails from '../results/preprintsDetails';
+import PeerReviewDetails from "./results/peerReviewDetails";
+import OpenPeerReviewDetails from './results/openPeerReviewDetails';
+import CoreviewDetails from './results/coreviewDetails';
+import PreprintsDetails from './results/preprintsDetails';
 import content from '../content/content';
 
 export default function CompareModal ({closeCompareModal}) {

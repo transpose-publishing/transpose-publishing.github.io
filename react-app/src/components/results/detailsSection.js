@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {iconAssetPath} from '../constants';
-import content from '../content/content';
+import {iconAssetPath} from '../../constants';
+import content from '../../content/content';
 
 
 export default function DetailsSection ({title, children, glossarySection}) {

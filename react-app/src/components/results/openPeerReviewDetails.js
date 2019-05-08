@@ -1,9 +1,9 @@
 import React from 'react';
 import DetailsItem from './detailsItem';
-import {isNot} from '../utils';
-import {iconAssetPath} from '../constants';
+import {isNot} from '../../utils';
+import {iconAssetPath} from '../../constants';
 import DetailsSection from "./detailsSection";
-import content from '../content/content';
+import content from '../../content/content';
 
 
 const policies = [

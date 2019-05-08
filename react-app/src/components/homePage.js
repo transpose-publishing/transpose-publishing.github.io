@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import Search from './search';
-import ResultsList from './resultsList';
+import ResultsList from './results/resultsList';
 import VerifiedFilter from './verifiedFilter';
 import {usePersistedState, useMergeState, useArrayState} from '../utils';
 import AddFilters from './addFilters';
@@ -17,9 +17,14 @@ import content from '../content/content';
 export default function HomePage ({loading, data}) {
   const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
   const [verifiedFilter, toggleVerifiedFilter] = useState(false);
-  const [activeFilters, {pushUnique: addFilter, removeByIndex: removeFilter}] = useArrayState([]);
   const [sort, updateSort] = useMergeState({field: null, order: null});
   const [compareModalOpen, toggleCompareModal] = useState(false);
+
+  const [activeFilters, {
+    pushUnique: addFilter,
+    removeByIndex: removeFilter,
+    clearArray: clearFilters
+  }] = useArrayState([]);
 
   function openCompareModal () {
     window.scroll(0, 0);
@@ -69,7 +74,7 @@ export default function HomePage ({loading, data}) {
         <ActiveFilterDisplay
           activeFilters={activeFilters}
           removeFilter={removeFilter}
-          clearFilters={() => setFilters([])}/>
+          clearFilters={clearFilters}/>
 
         <SortBar sort={sort} updateSort={updateSort}/>
 

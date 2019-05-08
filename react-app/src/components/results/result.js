@@ -1,8 +1,8 @@
 import React, {Fragment, useState} from 'react';
-import content from '../content/content';
-import CompareCheckbox from '../components/compareCheckbox';
-import {iconAssetPath} from "../constants";
-import {ContentContext} from '../index';
+import content from '../../content/content';
+import CompareCheckbox from '../compareCheckbox';
+import {iconAssetPath} from "../../constants";
+import {ContentContext} from '../..';
 import PeerReviewDetails from './peerReviewDetails';
 import OpenPeerReviewDetails from './openPeerReviewDetails';
 import CoreviewDetails from './coreviewDetails';

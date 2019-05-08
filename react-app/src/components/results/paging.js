@@ -1,5 +1,5 @@
 import React from 'react';
-import {iconAssetPath} from "../constants";
+import {iconAssetPath} from "../../constants";
 
 export default function Paging ({page, totalPages, setPage}) {
   const pagesArray = Array(totalPages + 1).fill(null);

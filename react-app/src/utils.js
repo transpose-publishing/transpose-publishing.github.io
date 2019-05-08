@@ -37,17 +37,22 @@ export function usePersistedState(key, initial) {
 
 export function useArrayState (initialArray = []) {
   const [array, setArray] = useState(initialArray);
-  function pushUnique (item) {
-    if(!array.includes(item)) {
-      setArray([...array, item])
+  const arrayControls = {
+    pushUnique: function pushUnique (item) {
+      if(!array.includes(item)) {
+        setArray([...array, item])
+      }
+    },
+    removeByIndex: function removeByIndex (index) {
+      const newArray = [...array];
+      newArray.splice(index, 1);
+      setArray(newArray)
+    },
+    clearArray: function clearArray () {
+      setArray([])
     }
-  }
-  function removeByIndex (index) {
-    const newArray = [...array];
-    newArray.splice(index, 1);
-    setArray(newArray)
-  }
-  return [array, {pushUnique, removeByIndex}]
+  };
+  return [array, arrayControls]
 }
 
 
