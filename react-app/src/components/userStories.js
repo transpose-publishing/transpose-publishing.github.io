@@ -21,11 +21,11 @@ export default function UserStories () {
               <th className="use-case-header">Use case</th>
             </tr>
 
-            {userStoryTable.map(({group, type, useCase}) =>
+            {userStoryTable.map(({group, type, use_case}) =>
               <tr>
                 <td>{group}</td>
                 <td>{type}</td>
-                <td>{useCase}</td>
+                <td>{use_case}</td>
               </tr>)}
           </table>
         </div>
