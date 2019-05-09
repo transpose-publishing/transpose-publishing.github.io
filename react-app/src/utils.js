@@ -102,6 +102,17 @@ export function parseLinksInString (str) {
   return [split[0], <a href={url} target="_blank">{url}</a>, split[1]].flat()
 }
 
+export function parseInlineLink (str, in_line_link) {
+  const {text, link} = in_line_link;
+  if(typeof str !== 'string' || !text || !link) {
+    return str
+  }
+  const linkIndex = str.indexOf(text);
+  if(linkIndex === -1) return str;
+  const linkElement = <a href={link} target="_blank">{text}</a>;
+  return [str.substring(0, linkIndex), linkElement, str.substring(linkIndex + text.length)]
+}
+
 export function sortGenerator (field, order = ASC, {ignoreBlanks, secondaryField, secondaryOrder} = {}) {
   return function sortFunction (a, b){
     const aValue = a[field].toLowerCase();
@@ -126,4 +137,21 @@ export function sortGenerator (field, order = ASC, {ignoreBlanks, secondaryField
     }
     return 0;
   }
+}
+
+export function renderContent (contentNode) {
+  if(!contentNode || typeof contentNode === 'string') return contentNode;
+  if(Array.isArray(contentNode)) {
+    return <ul>{contentNode.map( item => <li>{renderContent(item)}</li>)}</ul>
+  }
+  if(typeof contentNode === 'object') {
+    if(contentNode.text && contentNode.in_line_link) {
+      return parseInlineLink(contentNode.text, contentNode.in_line_link)
+    }
+    if(contentNode.text && contentNode.bullets) {
+      return [contentNode.text, renderContent(contentNode.bullets)]
+    }
+    return contentNode.text || "Error reading content"
+  }
+  return "Error reading content"
 }

@@ -20,7 +20,7 @@ const content = {
   },
 
   //Banner
-  banner_description: "TRANsparency in Scholarly Publishing for <br/> <b>Open Scholarship Evolution</b>",
+  banner_description: "Transparency in Scholarly Publishing for <br/> <b>Open Scholarship Evolution</b>",
   home_page_banner_description: "TRANsparency in Scholarly Publishing for <br/> Open Scholarship Evolution",
   download_button: "Download database",
   new_record_link: {
@@ -171,7 +171,19 @@ const content = {
     text: '💬 Follow us on Twitter',
     link: 'https://twitter.com/TRANSPOSEsci'
   },
-  contributors_header: 'Contributors'
+  contributors_header: 'Contributors',
+
+  //More info page
+  glossary_header: 'Glossary',
+  glossary_description: {
+    text: 'Please see below for definitions of terms used to present information in journal records. If anything is unclear, feel free to get in touch at transpose-publishing@googlegroups.com',
+    in_line_link: {
+      text: 'transpose-publishing@googlegroups.com',
+      link: 'mailto:transpose-publishing@googlegroups.com'
+    }
+  },
+  editorial_policies_header: 'Editorial policies',
+  faq_header: 'FAQ'
 };
 
 export default content;

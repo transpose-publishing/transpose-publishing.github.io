@@ -2,11 +2,12 @@ import React from 'react';
 import DetailsItem from './detailsItem';
 import DetailsSection from "./detailsSection";
 import content from '../../content/content';
+import {anchor_ids} from '../../content/moreInfo';
 
 
 export default function PreprintsDetails ({item}) {
   return (
-    <DetailsSection title={content.details_label_preprint} glossarySection="preprints">
+    <DetailsSection title={content.details_label_preprint} glossarySection={anchor_ids.preprints}>
       <div className="left-column">
         <div className="details-content-type-label">{content['preprint_label_author_guidelines']}</div>
         <DetailsItem label={content.preprint_policy_details} link={item['preprint-url']}/>

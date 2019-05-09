@@ -4,6 +4,7 @@ import {isNot} from '../../utils';
 import {iconAssetPath} from '../../constants';
 import DetailsSection from "./detailsSection";
 import content from '../../content/content';
+import {anchor_ids} from '../../content/moreInfo';
 
 
 const policies = [
@@ -30,7 +31,7 @@ export default function PeerReviewDetails ({item}) {
   }
 
   return (
-    <DetailsSection title={content.details_label_opr} glossarySection="open-peer-review">
+    <DetailsSection title={content.details_label_opr} glossarySection={anchor_ids.open_peer_review}>
       <div className="left-column">
         <img className="check-icon" src={`./${iconAssetPath}/check-icon.png`}/>
         {specifiedPolicy.map( key =>

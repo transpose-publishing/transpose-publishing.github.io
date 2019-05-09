@@ -1,5 +1,8 @@
 import React, {Fragment, useLayoutEffect} from 'react';
 import StandardBanner from './standardBanner';
+import content from '../content/content';
+import {glossary, editorial_policies, faq} from '../content/moreInfo'
+import {renderContent} from '../utils';
 
 
 export default function MoreInformation ({anchor}) {
@@ -14,47 +17,47 @@ export default function MoreInformation ({anchor}) {
   return (
     <Fragment>
       <StandardBanner/>
+      <div>
+        <div className="info-section">
+          <h2>{content.glossary_header}</h2>
+          <p>{renderContent(content.glossary_description)}</p>
 
-      <div className="standard-content">
+          <div>
+            {glossary.map( section =>
+              <Fragment>
+                <h3 id={section.anchor_id}>{section.title}</h3>
 
-        <div className="glossary-section">
-          <h2>Overview</h2>
-
-          <p>
-            “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.” “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.”
-          </p>
+                {section.cards.map( card =>
+                  <div className="info-card">
+                    <h4>{card.title}</h4>
+                    <p>{renderContent(card.description)}</p>
+                  </div>)}
+              </Fragment>)}
+          </div>
         </div>
 
-        <div id="peer-review" className="glossary-section">
-          <h2>Peer Review</h2>
+        <div className="info-section">
+          <h2 className="with-margin">{content.editorial_policies_header}</h2>
 
-          <p>
-            “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.” “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.”
-          </p>
+          <div>
+            {editorial_policies.map( card =>
+              <div className="info-card">
+                <h4>{card.title}</h4>
+                <p>{renderContent(card.bullets || card.description)}</p>
+              </div>)}
+          </div>
         </div>
 
-        <div id="open-peer-review" className="glossary-section">
-          <h2>Open Peer Review</h2>
+        <div className="info-section">
+          <h2 className="with-margin">{content.faq_header}</h2>
 
-          <p>
-            “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.” “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.”
-          </p>
-        </div>
-
-        <div id="co-review" className="glossary-section">
-          <h2>Co-review</h2>
-
-          <p>
-            “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.” “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.”
-          </p>
-        </div>
-
-        <div id="preprints" className="glossary-section">
-          <h2>Preprints</h2>
-
-          <p>
-            “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.” “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.”
-          </p>
+          <div>
+            {faq.map( card =>
+              <div className="info-card">
+                <h4>{card.title}</h4>
+                <p>{renderContent(card.description)}</p>
+              </div>)}
+          </div>
         </div>
       </div>
     </Fragment>

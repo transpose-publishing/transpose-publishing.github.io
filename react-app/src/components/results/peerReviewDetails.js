@@ -2,11 +2,12 @@ import React from 'react';
 import DetailsItem from './detailsItem';
 import DetailsSection from './detailsSection'
 import content from '../../content/content';
+import {anchor_ids} from '../../content/moreInfo';
 
 
 export default function PeerReviewDetails ({item}) {
   return (
-    <DetailsSection title={content.details_label_pr} glossarySection="peer-review">
+    <DetailsSection title={content.details_label_pr} glossarySection={anchor_ids.peer_review}>
       <div className="left-column">
         <DetailsItem label={content.pr_type_details} text={item['pr-type']}/>
         <DetailsItem label={content.pr_policy_details} link={item['pr-policy']}/>

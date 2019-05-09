@@ -2,11 +2,12 @@ import React from 'react';
 import DetailsItem from './detailsItem';
 import DetailsSection from "./detailsSection";
 import content from '../../content/content';
+import {anchor_ids} from '../../content/moreInfo';
 
 
 export default function CoreviewDetails ({item}) {
   return (
-    <DetailsSection title={content.details_label_coreview} glossarySection="co-review">
+    <DetailsSection title={content.details_label_coreview} glossarySection={anchor_ids.co_review}>
       <div className="left-column">
         <DetailsItem label={content.coreview_policy_details} text={item['coreview-policy']} textLink={item['coreview-url']}/>
       </div>
