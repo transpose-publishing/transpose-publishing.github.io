@@ -39,7 +39,7 @@ export const glossary = [
       },
       {
         title: 'Peer review transfer',
-        description: 'ORCID is a non-profit organisation that provides persistent and unique identifiers to help distinguish and track a scientist’s progress and achievements, including peer review activities.'
+        description: 'A process offered to authors when their manuscript has been rejected by a journal, allowing the peer review reports to be transferred to and considered by another journal to aid their editorial decision.'
       },
     ]
   },
