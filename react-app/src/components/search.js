@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useMemo} from 'react';
 import {iconAssetPath, KEYCODE} from '../constants';
 import {useMergeState, useClickOutside, keyboardControls} from '../utils';
 
@@ -23,6 +23,33 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
       focusedItemNode.current.focus()
     }
   }, [listItemFocused]);
+
+  useEffect(function onSearchFocusedFalse_blurSearchInput () {
+    if(!searchFocused) {
+      searchInputNode.current.blur()
+    }
+  }, [searchFocused]);
+
+  const searchSuggestions = useMemo(() => {
+    if(searchInputValue.length < 3 || !data) return [];
+    const publishers = [];
+    const titles = [];
+    const publishersUsedIndex = [];
+    const titlesUsedIndex = [];
+    data.forEach( item => {
+      const lowerCasePublisher = item.publisher.toLowerCase();
+      const lowerCaseTitle = item.title.toLowerCase();
+      if(lowerCasePublisher && lowerCasePublisher.includes(searchInputValue) && !publishersUsedIndex.includes(lowerCasePublisher)) {
+        publishers.push(item.publisher);
+        publishersUsedIndex.push(lowerCasePublisher);
+      }
+      if(lowerCaseTitle && lowerCaseTitle.includes(searchInputValue) && !titlesUsedIndex.includes(lowerCaseTitle)) {
+        titles.push(item.title);
+        titlesUsedIndex.push(lowerCaseTitle);
+      }
+    });
+    return [...titles, ...publishers]
+  }, [data, searchInputValue]);
 
   function resetFocus() {
     updateFocus({searchFocused: false, listItemFocused: false})
@@ -61,6 +88,7 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
         resetFocus();
       } else {
         setSearchTerm(searchInputValue);
+        resetFocus();
       }
     },
     [KEYCODE.TAB]: () => resetFocus()
@@ -82,24 +110,20 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
 
       <img className="search-glass" src={`./${iconAssetPath}/search-glass.png`}/>
 
-      {!loading && searchInputValue.length > 2 && searchFocused &&
+      {!loading && searchSuggestions.length && searchFocused &&
       <div className="search-suggestions">
         <ul>
-          {data
-            .filter( item => {
-              return item.title.toLowerCase().indexOf(searchInputValue.toLowerCase()) > -1
-            })
-            .map( (item, index) =>
-              <li
-                key={item.uid}
-                className="search-suggestion"
-                tabIndex={listItemFocused === index ? "0" : "-1"}
-                ref={listItemFocused === index ? focusedItemNode : void 0}
-                onClick={() => selectSearchTerm(item.title)}
-                onKeyDown={keyDownHandler}
-              >
-                {item.title}
-              </li>)}
+          {searchSuggestions.map( (item, index) =>
+            <li
+              key={index}
+              className="search-suggestion"
+              tabIndex={listItemFocused === index ? "0" : "-1"}
+              ref={listItemFocused === index ? focusedItemNode : void 0}
+              onClick={() => selectSearchTerm(item)}
+              onKeyDown={keyDownHandler}
+            >
+              {item}
+            </li>)}
         </ul>
       </div>}
     </div>

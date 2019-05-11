@@ -34,7 +34,7 @@ export default function ResultsList ({loading, data, searchTerm, sort, activeFil
         if (searchString(searchTerm, item.title)) return titleMatches.push(item);
         if (searchString(searchTerm, item.publisher)) return publisherMatches.push(item);
         for (const key in item) {
-          if (searchString(searchTerm, item[key])) otherMatches.push(item)
+          if (searchString(searchTerm, item[key])) return otherMatches.push(item)
         }
       });
       filteredData = [...titleMatches, ...publisherMatches, ...otherMatches];

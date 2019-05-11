@@ -397,7 +397,6 @@
   z-index: 1;
   border: 1px solid black;
   padding-top: 13px;
-  padding-left: 10px;
   overflow-y: scroll;
 }
 
@@ -408,6 +407,10 @@
 
 .search-suggestions > ul > li {
   margin-bottom: 6px;
+  padding-left: 10px;
+  &:hover, &:focus {
+    background-color: $color-background-lightGrey;
+  }
 }
 
 .search-suggestion {
