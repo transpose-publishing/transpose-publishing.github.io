@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {iconAssetPath, FILTERNAMES as FN} from "../constants";
+import {iconAssetPath, FILTER_TYPES as FT} from "../constants";
 import {useClickOutside, useMergeState} from '../utils';
 import {filterTypesList, filterList} from '../models/filterModels';
 
@@ -29,7 +29,7 @@ export default function AddFilters ({activeFilters, addFilter}) {
     updateState({typeName, filters})
   }
 
-  const OAFilter = filterList[FN.OA];
+  const OAFilter = filterList[FT.OA];
 
   return (
     <div  className="add-filters-button-container" ref={buttonRef}>

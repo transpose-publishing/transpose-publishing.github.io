@@ -11,7 +11,7 @@ export const KEYCODE = {
   TAB: 9
 };
 
-export const FILTERNAMES = {
+export const FILTER_TYPES = {
   VERIFIED: 'VERIFIED',
   OA: 'OA',
   PR_POLICY: 'PR_POLICY',

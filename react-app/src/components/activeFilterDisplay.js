@@ -1,6 +1,6 @@
 import React, {useRef, useLayoutEffect} from 'react';
 import {filterList} from '../models/filterModels';
-import {FILTERNAMES, iconAssetPath} from '../constants';
+import {FILTER_TYPES, iconAssetPath} from '../constants';
 import {useMergeState} from '../utils';
 
 
@@ -12,7 +12,7 @@ export default function ActiveFilterDisplay ({activeFilters, removeFilter, clear
   });
 
   const buttonRefs = {};
-  Object.values(FILTERNAMES).forEach( filter => buttonRefs[filter] = useRef(null));
+  Object.values(FILTER_TYPES).forEach(filter => buttonRefs[filter] = useRef(null));
 
   useLayoutEffect(function onFiltersChange_calculateLastVisibleFilter () {
     let yOffset = null;

@@ -1,32 +1,32 @@
-import {FILTERNAMES as FN} from "../constants";
+import {FILTER_TYPES as FT} from "../constants";
 import {isNot} from "../utils";
 import content from '../content/content';
 
 
 export const filterList = {
-  [FN.OA]: {name: FN.OA, content: content.oa},
-  [FN.PR_POLICY]: {name: FN.PR_POLICY, content: content.pr_policy},
-  [FN.PR_DATABASE]: {name: FN.PR_DATABASE, content: content.pr_database},
-  [FN.PR_TRANSFER_POLICY]: {name: FN.PR_TRANSFER_POLICY, content: content.pr_transfer_policy},
-  [FN.OPR_REPORTS]: {name: FN.OPR_REPORTS, content: content.opr_reports},
-  [FN.OPR_RESPONSES]: {name: FN.OPR_RESPONSES, content: content.opr_responses},
-  [FN.OPR_LETTERS]: {name: FN.OPR_LETTERS, content: content.opr_letters},
-  [FN.OPR_VERSIONS]: {name: FN.OPR_VERSIONS, content: content.opr_versions},
-  [FN.OPR_IDENTITIES_PUBLISHED]: {name: FN.OPR_IDENTITIES_PUBLISHED, content: content.opr_identities_published},
-  [FN.OPR_IDENTITIES_AUTHOR]: {name: FN.OPR_IDENTITIES_AUTHOR, content: content.opr_identities_author},
-  [FN.OPR_COMMENTS]: {name: FN.OPR_COMMENTS, content: content.opr_comments},
-  [FN.OPR_INTERACTION]: {name: FN.OPR_INTERACTION, content: content.opr_interaction},
-  [FN.COREVIEW_POLICY]: {name: FN.COREVIEW_POLICY, content: content.coreview_policy},
-  [FN.COREVIEW_EMAIL]: {name: FN.COREVIEW_EMAIL, content: content.coreview_email},
-  [FN.COREVIEW_FORM]: {name: FN.COREVIEW_FORM, content: content.coreview_form},
-  [FN.COREVIEW_DATABASE]: {name: FN.COREVIEW_DATABASE, content: content.coreview_database},
-  [FN.PREPRINT_POLICY]: {name: FN.PREPRINT_POLICY, content: content.preprint_policy},
-  [FN.PREPRINT_VERSION]: {name: FN.PREPRINT_VERSION, content: content.preprint_version},
-  [FN.PREPRINT_CITATION]: {name: FN.PREPRINT_CITATION, content: content.preprint_citation},
-  [FN.PREPRINT_MEDIA]: {name: FN.PREPRINT_MEDIA, content: content.preprint_media},
-  [FN.PREPRINT_LICENSING]: {name: FN.PREPRINT_LICENSING, content: content.preprint_licensing},
-  [FN.PREPRINT_SCOOP]: {name: FN.PREPRINT_SCOOP, content: content.preprint_scoop},
-  [FN.PREPRINT_REVIEW]: {name: FN.PREPRINT_REVIEW, content: content.preprint_review}
+  [FT.OA]: {name: FT.OA, content: content.oa},
+  [FT.PR_POLICY]: {name: FT.PR_POLICY, content: content.pr_policy},
+  [FT.PR_DATABASE]: {name: FT.PR_DATABASE, content: content.pr_database},
+  [FT.PR_TRANSFER_POLICY]: {name: FT.PR_TRANSFER_POLICY, content: content.pr_transfer_policy},
+  [FT.OPR_REPORTS]: {name: FT.OPR_REPORTS, content: content.opr_reports},
+  [FT.OPR_RESPONSES]: {name: FT.OPR_RESPONSES, content: content.opr_responses},
+  [FT.OPR_LETTERS]: {name: FT.OPR_LETTERS, content: content.opr_letters},
+  [FT.OPR_VERSIONS]: {name: FT.OPR_VERSIONS, content: content.opr_versions},
+  [FT.OPR_IDENTITIES_PUBLISHED]: {name: FT.OPR_IDENTITIES_PUBLISHED, content: content.opr_identities_published},
+  [FT.OPR_IDENTITIES_AUTHOR]: {name: FT.OPR_IDENTITIES_AUTHOR, content: content.opr_identities_author},
+  [FT.OPR_COMMENTS]: {name: FT.OPR_COMMENTS, content: content.opr_comments},
+  [FT.OPR_INTERACTION]: {name: FT.OPR_INTERACTION, content: content.opr_interaction},
+  [FT.COREVIEW_POLICY]: {name: FT.COREVIEW_POLICY, content: content.coreview_policy},
+  [FT.COREVIEW_EMAIL]: {name: FT.COREVIEW_EMAIL, content: content.coreview_email},
+  [FT.COREVIEW_FORM]: {name: FT.COREVIEW_FORM, content: content.coreview_form},
+  [FT.COREVIEW_DATABASE]: {name: FT.COREVIEW_DATABASE, content: content.coreview_database},
+  [FT.PREPRINT_POLICY]: {name: FT.PREPRINT_POLICY, content: content.preprint_policy},
+  [FT.PREPRINT_VERSION]: {name: FT.PREPRINT_VERSION, content: content.preprint_version},
+  [FT.PREPRINT_CITATION]: {name: FT.PREPRINT_CITATION, content: content.preprint_citation},
+  [FT.PREPRINT_MEDIA]: {name: FT.PREPRINT_MEDIA, content: content.preprint_media},
+  [FT.PREPRINT_LICENSING]: {name: FT.PREPRINT_LICENSING, content: content.preprint_licensing},
+  [FT.PREPRINT_SCOOP]: {name: FT.PREPRINT_SCOOP, content: content.preprint_scoop},
+  [FT.PREPRINT_REVIEW]: {name: FT.PREPRINT_REVIEW, content: content.preprint_review}
 };
 
 
@@ -35,46 +35,46 @@ export const filterTypesList = [
     typeName: 'peerReview',
     content: content.filter_type_pr,
     filters: [
-      filterList[FN.PR_POLICY],
-      filterList[FN.PR_DATABASE],
-      filterList[FN.PR_TRANSFER_POLICY]
+      filterList[FT.PR_POLICY],
+      filterList[FT.PR_DATABASE],
+      filterList[FT.PR_TRANSFER_POLICY]
     ]
   },
   {
     typeName: 'openPeerReview',
     content: content.filter_type_opr,
     filters: [
-      filterList[FN.OPR_REPORTS],
-      filterList[FN.OPR_RESPONSES],
-      filterList[FN.OPR_LETTERS],
-      filterList[FN.OPR_VERSIONS],
-      filterList[FN.OPR_IDENTITIES_PUBLISHED],
-      filterList[FN.OPR_IDENTITIES_AUTHOR],
-      filterList[FN.OPR_COMMENTS],
-      filterList[FN.OPR_INTERACTION],
+      filterList[FT.OPR_REPORTS],
+      filterList[FT.OPR_RESPONSES],
+      filterList[FT.OPR_LETTERS],
+      filterList[FT.OPR_VERSIONS],
+      filterList[FT.OPR_IDENTITIES_PUBLISHED],
+      filterList[FT.OPR_IDENTITIES_AUTHOR],
+      filterList[FT.OPR_COMMENTS],
+      filterList[FT.OPR_INTERACTION],
     ]
   },
   {
     typeName: 'coreview',
     content: content.filter_type_coreview,
     filters: [
-      filterList[FN.COREVIEW_POLICY],
-      filterList[FN.COREVIEW_EMAIL],
-      filterList[FN.COREVIEW_FORM],
-      filterList[FN.COREVIEW_DATABASE],
+      filterList[FT.COREVIEW_POLICY],
+      filterList[FT.COREVIEW_EMAIL],
+      filterList[FT.COREVIEW_FORM],
+      filterList[FT.COREVIEW_DATABASE],
     ]
   },
   {
     typeName: 'preprint',
     content: content.filter_type_preprint,
     filters: [
-      filterList[FN.PREPRINT_POLICY],
-      filterList[FN.PREPRINT_VERSION],
-      filterList[FN.PREPRINT_CITATION],
-      filterList[FN.PREPRINT_MEDIA],
-      filterList[FN.PREPRINT_LICENSING],
-      filterList[FN.PREPRINT_SCOOP],
-      filterList[FN.PREPRINT_REVIEW],
+      filterList[FT.PREPRINT_POLICY],
+      filterList[FT.PREPRINT_VERSION],
+      filterList[FT.PREPRINT_CITATION],
+      filterList[FT.PREPRINT_MEDIA],
+      filterList[FT.PREPRINT_LICENSING],
+      filterList[FT.PREPRINT_SCOOP],
+      filterList[FT.PREPRINT_REVIEW],
     ]
   }
 ];
@@ -84,28 +84,28 @@ const no_blank = ["No", ""];
 const no_notSpecified_blank = ["No", "Not specified", ""];
 
 export const filterRules = {
-  [FN.VERIFIED]: item => item.verified === "Yes",
-  [FN.OA]: item => item.oa === "Yes" || item.oa === "OA",
-  [FN.PR_POLICY]: item => item['pr-policy'] !== "",
-  [FN.PR_DATABASE]: item => isNot(item['pr-database'], no_blank),
-  [FN.PR_TRANSFER_POLICY]: item => isNot(item['pr-transfer-policy'], no_blank),
-  [FN.OPR_REPORTS]: item => isNot(item['opr-reports'], no_notSpecified_blank),
-  [FN.OPR_RESPONSES]: item => isNot(item['opr-responses'], no_notSpecified_blank),
-  [FN.OPR_LETTERS]: item => isNot(item['opr-letters'], no_notSpecified_blank),
-  [FN.OPR_VERSIONS]: item => isNot(item['opr-versions'], no_notSpecified_blank),
-  [FN.OPR_IDENTITIES_PUBLISHED]: item => isNot(item['opr-identities-published'], no_notSpecified_blank),
-  [FN.OPR_IDENTITIES_AUTHOR]: item => isNot(item['opr-indenties-author'], no_notSpecified_blank),
-  [FN.OPR_COMMENTS]: item => isNot(item['opr-comments'], no_notSpecified_blank),
-  [FN.OPR_INTERACTION]: item => isNot(item['opr-interaction'], no_notSpecified_blank),
-  [FN.COREVIEW_POLICY]: item => item['coreview-policy'] !== "",
-  [FN.COREVIEW_EMAIL]: item => item['coreview-email'] === "Yes",
-  [FN.COREVIEW_FORM]: item => item['coreview-form'] === "Yes",
-  [FN.COREVIEW_DATABASE]: item => isNot(item['coreview-database'], no_blank),
-  [FN.PREPRINT_POLICY]: item => item['preprint-policy'] !== "",
-  [FN.PREPRINT_VERSION]: item => isNot(item['preprint-version'], no_blank),
-  [FN.PREPRINT_CITATION]: item => isNot(item['preprint-citation'], no_blank),
-  [FN.PREPRINT_MEDIA]: item => item['preprint-media'] !== "",
-  [FN.PREPRINT_LICENSING]: item => item['preprint-licensing'] !== "",
-  [FN.PREPRINT_SCOOP]: item => item['preprint-scoop'] !== "",
-  [FN.PREPRINT_REVIEW]: item => item['preprint-review'] !== ""
+  [FT.VERIFIED]: item => item.verified === "Yes",
+  [FT.OA]: item => item.oa === "Yes" || item.oa === "OA",
+  [FT.PR_POLICY]: item => item['pr-policy'] !== "",
+  [FT.PR_DATABASE]: item => isNot(item['pr-database'], no_blank),
+  [FT.PR_TRANSFER_POLICY]: item => isNot(item['pr-transfer-policy'], no_blank),
+  [FT.OPR_REPORTS]: item => isNot(item['opr-reports'], no_notSpecified_blank),
+  [FT.OPR_RESPONSES]: item => isNot(item['opr-responses'], no_notSpecified_blank),
+  [FT.OPR_LETTERS]: item => isNot(item['opr-letters'], no_notSpecified_blank),
+  [FT.OPR_VERSIONS]: item => isNot(item['opr-versions'], no_notSpecified_blank),
+  [FT.OPR_IDENTITIES_PUBLISHED]: item => isNot(item['opr-identities-published'], no_notSpecified_blank),
+  [FT.OPR_IDENTITIES_AUTHOR]: item => isNot(item['opr-indenties-author'], no_notSpecified_blank),
+  [FT.OPR_COMMENTS]: item => isNot(item['opr-comments'], no_notSpecified_blank),
+  [FT.OPR_INTERACTION]: item => isNot(item['opr-interaction'], no_notSpecified_blank),
+  [FT.COREVIEW_POLICY]: item => item['coreview-policy'] !== "",
+  [FT.COREVIEW_EMAIL]: item => item['coreview-email'] === "Yes",
+  [FT.COREVIEW_FORM]: item => item['coreview-form'] === "Yes",
+  [FT.COREVIEW_DATABASE]: item => isNot(item['coreview-database'], no_blank),
+  [FT.PREPRINT_POLICY]: item => item['preprint-policy'] !== "",
+  [FT.PREPRINT_VERSION]: item => isNot(item['preprint-version'], no_blank),
+  [FT.PREPRINT_CITATION]: item => isNot(item['preprint-citation'], no_blank),
+  [FT.PREPRINT_MEDIA]: item => item['preprint-media'] !== "",
+  [FT.PREPRINT_LICENSING]: item => item['preprint-licensing'] !== "",
+  [FT.PREPRINT_SCOOP]: item => item['preprint-scoop'] !== "",
+  [FT.PREPRINT_REVIEW]: item => item['preprint-review'] !== ""
 };

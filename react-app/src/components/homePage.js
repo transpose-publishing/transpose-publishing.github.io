@@ -8,7 +8,7 @@ import ActiveFilterDisplay from './activeFilterDisplay'
 import SortBar from './sortBar';
 import CompareFooter from './compareFooter';
 import CompareModal from './compareModal';
-import {FILTERNAMES as FN, iconAssetPath} from '../constants';
+import {FILTER_TYPES as FT, iconAssetPath} from '../constants';
 import {downloadUrl} from '../googleApi';
 import content from '../content/content';
 
@@ -84,7 +84,7 @@ export default function HomePage ({loading, data}) {
             data={data}
             searchTerm={searchTerm}
             sort={sort}
-            activeFilters={verifiedFilter ? [FN.VERIFIED, ...activeFilters] : activeFilters}/>
+            activeFilters={verifiedFilter ? [FT.VERIFIED, ...activeFilters] : activeFilters}/>
         </div>
 
         <CompareFooter openCompareModal={openCompareModal}/>
