@@ -19,7 +19,7 @@ export function useClickOutside ({container, handler, dependencies, addListenerC
   }, dependencies);
 
   function handleClickOutside (e) {
-    if(!container.contains(e.target)) {
+    if(!container.current.contains(e.target)) {
       handler()
     }
   }
@@ -62,6 +62,17 @@ export function keyboardControls (keyHandlers) {
     return keyHandlers[e.keyCode] ? keyHandlers[e.keyCode](e) : null
   }
 }
+
+export function prepareDomForModal () {
+  const body = document.getElementsByTagName("BODY")[0];
+  body.style.overflow = 'hidden';
+  body.style['padding-right'] = '14px';
+}
+prepareDomForModal.cleanup = function modalDomSettingsCleanup () {
+  const body = document.getElementsByTagName("BODY")[0];
+  body.style.overflow = 'auto';
+  body.style['padding-right'] = '0'
+};
 
 
 //utils

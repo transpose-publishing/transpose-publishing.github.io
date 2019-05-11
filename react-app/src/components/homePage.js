@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useLayoutEffect} from 'react';
 import Search from './search';
 import ResultsList from './results/resultsList';
 import VerifiedFilter from './verifiedFilter';
@@ -11,6 +11,7 @@ import CompareModal from './compareModal';
 import {FILTER_TYPES as FT, iconAssetPath} from '../constants';
 import {downloadUrl} from '../googleApi';
 import content from '../content/content';
+import {prepareDomForModal} from '../utils';
 
 
 
@@ -26,67 +27,68 @@ export default function HomePage ({loading, data}) {
     clearArray: clearFilters
   }] = useArrayState([]);
 
-  function openCompareModal () {
-    window.scroll(0, 0);
-    toggleCompareModal(true)
-  }
+  useLayoutEffect(function onCompareModalToggle_setModalDomSettings () {
+    if(compareModalOpen) prepareDomForModal();
+    return prepareDomForModal.cleanup
+  }, [compareModalOpen]);
 
-  return compareModalOpen
-    ? <CompareModal closeCompareModal={() => toggleCompareModal(false)}/>
-    : <Fragment>
-        <div className="home-banner">
-          <div className="banner-row row-1">
-            <p className="banner-description" dangerouslySetInnerHTML={{__html: content.home_page_banner_description}}/>
+  return (
+    <Fragment>
+      {compareModalOpen && <CompareModal closeCompareModal={() => toggleCompareModal(false)}/>}
+      <div className="home-banner">
+        <div className="banner-row row-1">
+          <p className="banner-description" dangerouslySetInnerHTML={{__html: content.home_page_banner_description}}/>
 
-            <a className="new-record-button" href={content.new_record_link.link} target="_blank">{content.new_record_link.text}</a>
-          </div>
-
-          <div className="banner-row row-2">
-            <h2 className="search-header">{content.search_header}</h2>
-
-            <a className="download-button" href={downloadUrl}>
-              <img src={`./${iconAssetPath}/Download-Icon.svg`}/>
-              {content.download_button}
-            </a>
-          </div>
-
-          <div className="banner-row row-3">
-            <Search
-              placeholder={content.search_placeholder}
-              data={data}
-              loading={loading}
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}/>
-          </div>
-
-          <div className="banner-row row-4">
-            <AddFilters
-              activeFilters={activeFilters}
-              addFilter={addFilter}/>
-
-            <VerifiedFilter
-              label={content.verified}
-              verifiedFilter={verifiedFilter}
-              toggleVerifiedFilter={() => toggleVerifiedFilter(!verifiedFilter)}/>
-          </div>
+          <a className="new-record-button" href={content.new_record_link.link} target="_blank">{content.new_record_link.text}</a>
         </div>
 
-        <ActiveFilterDisplay
-          activeFilters={activeFilters}
-          removeFilter={removeFilter}
-          clearFilters={clearFilters}/>
+        <div className="banner-row row-2">
+          <h2 className="search-header">{content.search_header}</h2>
 
-        <SortBar sort={sort} updateSort={updateSort}/>
+          <a className="download-button" href={downloadUrl}>
+            <img src={`./${iconAssetPath}/Download-Icon.svg`}/>
+            {content.download_button}
+          </a>
+        </div>
 
-        <div className="home-content">
-          <ResultsList
-            loading={loading}
+        <div className="banner-row row-3">
+          <Search
+            placeholder={content.search_placeholder}
             data={data}
+            loading={loading}
             searchTerm={searchTerm}
-            sort={sort}
-            activeFilters={verifiedFilter ? [FT.VERIFIED, ...activeFilters] : activeFilters}/>
+            setSearchTerm={setSearchTerm}/>
         </div>
 
-        <CompareFooter openCompareModal={openCompareModal}/>
-      </Fragment>
+        <div className="banner-row row-4">
+          <AddFilters
+            activeFilters={activeFilters}
+            addFilter={addFilter}/>
+
+          <VerifiedFilter
+            label={content.verified}
+            verifiedFilter={verifiedFilter}
+            toggleVerifiedFilter={() => toggleVerifiedFilter(!verifiedFilter)}/>
+        </div>
+      </div>
+
+      <ActiveFilterDisplay
+        activeFilters={activeFilters}
+        removeFilter={removeFilter}
+        clearFilters={clearFilters}/>
+
+      <SortBar sort={sort} updateSort={updateSort}/>
+
+      <div className="home-content">
+        <ResultsList
+          loading={loading}
+          data={data}
+          searchTerm={searchTerm}
+          sort={sort}
+          activeFilters={verifiedFilter ? [FT.VERIFIED, ...activeFilters] : activeFilters}/>
+      </div>
+
+      <CompareFooter openCompareModal={() => toggleCompareModal(true)}/>
+    </Fragment>
+  )
 }

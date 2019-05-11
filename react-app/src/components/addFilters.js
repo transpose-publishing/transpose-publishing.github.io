@@ -15,7 +15,7 @@ export default function AddFilters ({activeFilters, addFilter}) {
   const buttonRef = useRef(null);
 
   useClickOutside({
-    container: buttonRef.current,
+    container: buttonRef,
     handler: toggleMenu,
     addListenerConditional: menuOpen === true,
     dependencies: [menuOpen]

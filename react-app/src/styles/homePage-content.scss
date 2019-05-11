@@ -293,6 +293,14 @@
   }
 }
 
+.compare-modal-overlay {
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, .8);
+  z-index: 9999999;
+  overflow-y: scroll;
+}
+
 .compare-modal {
   width: 960px;
   margin-left: auto;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {iconAssetPath} from "../constants";
 import {compareController} from '../compareController';
 import PeerReviewDetails from "./results/peerReviewDetails";
@@ -6,8 +6,17 @@ import OpenPeerReviewDetails from './results/openPeerReviewDetails';
 import CoreviewDetails from './results/coreviewDetails';
 import PreprintsDetails from './results/preprintsDetails';
 import content from '../content/content';
+import {useClickOutside} from '../utils';
 
 export default function CompareModal ({closeCompareModal}) {
+  const modalContent = useRef(null);
+
+  useClickOutside({
+    container: modalContent,
+    handler: closeCompareModal,
+    dependencies: []
+  });
+
   const {compare} = compareController();
   const tableRows = [[], [], [], [], []];
   compare.forEach( item => {
@@ -19,20 +28,22 @@ export default function CompareModal ({closeCompareModal}) {
   });
 
   return (
-    <div className="compare-modal">
-      <div className="compare-modal-header">
-        <span>{`Compare ${compare.length} policies`}</span>
-        <button onClick={closeCompareModal}><img src={`./${iconAssetPath}/Close-Icon-1.svg`}/></button>
-      </div>
+    <div className="compare-modal-overlay">
+      <div className="compare-modal" ref={modalContent}>
+        <div className="compare-modal-header">
+          <span>{`Compare ${compare.length} policies`}</span>
+          <button onClick={closeCompareModal}><img src={`./${iconAssetPath}/Close-Icon-1.svg`}/></button>
+        </div>
 
-      <div className="compare-table-container">
-        <table className="compare-table">
-          {tableRows.map( row =>
-            <tr>
-              {row.map( section => <td>{section}</td>)}
-            </tr>
-          )}
-        </table>
+        <div className="compare-table-container">
+          <table className="compare-table">
+            {tableRows.map( row =>
+              <tr>
+                {row.map( section => <td>{section}</td>)}
+              </tr>
+            )}
+          </table>
+        </div>
       </div>
     </div>
   )

@@ -12,7 +12,7 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
   const focusedItemNode = useRef(null);
 
   useClickOutside({
-    container: searchContainerNode.current,
+    container: searchContainerNode,
     handler: resetFocus,
     addListenerConditional: searchFocused === true,
     dependencies: [searchFocused]
