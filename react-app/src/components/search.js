@@ -31,21 +31,22 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
   }, [searchFocused]);
 
   const searchSuggestions = useMemo(() => {
-    if(searchInputValue.length < 3 || !data) return [];
+    if(!data || searchInputValue.length < 3) return [];
     const publishers = [];
     const titles = [];
     const publishersUsedIndex = [];
     const titlesUsedIndex = [];
     data.forEach( item => {
-      const lowerCasePublisher = item.publisher.toLowerCase();
-      const lowerCaseTitle = item.title.toLowerCase();
-      if(lowerCasePublisher && lowerCasePublisher.includes(searchInputValue) && !publishersUsedIndex.includes(lowerCasePublisher)) {
+      const publisher = item.publisher.toLowerCase();
+      const title = item.title.toLowerCase();
+      const searchValue = searchInputValue.toLowerCase();
+      if(publisher?.includes(searchValue) && !publishersUsedIndex.includes(publisher)) {
         publishers.push(item.publisher);
-        publishersUsedIndex.push(lowerCasePublisher);
+        publishersUsedIndex.push(publisher);
       }
-      if(lowerCaseTitle && lowerCaseTitle.includes(searchInputValue) && !titlesUsedIndex.includes(lowerCaseTitle)) {
+      if(title?.includes(searchValue) && !titlesUsedIndex.includes(title)) {
         titles.push(item.title);
-        titlesUsedIndex.push(lowerCaseTitle);
+        titlesUsedIndex.push(title);
       }
     });
     return [...titles, ...publishers]

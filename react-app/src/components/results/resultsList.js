@@ -51,7 +51,7 @@ export default function ResultsList ({loading, data, searchTerm, sort, activeFil
 
   function filterItem (item) {
     for (const filter of activeFilters) {
-      if(filterRules[filter] && filterRules[filter](item) === false) {
+      if(filterRules[filter]?.(item) === false) {
         return true
       }
     }

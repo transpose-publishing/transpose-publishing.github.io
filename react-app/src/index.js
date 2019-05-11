@@ -1,4 +1,4 @@
-import "@babel/polyfill";
+import "core-js";
 import './styles/index.scss';
 
 import React, {useEffect, useState} from 'react';

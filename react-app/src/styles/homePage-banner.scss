@@ -47,7 +47,7 @@
 
   .download-button {
     font-size: 14px;
-    font-family: "Helvetica Neue";
+    font-family: $normal-text;
     color: white;
     text-decoration: none;
     margin-top: 5px;
@@ -69,7 +69,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  font-family: "Helvetica Neue";
+  font-family: $normal-text;
 
   .add-filters-button-container {
     position: relative;
@@ -107,7 +107,7 @@
         padding-right: 16px;
         display: flex;
         color: $color-teal;
-        font-family: "Helvetica Neue";
+        font-family: $normal-text;
         font-size: 14px;
         padding-bottom: 5px;
 
@@ -178,8 +178,8 @@
       position: relative;
 
       span {
-        font-family: "Helvetica Neue";
-        margin: 5px;
+        font-family: $normal-text;
+        margin: 4px;
       }
 
       .verified-filter-switch {
@@ -188,7 +188,7 @@
         background-color: $color-background-lighterGrey;
         border-radius: 2px;
         position: absolute;
-        left: 5px;
+        left: 5px; top: 4px;
         transition: all .05s linear;
 
         &.on {
@@ -231,7 +231,7 @@
           height: 32px;
           position: relative;
           font-size: 14px;
-          font-family: "Helvetica Neue";
+          font-family: $normal-text;
           color: $color-background-darkGrey;
           padding-right: 28px;
           padding-left: 16px;
@@ -268,7 +268,7 @@
         color: $color-background-darkGrey;
         text-decoration: underline;
         font-size: 12px;
-        font-family: "Helvetica Neue";
+        font-family: $normal-text;
       }
     }
 
@@ -307,7 +307,7 @@
       padding-top: 4px;
 
       button, span {
-        font-family: "Helvetica Neue";
+        font-family: $normal-text;
         font-size: 14px;
         color: white;
         padding-left: 0;

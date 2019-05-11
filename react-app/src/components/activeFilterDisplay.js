@@ -18,10 +18,10 @@ export default function ActiveFilterDisplay ({activeFilters, removeFilter, clear
     let yOffset = null;
     let prevFilter = null;
     for(const filter of activeFilters) {
-      const {y} = buttonRefs[filter].current.getBoundingClientRect();
+      const {top} = buttonRefs[filter].current.getBoundingClientRect();
       if(!yOffset) {
-        yOffset = y;
-      } else if (y > yOffset) {
+        yOffset = top;
+      } else if (top > yOffset) {
         if(!lastVisibleFilter || lastVisibleFilter !== prevFilter) {
           updateState({
             lastVisibleFilter: prevFilter
