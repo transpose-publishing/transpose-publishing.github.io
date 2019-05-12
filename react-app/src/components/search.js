@@ -70,7 +70,7 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
     [KEYCODE.DOWN_ARROW]: (e) => {
       e.preventDefault();
       const suggestionsExist = document.getElementsByClassName("search-suggestion").length;
-      const nextItem = focusedItemNode.current && focusedItemNode.current.nextSibling;
+      const nextItem = focusedItemNode.current?.nextSibling;
       if((listItemFocused === false && suggestionsExist) || nextItem) {
         updateFocus({listItemFocused: listItemFocused !== false ? listItemFocused + 1 : 0})
       }
