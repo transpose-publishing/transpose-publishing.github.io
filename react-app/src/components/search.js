@@ -5,7 +5,9 @@ import {useMergeState, useClickOutside, keyboardControls} from '../utils';
 
 export default function Search ({placeholder, searchTerm, setSearchTerm, loading, data}) {
   const [{inputValue, searchFocused, activeIndex}, setState] = useMergeState({
-    inputValue: '', searchFocused: false, activeIndex: null
+    inputValue: '',
+    searchFocused: false,
+    activeIndex: null
   });
 
   const searchContainerNode = useRef(null);
@@ -91,11 +93,7 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
     },
     [KEYCODE.ENTER]: (e) => {
       e.preventDefault();
-      if(inputValue !== "" && activeIndex === null) {
-        selectSearchTerm(inputValue)
-      } else if (activeIndex !== null) {
-        selectSearchTerm(searchSuggestions[activeIndex])
-      }
+      selectSearchTerm(activeIndex === null ? inputValue : searchSuggestions[activeIndex])
     },
     [KEYCODE.TAB]: resetFocus,
     [KEYCODE.ESCAPE]: () => setState({inputValue: ''})

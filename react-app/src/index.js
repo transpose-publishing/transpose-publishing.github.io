@@ -21,13 +21,10 @@ function App () {
   //TODO: set up error handling for fetch catches
 
   useEffect(() => {
-    fetchData({rows: 50})
-      .then( dataArray => {
-        setData(dataArray);
-        setLoading(false);
-        fetchData({rows: 0}) //0 fetches all data
-          .then( dataArray => setData(dataArray))
-      })
+    fetchData().then( dataArray => {
+      setData(dataArray);
+      setLoading(false);
+    })
   }, []);
 
   return (

@@ -13,7 +13,7 @@ const policies = [
   'opr-letters',
   'opr-versions',
   'opr-identities-published',
-  'opr-identities-author',
+  'opr-indenties-author',
   'opr-comments',
   'opr-interaction',
 ];
