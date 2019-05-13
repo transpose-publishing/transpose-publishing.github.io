@@ -1,7 +1,9 @@
 import React from 'react';
 import {SORT_FIELDS, iconAssetPath, SORT_ORDER} from '../constants';
 import {orderDefaults} from '../models/sortModels';
-import content from '../content/content';
+import {getContent} from '../utils';
+
+const {content} = getContent();
 const {ASC, DESC} = SORT_ORDER;
 
 

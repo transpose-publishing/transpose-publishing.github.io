@@ -1,8 +1,8 @@
 import React, {Fragment, useLayoutEffect} from 'react';
 import StandardBanner from './standardBanner';
-import content from '../content/content';
-import {glossary, editorial_policies, faq} from '../content/moreInfo'
-import {renderContent} from '../utils';
+import {renderContent, getContent} from '../utils';
+
+const {glossary, editorial_policies, faq} = getContent();
 
 
 export default function MoreInformation ({anchor}) {

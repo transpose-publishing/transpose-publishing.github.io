@@ -1,7 +1,8 @@
 import {FILTER_TYPES as FT} from "../constants";
 import {isNot} from "../utils";
-import content from '../content/content';
+import {getContent} from '../utils';
 
+const {content} = getContent();
 
 export const filterList = {
   [FT.OA]: {name: FT.OA, content: content.oa},

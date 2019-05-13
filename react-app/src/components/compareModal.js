@@ -5,8 +5,9 @@ import PeerReviewDetails from "./results/peerReviewDetails";
 import OpenPeerReviewDetails from './results/openPeerReviewDetails';
 import CoreviewDetails from './results/coreviewDetails';
 import PreprintsDetails from './results/preprintsDetails';
-import content from '../content/content';
-import {useClickOutside} from '../utils';
+import {useClickOutside, getContent} from '../utils';
+
+const {content} = getContent();
 
 export default function CompareModal ({closeCompareModal}) {
   const modalContent = useRef(null);

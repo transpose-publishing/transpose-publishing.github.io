@@ -1,11 +1,10 @@
 import React from 'react';
 import DetailsItem from './detailsItem';
-import {isNot} from '../../utils';
 import {iconAssetPath} from '../../constants';
 import DetailsSection from "./detailsSection";
-import content from '../../content/content';
-import {anchor_ids} from '../../content/moreInfo';
+import {getContent, isNot} from '../../utils';
 
+const {content} = getContent();
 
 const policies = [
   'opr-reports',

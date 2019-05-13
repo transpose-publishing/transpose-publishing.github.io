@@ -1,9 +1,9 @@
 import React from 'react';
 import DetailsItem from './detailsItem';
 import DetailsSection from "./detailsSection";
-import content from '../../content/content';
-import {anchor_ids} from '../../content/moreInfo';
+import {getContent} from '../../utils';
 
+const {content, anchor_ids} = getContent();
 
 export default function PreprintsDetails ({item}) {
   return (

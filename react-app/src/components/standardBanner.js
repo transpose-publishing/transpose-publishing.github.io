@@ -1,6 +1,7 @@
 import React from 'react';
-import content from '../content/content'
+import {getContent} from '../utils';
 
+const {content} = getContent();
 
 export default function StandardBanner () {
   return (

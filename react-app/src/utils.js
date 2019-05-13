@@ -166,3 +166,8 @@ export function renderContent (contentNode) {
   }
   return "Error reading content"
 }
+
+export function getContent () {
+  const content = window._content;
+  return {...content, content: content.dictionary}
+}

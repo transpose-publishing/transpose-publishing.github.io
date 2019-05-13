@@ -2,16 +2,15 @@ import React, {Fragment, useState, useLayoutEffect} from 'react';
 import Search from './search';
 import ResultsList from './results/resultsList';
 import VerifiedFilter from './verifiedFilter';
-import {usePersistedState, useMergeState, useArrayState} from '../utils';
+import {usePersistedState, useMergeState, useArrayState, prepareDomForModal, getContent} from '../utils';
 import AddFilters from './addFilters';
 import ActiveFilterDisplay from './activeFilterDisplay'
 import SortBar from './sortBar';
 import CompareFooter from './compareFooter';
 import CompareModal from './compareModal';
 import {FILTER_TYPES as FT, iconAssetPath} from '../constants';
-import {downloadUrl} from '../googleApi';
-import content from '../content/content';
-import {prepareDomForModal} from '../utils';
+
+const {content} = getContent();
 
 
 
@@ -45,9 +44,9 @@ export default function HomePage ({loading, data}) {
         <div className="banner-row row-2">
           <h2 className="search-header">{content.search_header}</h2>
 
-          <a className="download-button" href={downloadUrl}>
+          <a className="download-button" href={content.download_link.link}>
             <img src={`./${iconAssetPath}/Download-Icon.svg`}/>
-            {content.download_button}
+            {content.download_link.text}
           </a>
         </div>
 

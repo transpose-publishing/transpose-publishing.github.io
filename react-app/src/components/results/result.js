@@ -1,5 +1,4 @@
 import React, {Fragment, useState} from 'react';
-import content from '../../content/content';
 import CompareCheckbox from '../compareCheckbox';
 import {iconAssetPath} from "../../constants";
 import {ContentContext} from '../..';
@@ -7,7 +6,9 @@ import PeerReviewDetails from './peerReviewDetails';
 import OpenPeerReviewDetails from './openPeerReviewDetails';
 import CoreviewDetails from './coreviewDetails';
 import PreprintsDetails from './preprintsDetails';
+import {getContent} from '../../utils';
 
+const {content} = getContent();
 const timeouts = {};
 
 export default function Result ({item}) {

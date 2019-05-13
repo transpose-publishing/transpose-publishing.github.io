@@ -1,7 +1,8 @@
 import React, {Fragment} from 'react';
 import StandardBanner from './standardBanner';
-import content from '../content/content';
-import {userStoryCards, userStoryTable} from '../content/userStories';
+import {getContent} from '../utils';
+
+const {userStoryTable} = getContent();
 
 
 export default function UserStories () {

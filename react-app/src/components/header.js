@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {iconAssetPath} from "../constants";
-import content from '../content/content';
+import {getContent} from '../utils';
 
+const {content} = getContent();
 const {home_page, more_info_page, user_stories_page, about_page} = content;
 
 

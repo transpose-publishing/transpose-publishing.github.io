@@ -12,8 +12,9 @@ import MainFooter from './components/mainFooter';
 import MoreInformation from './components/moreInformation';
 import {fetchData} from './googleApi';
 import {CompareProvider} from './compareController';
-import content from './content/content';
+import {getContent} from './utils';
 
+const {content} = getContent();
 
 function App () {
   const [loading, setLoading] = useState(true);
