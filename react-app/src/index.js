@@ -49,9 +49,9 @@ function App () {
           <Route path={content.user_stories_page.path} render={() => <UserStories/>}/>
           <Route path={content.about_page.path} render={() => <AboutPage/>}/>
         </Switch>
-      </Router>
 
-      <MainFooter/>
+        <MainFooter/>
+      </Router>
     </CompareProvider>
   )
 }

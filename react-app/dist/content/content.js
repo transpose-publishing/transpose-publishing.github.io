@@ -18,6 +18,13 @@ window._content = {
       path: '/about'
     },
 
+    //Footer
+    footer_database_link: {
+      text: 'Database',
+      link: 'https://docs.google.com/spreadsheets/d/10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc/export?format=csv&id=10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc&gid=0'
+    },
+    copyright_statement: "All original work in this repository is dedicated to the public domain under the CC0 waiver.",
+
     //Banner
     banner_description: "Transparency in Scholarly Publishing for <br/> <b>Open Scholarship Evolution</b>",
     home_page_banner_description: "TRANsparency in Scholarly Publishing for <br/> Open Scholarship Evolution",
@@ -90,7 +97,7 @@ window._content = {
     opr_letters_details: "Editorial decision letters published",
     opr_versions_details: "Previous versions of the manuscript published",
     opr_identities_published_details: "Reviewer identities published",
-    opr_identities_author_details: "Reviewer identities revealed to author",
+    opr_indenties_author_details: "Reviewer identities revealed to author",
     opr_comments_details: "Public commenting",
     opr_interaction_details: "Reviewers consult with each other",
     opr_additional_details: "Additional information",
