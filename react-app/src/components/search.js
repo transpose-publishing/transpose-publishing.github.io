@@ -1,15 +1,17 @@
-import React, {useState, useEffect, useRef, useMemo} from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useMemo} from 'react';
 import {iconAssetPath, KEYCODE} from '../constants';
 import {useMergeState, useClickOutside, keyboardControls} from '../utils';
 
 
 export default function Search ({placeholder, searchTerm, setSearchTerm, loading, data}) {
-  const [searchInputValue, setInputValue] = useState(searchTerm);
-  const [{searchFocused, listItemFocused}, updateFocus] = useMergeState({searchFocused: false, listItemFocused: false});
+  const [{inputValue, searchFocused, activeIndex}, setState] = useMergeState({
+    inputValue: '', searchFocused: false, activeIndex: null
+  });
 
   const searchContainerNode = useRef(null);
+  const searchSuggestionsNode = useRef(null);
+  const activeSuggestionNode = useRef(null);
   const searchInputNode = useRef(null);
-  const focusedItemNode = useRef(null);
 
   useClickOutside({
     container: searchContainerNode,
@@ -18,11 +20,20 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
     dependencies: [searchFocused]
   });
 
-  useEffect(function onListFocusChange_focusItem() {
-    if(listItemFocused !== false) {
-      focusedItemNode.current.focus()
+  useLayoutEffect(function onActiveIndexChange_scrollToActiveSuggestion () {
+    if(activeIndex !== null) {
+      const containerHeight = 211;
+      const suggestionHeight = 18;
+      const suggestionMargin = 6;
+      const offset = activeSuggestionNode.current.offsetTop;
+      const scrollTop = searchSuggestionsNode.current.scrollTop;
+      if(offset > containerHeight - suggestionHeight + scrollTop) {
+        searchSuggestionsNode.current.scrollTop = offset + suggestionHeight + suggestionMargin - containerHeight
+      } else if (scrollTop > offset) {
+        searchSuggestionsNode.current.scrollTop = offset - suggestionMargin
+      }
     }
-  }, [listItemFocused]);
+  }, [activeIndex]);
 
   useEffect(function onSearchFocusedFalse_blurSearchInput () {
     if(!searchFocused) {
@@ -31,7 +42,7 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
   }, [searchFocused]);
 
   const searchSuggestions = useMemo(() => {
-    if(!data || searchInputValue.length < 3) return [];
+    if(!data || inputValue.length < 3) return [];
     const publishers = [];
     const titles = [];
     const publishersUsedIndex = [];
@@ -39,7 +50,7 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
     data.forEach( item => {
       const publisher = item.publisher.toLowerCase();
       const title = item.title.toLowerCase();
-      const searchValue = searchInputValue.toLowerCase();
+      const searchValue = inputValue.toLowerCase();
       if(publisher?.includes(searchValue) && !publishersUsedIndex.includes(publisher)) {
         publishers.push(item.publisher);
         publishersUsedIndex.push(publisher);
@@ -50,78 +61,71 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
       }
     });
     return [...titles, ...publishers]
-  }, [data, searchInputValue]);
+  }, [data, inputValue]);
 
-  function resetFocus() {
-    updateFocus({searchFocused: false, listItemFocused: false})
+  function onInputValueChange (e) {
+    setState({inputValue: e.target.value, activeIndex: null});
   }
 
-  function onInputFocus () {
-    updateFocus({searchFocused: true, listItemFocused: false})
+  function resetFocus() {
+    setState({searchFocused: false, activeIndex: null})
   }
 
   function selectSearchTerm (title) {
     setSearchTerm(title);
-    setInputValue(title);
-    resetFocus()
+    setState({inputValue: title, searchFocused: false, activeIndex: null})
   }
 
   const keyDownHandler = keyboardControls({
     [KEYCODE.DOWN_ARROW]: (e) => {
-      e.preventDefault();
-      const suggestionsExist = document.getElementsByClassName("search-suggestion").length;
-      const nextItem = focusedItemNode.current?.nextSibling;
-      if((listItemFocused === false && suggestionsExist) || nextItem) {
-        updateFocus({listItemFocused: listItemFocused !== false ? listItemFocused + 1 : 0})
+      if(searchSuggestions.length && (activeIndex === null || activeIndex + 1 !== searchSuggestions.length)) {
+        e.preventDefault();
+        setState({activeIndex: activeIndex === null ? 0 : activeIndex + 1})
       }
     },
     [KEYCODE.UP_ARROW]: (e) => {
-      if(listItemFocused !== false) {
+      if(activeIndex !== null) {
         e.preventDefault();
-        updateFocus({listItemFocused: listItemFocused > 0 ? listItemFocused - 1 : false});
-        if(listItemFocused === 0) searchInputNode.current.focus();
+        setState({activeIndex: activeIndex === 0 ? null : activeIndex - 1})
       }
     },
     [KEYCODE.ENTER]: (e) => {
-      if(listItemFocused !== false) {
-        e.preventDefault();
-        selectSearchTerm(e.target.innerHTML);
-        resetFocus();
-      } else {
-        setSearchTerm(searchInputValue);
-        resetFocus();
+      e.preventDefault();
+      if(inputValue !== "" && activeIndex === null) {
+        selectSearchTerm(inputValue)
+      } else if (activeIndex !== null) {
+        selectSearchTerm(searchSuggestions[activeIndex])
       }
     },
-    [KEYCODE.TAB]: () => resetFocus()
+    [KEYCODE.TAB]: resetFocus,
+    [KEYCODE.ESCAPE]: () => setState({inputValue: ''})
   });
 
   return (
     <div id="search-container" ref={searchContainerNode}>
       <input
         id="search-input"
-        ref={searchInputNode}
         type="text"
+        ref={searchInputNode}
         placeholder={placeholder}
-        value={searchInputValue}
-        onFocus={onInputFocus}
+        value={inputValue}
+        onFocus={() => setState({searchFocused: true})}
         onKeyDown={keyDownHandler}
-        onChange={e => setInputValue(e.target.value)}
+        onChange={onInputValueChange}
         autoComplete="off"
       />
 
       <img className="search-glass" src={`./${iconAssetPath}/search-glass.png`}/>
 
       {!loading && searchSuggestions.length && searchFocused &&
-      <div className="search-suggestions">
+      <div className="search-suggestions" ref={searchSuggestionsNode}>
         <ul>
           {searchSuggestions.map( (item, index) =>
             <li
               key={index}
-              className="search-suggestion"
-              tabIndex={listItemFocused === index ? "0" : "-1"}
-              ref={listItemFocused === index ? focusedItemNode : void 0}
+              ref={activeIndex === index ? activeSuggestionNode : void 0}
+              className={`search-suggestion ${activeIndex === index ? 'active-suggestion' : ''}`}
               onClick={() => selectSearchTerm(item)}
-              onKeyDown={keyDownHandler}
             >
               {item}
             </li>)}

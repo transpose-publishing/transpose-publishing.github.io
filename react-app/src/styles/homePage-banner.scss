@@ -408,7 +408,7 @@
 .search-suggestions > ul > li {
   margin-bottom: 6px;
   padding-left: 10px;
-  &:hover, &:focus {
+  &:hover, &.active-suggestion {
     background-color: $color-background-lightGrey;
   }
 }
