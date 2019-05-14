@@ -16,11 +16,11 @@
     cursor: pointer;
     display: flex;
     width: calc(100% - 32px);
-    height: 48px;
+    height: 56px;
     background-color: white;
     border-radius: 5px;
     margin-bottom: 8px;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,.2);
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.5);
     padding: 8px 16px 8px 8px;
     font-size: 12px;
 
@@ -34,22 +34,37 @@
     .result-section-title {
       width: 336px;
       font-weight: bold;
+      padding-right: 10px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
     .result-section-publisher {
-      width: 112px;
+      width: 140px;
       padding-right: 10px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
     .result-section-doi {
-      width: 256px;
-      color: $color-default-link;
+      width: 244px;
+      padding-right: 16px;
       text-decoration: underline;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      a {
+        color: $color-doi;
+      }
+
       a:visited {
         color: $color-default-visited-link;
       }
     }
     .result-section-issn {
-      width: 96px;
-      padding-left: 16px;
+      width: 80px;
       display: flex;
       flex-direction: column;
     }
@@ -147,7 +162,7 @@
   margin-bottom: 8px;
   min-height: 152px;
   background-color: white;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
 
   .header-bar {
     background-color: $color-background-lightGrey;

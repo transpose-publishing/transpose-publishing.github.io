@@ -331,11 +331,11 @@
     }
 
     .publisher-sort-section {
-      width: 112px;
+      width: 140px;
     }
 
     .doi-sort-section {
-      width: 272px;
+      width: 244px;
     }
 
     .issn-sort-section {
@@ -377,6 +377,10 @@
   border: 1px solid black;
   position: absolute;
   z-index: 2;
+
+  &::placeholder {
+    color: $color-placeholder
+  }
 }
 
 #search-container > .search-glass {
