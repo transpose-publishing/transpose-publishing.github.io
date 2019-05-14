@@ -20,7 +20,7 @@
     background-color: white;
     border-radius: 5px;
     margin-bottom: 8px;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,.5);
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.2);
     padding: 8px 16px 8px 8px;
     font-size: 12px;
 
@@ -80,6 +80,7 @@
 
     &.expanded {
       background-color: $color-background-lighterGrey;
+      box-shadow: 0 2px 3px 0 rgba(0,0,0,.5);
     }
   }
 
