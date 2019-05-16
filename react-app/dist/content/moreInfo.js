@@ -1,3 +1,4 @@
+const content = window._content.dictionary;
 
 /*
 These are the anchor ids used by links across the site, changing these values will control the url path, ie: /more-information/{anchor_id}
