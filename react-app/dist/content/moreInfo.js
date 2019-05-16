@@ -1,7 +1,8 @@
 const content = window._content.dictionary;
 
 /*
-These are the anchor ids used by links across the site, changing these values will control the url path, ie: /more-information/{anchor_id}
+These are the anchor ids used by links in the src code, changing these values will control the url path, ie: /more-information/{anchor_id}
+They are not directly rendered anywhere, new anchor_ids will be inert unless they are referenced in the src code.
 */
 const anchor_ids = {
   peer_review: 'peer-review',
