@@ -1,4 +1,8 @@
 
+/*
+This contributorsList array is rendered directly. It only renders plain text. Any contributors added to this list
+will be rendered in the About page.
+*/
 
 window._content.contributorsList = [
   'Samantha Hindle, bioRxiv and PREreview, USA',

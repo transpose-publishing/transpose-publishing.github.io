@@ -1,5 +1,7 @@
 
-//These are the anchor ids used by links across the site, changing these values will control the url path, ie: /more-information/{anchor_id}
+/*
+These are the anchor ids used by links across the site, changing these values will control the url path, ie: /more-information/{anchor_id}
+*/
 const anchor_ids = {
   peer_review: 'peer-review',
   open_peer_review: 'open-peer-review',
@@ -9,6 +11,14 @@ const anchor_ids = {
 window._content.anchor_ids = anchor_ids;
 
 
+/*
+This GLOSSARY array is rendered directly. Adding / removing elements to the glossary, either cards in existing
+sections like Peer Review or whole new sections, will render those in the glossary automatically if correctly formatted.
+If a new section is added with a new anchor_id, please be aware that there would be no links across the site referencing
+that anchor_id automatically, so while the section will get rendered, it will not have an active anchor_id.
+
+Glossary descriptions can include in_line_links by being formatted as an object with text and in_line_link properties.
+*/
 window._content.glossary = [
   {
     title: 'Peer Review',
@@ -111,6 +121,28 @@ window._content.glossary = [
   }
 ];
 
+
+/*
+The EDITORIAL POLICIES array is rendered directly. The format of bullets is slightly different. Instead of rendering
+a list of card objects like the glossary, each bullets array renders a list of text. Each item in the bullets array can be
+plain text, text with sub-bullets, or text with an in_line_link.
+
+Examples:
+bullets: [
+  'plain text',
+  {
+    text: 'text with sub-bullets',
+    bullets: [
+      'sub-bullet 1',
+      'sub-bullet 2
+    ]
+  },
+  {
+    text: 'text with in_line_link',
+    in_line_link: ...
+  }
+]
+*/
 window._content.editorial_policies = [
   {
     title: 'Data sources and licensing',
@@ -170,6 +202,11 @@ window._content.editorial_policies = [
   }
 ];
 
+
+/*
+The FAQ array below is rendered directly. It is similar to glossary cards. Adding an object with title and description
+will render a card in the FAQ section. FAQ Descriptions can also include in_link_links.
+*/
 window._content.faq = [
   {
     title: 'Where can I access the data?',

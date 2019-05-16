@@ -1,3 +1,38 @@
+
+/* NOTES ON USE
+---------------------
+This is the main dictionary of site content. It is not actively rendered, but rather a pool of keys and values that
+the site code can choose from. Adding new content here will do nothing without an associated change in the code to read
+the new key created. The site content gets its values by referencing the keys here, so changing a key in this dictionary will break
+that reference. The only things that can be updated in this file that will be reflected in the site automatically are the values.
+
+Most key value pairs are self explanatory. Ideally the keys are named and organized in a manner where it is clear what
+part of the site is referencing that key.
+
+3 unique dictionary structures are links, in_line_links and pages:
+
+LINKS: offer two property values to change, the text of the link and the link url.
+
+IN_LINE_LINKS: For cases when you want a line of text to include a link, the text is specified by the text property and
+an in_line_link object specifies which section of text should be rendered as the link and the link url. The in_line_link text
+should match exactly the section of the original text that will be rendered as a link.
+Example:
+{
+  text: 'The full text, including some text that will be rendered as the link',
+  in_line_link: {
+    text: 'the link',
+    link: 'www.someUrl.com'
+  }
+}
+
+PAGES: offer the title of the page (which determines their name in the header and footer components) and the relative path.
+Changing the path will just change what the user sees in the URL when navigating to that page. This was done just in case
+the page title is changed and the site wants the URL to reflect that change as well.
+
+Any changes to this or any of the content files have to respect Javascript object notation.
+*/
+
+
 window._content = {
   dictionary: {
     //Pages
