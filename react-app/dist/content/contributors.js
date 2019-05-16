@@ -1,4 +1,3 @@
-const content = window._content.dictionary;
 
 /*
 This contributorsList array is rendered directly. It only renders plain text. Any contributors added to this list

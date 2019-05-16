@@ -1,4 +1,3 @@
-const content = window._content.dictionary;
 
 /*
 These are the anchor ids used by links in the src code, changing these values will control the url path, ie: /more-information/{anchor_id}
@@ -144,6 +143,9 @@ bullets: [
     in_line_link: ...
   }
 ]
+
+The Editorial Policies section can also render non-bulleted cards like the Glossary when formatted with properties title
+and description. Descriptions can include in_line_links.
 */
 window._content.editorial_policies = [
   {

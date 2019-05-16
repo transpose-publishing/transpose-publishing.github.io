@@ -1,8 +1,7 @@
-const content = window._content.dictionary;
 
 /*
 This UserStoryTable array renders directly. Adding or removing objects in the array will be reflected in the User Stories page.
-Each item in the list can reference values from the dictionary using their key (content.key_name) or can be plain text.
+Any item in the list can reference values from the dictionary with format content.key_name or can be plain text.
 */
 
 window._content.userStoryTable = [

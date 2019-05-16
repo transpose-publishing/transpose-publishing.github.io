@@ -207,3 +207,5 @@ window._content = {
     faq_header: 'FAQ'
   }
 };
+
+const content = window._content.dictionary;
