@@ -58,11 +58,11 @@ window._content = {
       text: 'Database',
       link: 'https://docs.google.com/spreadsheets/d/10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc/export?format=csv&id=10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc&gid=0'
     },
-    copyright_statement: "All original work in this repository is dedicated to the public domain under the CC0 waiver.",
+    copyright_statement: "All original work in this repository is dedicated to the public domain under the CC0 waiver. This work was funded by a grant to ASAPbio from the Leona M. and Harry B. Helmsley Charitable Trust.",
 
     //Banner
-    banner_description: "Transparency in Scholarly Publishing for <br/> <b>Open Scholarship Evolution</b>",
-    home_page_banner_description: "TRANsparency in Scholarly Publishing for <br/> Open Scholarship Evolution",
+    banner_description: "A database of journal policies <br/>on peer review, co-reviewing, and preprinting",
+    home_page_banner_description: "A database of journal policies <br/>on peer review, co-reviewing, and preprinting",
     download_link: {
       text: "Download database",
       link: 'https://docs.google.com/spreadsheets/d/10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc/export?format=csv&id=10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc&gid=0'
@@ -72,7 +72,7 @@ window._content = {
       link: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSU4cmOwS2NdM16S0h8F6A3FSPs1fp2Eng9HPXeosfLsL_lsXRtEC8odQW5GJTfz7fmVbl2f2YJ2_Sd/pubhtml?gid=1688324546&single=true'
     },
     search_placeholder: "Search journal title, ISSN, DOI, Publisher",
-    search_header: "TRANSPOSE database",
+    search_header: "Transpose database",
 
     //Filters and labels
     filter_type_pr: "Peer review",
@@ -157,7 +157,7 @@ window._content = {
 
 
     //User Stories Page
-    why_header: 'Why use TRANSPOSE data?',
+    why_header: 'Why use Transpose data?',
     table_description: 'Data on open peer review (OPR), co-review, and detailed preprinting policies could be useful to many different stakeholder groups. Here are a few different examples:',
     //groups
     researcher: 'Researcher',
@@ -172,7 +172,7 @@ window._content = {
     preprints: 'Preprints',
 
     //About Page
-    primary_description: 'TRANSPOSE is a grassroots initiative to build a crowdsourced database of journal policies. We’re focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and publishers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.',
+    primary_description: 'Transpose is a grassroots initiative to build a crowdsourced database of journal policies. We’re focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and publishers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.',
     more_info_header: 'More about Transpose',
     application_link: {
       text: 'Read our application for the Scholarly Communications Institute.',
@@ -185,7 +185,7 @@ window._content = {
     use_cases_link_text: 'Read potential use cases to learn how these data could be useful to different stakeholder groups.',
     get_involved_header: 'Get involved',
     edit_link: {
-      text:'📝Edit and add new records to the TRANSPOSE policy database',
+      text:'📝Edit and add new records to the Transpose policy database',
       link: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true'
     },
     follow_link: {
