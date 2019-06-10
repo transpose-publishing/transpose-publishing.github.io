@@ -172,7 +172,7 @@ window._content = {
     preprints: 'Preprints',
 
     //About Page
-    primary_description: 'Transpose is a grassroots initiative to build a crowdsourced database of journal policies. We’re focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and publishers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.',
+    primary_description: 'Transpose is an initiative to build a database of journal policies. We’re focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and publishers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.',
     more_info_header: 'More about Transpose',
     application_link: {
       text: 'Read our application for the Scholarly Communications Institute.',
@@ -185,11 +185,11 @@ window._content = {
     use_cases_link_text: 'Read potential use cases to learn how these data could be useful to different stakeholder groups.',
     get_involved_header: 'Get involved',
     edit_link: {
-      text:'📝Edit and add new records to the Transpose policy database',
+      text:'Edit and add new records to the database',
       link: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true'
     },
     follow_link: {
-      text: '💬 Follow us on Twitter',
+      text: 'Follow us on Twitter',
       link: 'https://twitter.com/TRANSPOSEsci'
     },
     contributors_header: 'Contributors',
