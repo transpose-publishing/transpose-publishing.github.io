@@ -179,8 +179,8 @@ window._content = {
       link: 'https://docs.google.com/document/d/1vcsf2pzQelBVUF6GaSU4FQ8JhDVvq4wrpc4ulZPA7hE/edit#heading=h.v9lrq4a95j57'
     },
     preview_info_link: {
-      text: 'Preview all the information collected (pdf).',
-      link: 'https://transpose-publishing.github.io/images/TRANSPOSE%20policy%20editor%20-%20Google%20Forms%202018%2010%2011.pdf'
+      text: 'See our landscape study on the availability of journal policies across disciplines (CSE2019 Poster)',
+      link: 'https://zenodo.org/record/3237242'
     },
     use_cases_link_text: 'Read potential use cases to learn how these data could be useful to different stakeholder groups.',
     get_involved_header: 'Get involved',
