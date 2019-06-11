@@ -175,8 +175,8 @@ window._content = {
     primary_description: 'Transpose is an initiative to build a database of journal policies. We’re focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and publishers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.',
     more_info_header: 'More about Transpose',
     application_link: {
-      text: 'Read our application for the Scholarly Communications Institute.',
-      link: 'https://docs.google.com/document/d/1vcsf2pzQelBVUF6GaSU4FQ8JhDVvq4wrpc4ulZPA7hE/edit#heading=h.v9lrq4a95j57'
+      text: 'View database statistics',
+      link: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSU4cmOwS2NdM16S0h8F6A3FSPs1fp2Eng9HPXeosfLsL_lsXRtEC8odQW5GJTfz7fmVbl2f2YJ2_Sd/pubhtml?gid=146126401&single=true'
     },
     preview_info_link: {
       text: 'See our landscape study on the availability of journal policies across disciplines (CSE2019 Poster)',
