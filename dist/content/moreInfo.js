@@ -220,6 +220,7 @@ window._content.faq = [
         text: 'here',
         link: 'https://docs.google.com/spreadsheets/d/10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc/export?format=csv&id=10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc&gid=0'
       }
+    }
       },
   {
     title: 'I am a publisher interested in depositing or updating data; whom should I contact?',
