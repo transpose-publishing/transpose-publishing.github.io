@@ -214,13 +214,7 @@ will render a card in the FAQ section. FAQ Descriptions can also include in_link
 window._content.faq = [
   {
     title: 'Where can I access the data?',
-    description: {
-      text: 'You can download all of the data here.',
-      in_line_link: {
-        text: 'here',
-        link: 'https://docs.google.com/spreadsheets/d/10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc/export?format=csv&id=10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc&gid=0'
-      }
-    }
+    description: 'Click the link at the top of the site to download the database in csv format.'
       },
   {
     title: 'I am a publisher interested in depositing or updating data; whom should I contact?',
