@@ -170,10 +170,10 @@ window._content.editorial_policies = [
         bullets: [
           'A publicly-accessible form. Use this when entering information about single journals or groups of journals that share the same policies.',
           {
-            text:'A spreadsheet to enter many journals at once (contact jessica.polka@asapbio.org), which permits more flexibility in differentiating policies but is less user-friendly.',
+            text:'A spreadsheet to enter many journals at once (contact transpose-publishing@googlegroups.com), which permits more flexibility in differentiating policies but is less user-friendly.',
             in_line_link: {
-              text: 'jessica.polka@asapbio.org',
-              link: 'jessica.polka@asapbio.org'
+              text: 'transpose-publishing@googlegroups.com ',
+              link: 'transpose-publishing@googlegroups.com '
             }
           }
         ]
@@ -197,10 +197,10 @@ window._content.editorial_policies = [
   {
     title: 'Reporting issues with records',
     description: {
-      text: 'If you find a problem with a record, please let us know by pressing the “report” button. You may also email jessica.polka@asapbio.org with any concerns. ',
+      text: 'If you find a problem with a record, please let us know by pressing the “report” button. You may also email transpose-publishing@googlegroups.com  with any concerns. ',
       in_line_link: {
-        text: 'jessica.polka@asapbio.org',
-        link: 'jessica.polka@asapbio.org'
+        text: 'transpose-publishing@googlegroups.com',
+        link: 'transpose-publishing@googlegroups.com'
       }
     }
   }
@@ -225,10 +225,10 @@ window._content.faq = [
   {
     title: 'I am a publisher interested in depositing or updating data; whom should I contact?',
     description: {
-      text: 'Thank you for your interest! Please email jessica.polka@asapbio.org',
+      text: 'Thank you for your interest! Please email transpose-publishing@googlegroups.com ',
       in_line_link: {
-        text: 'jessica.polka@asapbio.org',
-        link: 'jessica.polka@asapbio.org'
+        text: 'transpose-publishing@googlegroups.com',
+        link: 'transpose-publishing@googlegroups.com'
       }
     }
   }
