@@ -96,7 +96,7 @@ window._content.glossary = [
     cards: [
       {
         title: 'Preprint',
-        description: 'A preprint is a version of a research manuscript that has not yet been published by a journal. Preprints can serve as aare normally submitted to preprint servers before they are peer-reviewed and published as a way to help speed up the dissemination of scientific discoveries and enable the community to provide feedback that might improve the manuscript before publication. '
+        description: 'A preprint is a version of a research manuscript that has not yet been published by a journal. Preprints are normally submitted to preprint servers before they are peer-reviewed and published as a way to help speed up the dissemination of scientific discoveries and enable the community to provide feedback that might improve the manuscript before publication. '
       },
       {
         title: 'Article links to preprint',
