@@ -60,6 +60,7 @@ export default function ResultsList ({loading, data, searchTerm, sort, activeFil
 
   return (
     <div className="results-list">
+      {loading && <div>{loading}</div>}
       {!loading && resultsList &&
       <Fragment>
         {resultsList.map((item) => <Result key={item.uid} item={item}/>)}

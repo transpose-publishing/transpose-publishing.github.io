@@ -17,14 +17,20 @@ import {getContent} from './utils';
 const {content} = getContent();
 
 function App () {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState('Retrieving data...');
   const [data, setData] = useState([]);
   //TODO: set up error handling for fetch catches
 
-  useEffect(() => {
-    fetchData().then( dataArray => {
+  useEffect(function fetchData_onMount () {
+    const {dataPromise, fetchTimeout} = fetchData();
+    dataPromise.then( dataArray => {
       setData(dataArray);
       setLoading(false);
+    });
+    fetchTimeout.then(() => {
+      setLoading( prevLoading =>
+        prevLoading ? 'Still retrieving, google docs is taking a long time to respond...' : prevloading
+      )
     })
   }, []);
 
