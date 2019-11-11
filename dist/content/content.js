@@ -52,6 +52,10 @@ window._content = {
       title: 'About',
       path: '/about'
     },
+    stats_page: {
+      title: 'Stats',
+      path: '/stats'
+    },
 
     //Footer
     footer_database_link: {

@@ -10,6 +10,7 @@ import AboutPage from './components/aboutPage';
 import Header from "./components/header";
 import MainFooter from './components/mainFooter';
 import MoreInformation from './components/moreInformation';
+import StatsPage from './components/StatsPage';
 import {fetchData} from './googleApi';
 import {CompareProvider} from './compareController';
 import {getContent, ErrorBoundary} from './utils';
@@ -61,6 +62,7 @@ function App () {
 
           <Route path={content.user_stories_page.path} render={() => <UserStories/>}/>
           <Route path={content.about_page.path} render={() => <AboutPage/>}/>
+          <Route path={content.stats_page.path} render={() => <StatsPage/>}/>
         </Switch>
 
         <MainFooter/>

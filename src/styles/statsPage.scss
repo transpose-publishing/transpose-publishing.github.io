@@ -1,0 +1,21 @@
+.stats-container {
+  position: relative;
+
+  &--loading {
+    .loading-cover {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .stats-iframe {
+      opacity: .3;
+    }
+  }
+
+  .stats-iframe {
+    height: calc(100vh - 224px);
+    width: 100%;
+  }
+}
