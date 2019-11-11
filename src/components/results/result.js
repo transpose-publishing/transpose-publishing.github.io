@@ -47,7 +47,7 @@ export default function Result ({item}) {
 
         <div className="result-section-publisher">{item.publisher}</div>
 
-        <div className="result-section-doi"><a href={item.doi} target="_blank">{item.doi}</a></div>
+        <div className="result-section-doi"><a href={`http://doi.org/${item.doi}`} target="_blank">{item.doi}</a></div>
 
         <div className="result-section-issn">
           {item.issn &&
