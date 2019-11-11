@@ -13,20 +13,27 @@ export function fetchData () {
       sheetrock({
         url: spreadSheetUrl,
         callback: (errors, options, resp) => {
-          const columnsLength = resp.rows[0].cellsArray.length;
-          const dataArray = new Array(columnsLength - firstEntryColumnIndex).fill(null);
-          for (const row of resp.rows) {
-            let indexCounter = firstEntryColumnIndex;
-            const label = row.cellsArray[1];
-            while(indexCounter < columnsLength) {
-              if(!dataArray[indexCounter - firstEntryColumnIndex]?.uid) {
-                dataArray[indexCounter - firstEntryColumnIndex] = {uid: generateUid(JOURNAL_UID_PREFIX)}
-              }
-              dataArray[indexCounter - firstEntryColumnIndex][label] = row.cellsArray[indexCounter];
-              indexCounter++
+          try {
+            if (errors) {
+              reject(errors)
             }
+            const columnsLength = resp.rows[0].cellsArray.length;
+            const dataArray = new Array(columnsLength - firstEntryColumnIndex).fill(null);
+            for (const row of resp.rows) {
+              let indexCounter = firstEntryColumnIndex;
+              const label = row.cellsArray[1];
+              while(indexCounter < columnsLength) {
+                if(!dataArray[indexCounter - firstEntryColumnIndex]?.uid) {
+                  dataArray[indexCounter - firstEntryColumnIndex] = {uid: generateUid(JOURNAL_UID_PREFIX)}
+                }
+                dataArray[indexCounter - firstEntryColumnIndex][label] = row.cellsArray[indexCounter];
+                indexCounter++
+              }
+            }
+            resolve(dataArray)
+          } catch(e) {
+            reject(e)
           }
-          resolve(dataArray)
         }
       });
     })

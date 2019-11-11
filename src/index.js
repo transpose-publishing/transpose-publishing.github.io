@@ -12,24 +12,31 @@ import MainFooter from './components/mainFooter';
 import MoreInformation from './components/moreInformation';
 import {fetchData} from './googleApi';
 import {CompareProvider} from './compareController';
-import {getContent} from './utils';
+import {getContent, ErrorBoundary} from './utils';
 
 const {content} = getContent();
+
+const ERROR_MESSAGE = 'There was an error retrieving the data!';
 
 function App () {
   const [loading, setLoading] = useState('Retrieving data...');
   const [data, setData] = useState([]);
-  //TODO: set up error handling for fetch catches
 
   useEffect(function fetchData_onMount () {
     const {dataPromise, fetchTimeout} = fetchData();
     dataPromise.then( dataArray => {
       setData(dataArray);
       setLoading(false);
+    }).catch( e => {
+      setLoading(ERROR_MESSAGE);
+      console.error(e)
     });
+
     fetchTimeout.then(() => {
       setLoading( prevLoading =>
-        prevLoading ? 'Still retrieving, google docs is taking a long time to respond...' : prevloading
+        (prevLoading && prevLoading !== ERROR_MESSAGE)
+          ? 'Still retrieving, google docs is taking a long time to respond...'
+          : prevLoading
       )
     })
   }, []);
@@ -63,6 +70,6 @@ function App () {
 }
 
 ReactDom.render(
-  <App/>,
+  <ErrorBoundary><App/></ErrorBoundary>,
   document.getElementById('app')
 );

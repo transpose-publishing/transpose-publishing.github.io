@@ -56,6 +56,21 @@ export function useArrayState (initialArray = []) {
 }
 
 
+//Higher Order Components
+export class ErrorBoundary extends React.Component {
+  constructor() {
+    super();
+    this.state = {hasError: false}
+  }
+  static getDerivedStateFromError (error) {
+    return {hasError: true}
+  };
+  render() {
+    return this.state.hasError ? "Something went wrong! Please try refreshing the page." : this.props.children;
+  }
+}
+
+
 //Component Functionality
 export function keyboardControls (keyHandlers) {
   return function onKeyDown (e) {
@@ -68,7 +83,7 @@ export function prepareDomForModal () {
   body.style.overflow = 'hidden';
   body.style['padding-right'] = '14px';
 }
-prepareDomForModal.cleanup = function modalDomSettingsCleanup () {
+prepareDomForModal.cleanup = function prepareDomForModal_cleanup () {
   const body = document.getElementsByTagName("BODY")[0];
   body.style.overflow = 'auto';
   body.style['padding-right'] = '0'
