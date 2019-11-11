@@ -16,6 +16,12 @@
 
   .stats-iframe {
     height: calc(100vh - 224px);
-    width: 100%;
+    width: calc(100% - 6px);
+    overflow-y: hidden;
+    border-top: none;
+    border-bottom: none;
+    border-color: rgba(0,0,0,.2);
+    border-width: 3px;
+    margin-bottom: -4px;
   }
 }
