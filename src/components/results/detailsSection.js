@@ -10,7 +10,7 @@ export default function DetailsSection ({title, children, glossarySection}) {
     <div className="details-section">
       <div className="header-bar">
         <span>{title}</span>
-        <Link to={`${content.more_info_page.path}/${glossarySection}`} target="_blank">
+        <Link to={`${content.more_info_page.path}/?anchor=${glossarySection}`} target="_blank">
           <img src={`./${iconAssetPath}/info-icon.png`}/>
         </Link>
       </div>

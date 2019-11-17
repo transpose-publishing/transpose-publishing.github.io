@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useState, useRef} from "react";
 import {SORT_ORDER} from './constants';
 const {ASC} = SORT_ORDER;
 
@@ -53,6 +53,28 @@ export function useArrayState (initialArray = []) {
     }
   };
   return [array, arrayControls]
+}
+
+export function useEffectOnUpdate(fn, inputs) {
+  const didMountRef = useRef(false);
+
+  useEffect(() => {
+    if (didMountRef.current)
+      fn();
+    else
+      didMountRef.current = true;
+  }, inputs);
+}
+
+export function useLayoutEffectOnUpdate(fn, inputs) {
+  const didMountRef = useRef(false);
+
+  useLayoutEffect(() => {
+    if (didMountRef.current)
+      fn();
+    else
+      didMountRef.current = true;
+  }, inputs);
 }
 
 

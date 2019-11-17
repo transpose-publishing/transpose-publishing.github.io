@@ -6,14 +6,19 @@ import PeerReviewDetails from './peerReviewDetails';
 import OpenPeerReviewDetails from './openPeerReviewDetails';
 import CoreviewDetails from './coreviewDetails';
 import PreprintsDetails from './preprintsDetails';
-import {getContent} from '../../utils';
+import {getContent, useLayoutEffectOnUpdate} from '../../utils';
 
 const {content} = getContent();
 const timeouts = {};
 
-export default function Result ({item}) {
-  const [showDetails, setShowDetails] = useState(false);
-  const [animationClass_collapsed, setCollapsedClass] = useState(true);
+export default function Result ({item, expanded}) {
+  const [showDetails, setShowDetails] = useState(expanded);
+  const [animationClass_collapsed, setCollapsedClass] = useState(!expanded);
+
+  useLayoutEffectOnUpdate(function onExpandedChange_setExpandedState () {
+    setCollapsedClass(!expanded);
+    setShowDetails(expanded);
+  }, [expanded]);
 
   function toggleShowDetails () {
     if(!showDetails) {

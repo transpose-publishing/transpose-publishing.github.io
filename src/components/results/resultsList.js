@@ -7,7 +7,7 @@ import {filterRules} from '../../models/filterModels';
 import {sortOptions} from '../../models/sortModels';
 
 
-export default function ResultsList ({loading, data, searchTerm, sort, activeFilters}) {
+export default function ResultsList ({loading, data, searchTerm, sort, activeFilters, expandFirstItem}) {
   const [page, setPage] = useState(0);
 
   useLayoutEffect(function onSearchOrFilterChange_resetPage () {
@@ -63,7 +63,7 @@ export default function ResultsList ({loading, data, searchTerm, sort, activeFil
       {loading && <div>{loading}</div>}
       {!loading && resultsList &&
       <Fragment>
-        {resultsList.map((item) => <Result key={item.uid} item={item}/>)}
+        {resultsList.map((item, index) => <Result key={item.uid} item={item} expanded={expandFirstItem && index === 0}/>)}
         <Paging page={page} totalPages={totalPages} setPage={setPage}/>
       </Fragment>}
     </div>

@@ -2,7 +2,7 @@ import React, {Fragment, useState, useLayoutEffect} from 'react';
 import Search from './search';
 import ResultsList from './results/resultsList';
 import VerifiedFilter from './verifiedFilter';
-import {usePersistedState, useMergeState, useArrayState, prepareDomForModal, getContent} from '../utils';
+import {usePersistedState, useMergeState, useArrayState, useLayoutEffectOnUpdate, prepareDomForModal, getContent} from '../utils';
 import AddFilters from './addFilters';
 import ActiveFilterDisplay from './activeFilterDisplay'
 import SortBar from './sortBar';
@@ -14,11 +14,12 @@ const {content} = getContent();
 
 
 
-export default function HomePage ({loading, data}) {
-  const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm',"");
+export default function HomePage ({loading, data, urlSearchQuery}) {
+  const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm', urlSearchQuery);
   const [verifiedFilter, toggleVerifiedFilter] = useState(false);
   const [sort, updateSort] = useMergeState({field: null, order: null});
   const [compareModalOpen, toggleCompareModal] = useState(false);
+  const [expandFirstItem, setExpandFirstItem] = useState(!!urlSearchQuery);
 
   const [activeFilters, {
     pushUnique: addFilter,
@@ -30,6 +31,15 @@ export default function HomePage ({loading, data}) {
     if(compareModalOpen) prepareDomForModal();
     return prepareDomForModal.cleanup
   }, [compareModalOpen]);
+
+  useLayoutEffectOnUpdate(function onUrlSearchQueryChange_setExpandFirstItemTrue () {
+    setExpandFirstItem(!!urlSearchQuery)
+  }, [urlSearchQuery]);
+
+  function setSearchTermAndExpandFirstItemFalse (term) {
+    setSearchTerm(term);
+    setExpandFirstItem(false)
+  }
 
   return (
     <Fragment>
@@ -56,7 +66,8 @@ export default function HomePage ({loading, data}) {
             data={data}
             loading={loading}
             searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}/>
+            setSearchTerm={setSearchTermAndExpandFirstItemFalse}
+            urlSearchQuery={urlSearchQuery}/>
         </div>
 
         <div className="banner-row row-4">
@@ -84,7 +95,8 @@ export default function HomePage ({loading, data}) {
           data={data}
           searchTerm={searchTerm}
           sort={sort}
-          activeFilters={verifiedFilter ? [FT.VERIFIED, ...activeFilters] : activeFilters}/>
+          activeFilters={verifiedFilter ? [FT.VERIFIED, ...activeFilters] : activeFilters}
+          expandFirstItem={expandFirstItem}/>
       </div>
 
       <CompareFooter openCompareModal={() => toggleCompareModal(true)}/>

@@ -1,11 +1,11 @@
 import React, {useEffect, useLayoutEffect, useRef, useMemo} from 'react';
 import {iconAssetPath, KEYCODE} from '../constants';
-import {useMergeState, useClickOutside, keyboardControls} from '../utils';
+import {useMergeState, useClickOutside, useLayoutEffectOnUpdate, keyboardControls} from '../utils';
 
 
-export default function Search ({placeholder, searchTerm, setSearchTerm, loading, data}) {
+export default function Search ({placeholder, searchTerm, setSearchTerm, loading, data, urlSearchQuery}) {
   const [{inputValue, searchFocused, activeIndex}, setState] = useMergeState({
-    inputValue: '',
+    inputValue: urlSearchQuery,
     searchFocused: false,
     activeIndex: null
   });
@@ -42,6 +42,11 @@ export default function Search ({placeholder, searchTerm, setSearchTerm, loading
       searchInputNode.current.blur()
     }
   }, [searchFocused]);
+
+  useLayoutEffectOnUpdate(function onUrlSearchQueryChange_updateSearchTerm () {
+    setState({inputValue: urlSearchQuery});
+    setSearchTerm(urlSearchQuery);
+  }, [urlSearchQuery]);
 
   const searchSuggestions = useMemo(() => {
     if(!data || inputValue.length < 3) return [];

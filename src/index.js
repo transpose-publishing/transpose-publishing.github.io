@@ -48,16 +48,19 @@ function App () {
         <Route path="/" render={ ({location}) => <Header pathname={location.pathname}/> }/>
 
         <Switch>
-          <Route exact path={content.home_page.path} render={() =>
-            <HomePage loading={loading} data={data}/>
+          <Route exact path={content.home_page.path} render={({location}) =>
+            <HomePage
+              loading={loading}
+              data={data}
+              urlSearchQuery={
+                location.search
+                  ? decodeURIComponent(new URLSearchParams(location.search).get('search') || '')
+                  : ''
+              }/>
           }/>
 
-          <Route path={`${content.more_info_page.path}/:anchor`} render={ ({match}) =>
-            <MoreInformation anchor={match.params.anchor}/>}
-          />
-
-          <Route path={content.more_info_page.path} render={() =>
-            <MoreInformation />}
+          <Route path={content.more_info_page.path} render={({location}) =>
+            <MoreInformation anchor={location.search ? new URLSearchParams(location.search).get('anchor') : null}/>}
           />
 
           <Route path={content.user_stories_page.path} render={() => <UserStories/>}/>
