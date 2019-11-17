@@ -28,7 +28,12 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.css', '.scss']
+    extensions: ['*', '.js', '.jsx', '.css', '.scss'],
+    alias: {
+      components: path.resolve(__dirname, 'src/components'),
+      utils: path.resolve(__dirname, 'src/utils'),
+      constants: path.resolve(__dirname, 'src/constants')
+    }
   },
   output: {
     filename: 'main.js',

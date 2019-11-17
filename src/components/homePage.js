@@ -1,5 +1,5 @@
 import React, {Fragment, useState, useLayoutEffect} from 'react';
-import Search from './search';
+import Search from './Search';
 import ResultsList from './results/resultsList';
 import VerifiedFilter from './verifiedFilter';
 import {usePersistedState, useMergeState, useArrayState, useLayoutEffectOnUpdate, prepareDomForModal, getContent} from '../utils';

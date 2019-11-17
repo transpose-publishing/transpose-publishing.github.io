@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import StandardBanner from './standardBanner';
 import {getContent} from '../utils';
 
-const {userStoryTable} = getContent();
+const {content, userStoryTable} = getContent();
 
 
 export default function UserStories () {

@@ -2,7 +2,7 @@ import React, {Fragment, useLayoutEffect} from 'react';
 import StandardBanner from './standardBanner';
 import {renderContent, getContent} from '../utils';
 
-const {glossary, editorial_policies, faq} = getContent();
+const {content, glossary, editorial_policies, faq} = getContent();
 
 
 export default function MoreInformation ({anchor}) {
