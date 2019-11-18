@@ -64,8 +64,6 @@ export default function HomePage ({loading, data, urlSearchQuery}) {
           <Search
             placeholder={content.search_placeholder}
             data={data}
-            loading={loading}
-            searchTerm={searchTerm}
             setSearchTerm={setSearchTermAndExpandFirstItemFalse}
             urlSearchQuery={urlSearchQuery}/>
         </div>
