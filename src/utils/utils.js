@@ -193,7 +193,6 @@ export function sortGenerator (field, order = ASC, {ignoreBlanks, secondaryField
 }
 
 export function renderContent (contentNode) {
-  console.log(contentNode)
   if(!contentNode || typeof contentNode === 'string') return contentNode;
   if(Array.isArray(contentNode)) {
     return <ul>{contentNode.map( item => <li>{renderContent(item)}</li>)}</ul>

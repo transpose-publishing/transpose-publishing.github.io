@@ -195,6 +195,10 @@ window._content = {
       }
     },
     editorial_policies_header: 'Editorial policies',
-    faq_header: 'FAQ'
+    faq_header: 'FAQ',
+
+
+    //Footer
+    twitter_link: 'https://twitter.com/TRANSPOSEsci',
   }
 };
