@@ -218,13 +218,30 @@
       display: inline-block;
       vertical-align: top;
 
-      .x-icon, .check-icon {
-        width: 16px;
-        height: 16px;
-        display: block;
-      }
-      .x-icon {
-        margin-top: 10px;
+      &.open-peer-review-section {
+        padding-left: 20px;
+        position: relative;
+
+        .open-peer-review-section--false {
+          margin-top: 10px;
+          position: relative;
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+
+        .x-icon, .check-icon {
+          position: absolute;
+          left: 0;
+          width: 16px;
+          height: 16px;
+          display: block;
+        }
+
+        .x-icon {
+          left: -20px;
+        }
       }
     }
 

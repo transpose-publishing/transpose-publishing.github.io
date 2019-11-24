@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import DetailsItem from './detailsItem';
 import {iconAssetPath} from '../../constants';
 import DetailsSection from "./detailsSection";
@@ -31,14 +31,20 @@ export default function PeerReviewDetails ({item}) {
 
   return (
     <DetailsSection title={content.details_label_opr} glossarySection={anchor_ids.open_peer_review}>
-      <div className="left-column">
-        <img className="check-icon" src={`./${iconAssetPath}/check-icon.png`}/>
-        {specifiedPolicy.map( key =>
-          <DetailsItem key={key} label={content[getDetailsContentKey(key)]} text={item[key]}/>)}
+      <div className="left-column open-peer-review-section">
+        {!!specifiedPolicy.length &&
+          <Fragment>
+            <img className="check-icon" src={`./${iconAssetPath}/check-icon.png`}/>
+            {specifiedPolicy.map( key =>
+              <DetailsItem key={key} label={content[getDetailsContentKey(key)]} text={item[key]}/>)}
+          </Fragment>}
 
-        <img className="x-icon" src={`./${iconAssetPath}/x-icon.png`}/>
-        {noPolicy.map(key =>
-          <p key={key}><span className="details-content-label">{content[getDetailsContentKey(key)]}</span></p>)}
+        {!!noPolicy.length &&
+          <div className='open-peer-review-section--false'>
+            <img className="x-icon" src={`./${iconAssetPath}/x-icon.png`}/>
+            {noPolicy.map(key =>
+              <p key={key}><span className="details-content-label">{content[getDetailsContentKey(key, false)]}</span></p>)}
+          </div>}
       </div>
 
       <div className="right-column">
@@ -49,6 +55,6 @@ export default function PeerReviewDetails ({item}) {
 }
 
 
-function getDetailsContentKey (key) {
-  return `${key.replace(/-/g, '_')}_details`
+function getDetailsContentKey (key, type) {
+  return `${key.replace(/-/g, '_')}_details${type === false ? '_false' : ''}`;
 }
