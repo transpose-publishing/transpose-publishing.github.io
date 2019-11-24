@@ -193,11 +193,15 @@ export function sortGenerator (field, order = ASC, {ignoreBlanks, secondaryField
 }
 
 export function renderContent (contentNode) {
+  console.log(contentNode)
   if(!contentNode || typeof contentNode === 'string') return contentNode;
   if(Array.isArray(contentNode)) {
     return <ul>{contentNode.map( item => <li>{renderContent(item)}</li>)}</ul>
   }
   if(typeof contentNode === 'object') {
+    if(contentNode.text && contentNode.link) {
+      return <a href={contentNode.link} target="_blank">{contentNode.text}</a>
+    }
     if(contentNode.text && contentNode.in_line_link) {
       return parseInlineLink(contentNode.text, contentNode.in_line_link)
     }

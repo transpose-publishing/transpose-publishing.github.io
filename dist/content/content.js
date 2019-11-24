@@ -180,31 +180,10 @@ window._content = {
     tech_provider: 'Technology & service provider',
     //types
     opr: 'OPR',
+    opr: 'OPR',
     co_review: 'Co-review',
     preprints: 'Preprints',
 
-    //About Page
-    primary_description: 'Transpose is an initiative to build a database of journal policies. We’re focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and publishers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.',
-    more_info_header: 'More about Transpose',
-    application_link: {
-      text: 'View database statistics',
-      link: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSU4cmOwS2NdM16S0h8F6A3FSPs1fp2Eng9HPXeosfLsL_lsXRtEC8odQW5GJTfz7fmVbl2f2YJ2_Sd/pubhtml?gid=146126401&single=true'
-    },
-    preview_info_link: {
-      text: 'See our landscape study on the availability of journal policies across disciplines (CSE2019 Poster)',
-      link: 'https://zenodo.org/record/3237242'
-    },
-    use_cases_link_text: 'Read potential use cases to learn how these data could be useful to different stakeholder groups.',
-    get_involved_header: 'Get involved',
-    edit_link: {
-      text:'Edit and add new records to the database',
-      link: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQVQVbwRTFymY1yMMPvHRLzEhlnm0HZ1ZEKvWeNjjbYtvyYuZ4_6eTqrJ0LkQDVF8ASwv62U3uw4V18/pubhtml?gid=1520385021&single=true'
-    },
-    follow_link: {
-      text: 'Follow us on Twitter',
-      link: 'https://twitter.com/TRANSPOSEsci'
-    },
-    contributors_header: 'Contributors',
 
     //More info page
     glossary_header: 'Glossary',

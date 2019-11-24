@@ -209,7 +209,7 @@ window._content.editorial_policies = [
 
 /*
 The FAQ array below is rendered directly. It is similar to glossary cards. Adding an object with title and description
-will render a card in the FAQ section. FAQ Descriptions can also include in_link_links.
+will render a card in the FAQ section. FAQ Descriptions can also include in_line_links.
 */
 window._content.faq = [
   {
