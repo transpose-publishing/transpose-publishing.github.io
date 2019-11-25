@@ -5,11 +5,13 @@ import {filterTypesList, filterList} from '../models/filterModels';
 
 
 
-export default function AddFilters ({activeFilters, addFilter}) {
-  const [{menuOpen, typeName, filters}, updateState] = useMergeState({
+export default function AddFilters ({activeFilters, addFilter, removeFilter}) {
+  const [{menuOpen, typeName, filters, secondaryTypeName, secondaryFiltersList}, updateState] = useMergeState({
     menuOpen: false,
     typeName: null,
-    filters: null
+    filters: null,
+    secondaryTypeName: null,
+    secondaryFiltersList: null,
   });
 
   const buttonRef = useRef(null);
@@ -22,11 +24,15 @@ export default function AddFilters ({activeFilters, addFilter}) {
   });
 
   function toggleMenu () {
-    updateState({menuOpen: !menuOpen, typeName: null, filters: null})
+    updateState({menuOpen: !menuOpen, typeName: null, filters: null, secondaryTypeName: null, secondaryFiltersList: null})
   }
 
   function selectType ({typeName, filters}) {
     updateState({typeName, filters})
+  }
+
+  function selectSecondaryType ({typeName, filters}) {
+    updateState({ secondaryTypeName: typeName, secondaryFiltersList: filters })
   }
 
   const OAFilter = filterList[FT.OA];
@@ -68,18 +74,48 @@ export default function AddFilters ({activeFilters, addFilter}) {
         <div className="filter-list expanded-filter-list">
           {filters.map( filter => {
             if(activeFilters.includes(filter.name)) return null;
+            if(filter.filters?.every( filter => activeFilters.includes(filter.name))) return null;
             return (
-              <button className="filter-item filter-list-item"
+              <button
+                className={
+                  `filter-item ${filter.typeName ? 'filter-type-item' : 'filter-list-item'} ${filter.typeName === secondaryTypeName ? 'active' : ''}`
+                }
                 key={filter.name}
                 onClick={() => {
+                  if(filter.typeName) {
+                    return selectSecondaryType(filter)
+                  }
                   addFilter(filter.name);
                   toggleMenu();
                 }}
               >
                 {filter.content}
+                <img src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Grey.svg`}/>
               </button>
             )
           })}
+
+          {secondaryFiltersList &&
+          <div className="filter-list expanded-filter-list secondary">
+            {secondaryFiltersList.map( filter => {
+              if(activeFilters.includes(filter.name)) return null;
+              return (
+                <button className="filter-item filter-list-item"
+                  key={filter.name}
+                  onClick={() => {
+                    const activeSecondaryFilter = secondaryFiltersList.find(filter => activeFilters.includes(filter.name));
+                    if(activeSecondaryFilter) {
+                      removeFilter(activeFilters.indexOf(activeSecondaryFilter.name));
+                    }
+                    addFilter(filter.name);
+                    toggleMenu();
+                  }}
+                >
+                  {filter.content}
+                </button>
+              )
+            })}
+          </div>}
         </div>}
       </div>}
     </div>

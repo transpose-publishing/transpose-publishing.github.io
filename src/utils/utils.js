@@ -39,14 +39,19 @@ export function useArrayState (initialArray = []) {
   const [array, setArray] = useState(initialArray);
   const arrayControls = {
     pushUnique: function pushUnique (item) {
-      if(!array.includes(item)) {
-        setArray([...array, item])
-      }
+      setArray(prevArray => {
+        if(!prevArray.includes(item)) {
+          return [...prevArray, item]
+        }
+        return prevArray
+      })
     },
     removeByIndex: function removeByIndex (index) {
-      const newArray = [...array];
-      newArray.splice(index, 1);
-      setArray(newArray)
+      setArray(prevArray => {
+        const newArray = [...prevArray];
+        newArray.splice(index, 1);
+        return newArray
+      })
     },
     clearArray: function clearArray () {
       setArray([])

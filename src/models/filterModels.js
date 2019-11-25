@@ -27,9 +27,31 @@ export const filterList = {
   [FT.PREPRINT_MEDIA]: {name: FT.PREPRINT_MEDIA, content: content.preprint_media},
   [FT.PREPRINT_LICENSING]: {name: FT.PREPRINT_LICENSING, content: content.preprint_licensing},
   [FT.PREPRINT_SCOOP]: {name: FT.PREPRINT_SCOOP, content: content.preprint_scoop},
-  [FT.PREPRINT_REVIEW]: {name: FT.PREPRINT_REVIEW, content: content.preprint_review}
+  [FT.PREPRINT_REVIEW]: {name: FT.PREPRINT_REVIEW, content: content.preprint_review},
+  [FT.ALLOWED_PREPRINT_NO_POLICY]: {name: FT.ALLOWED_PREPRINT_NO_POLICY, content: content.allowed_preprint_version_no_policy},
+  [FT.ALLOWED_PREPRINT_NONE]: {name: FT.ALLOWED_PREPRINT_NONE, content: content.allowed_preprint_version_none},
+  [FT.ALLOWED_PREPRINT_FIRST]: {name: FT.ALLOWED_PREPRINT_FIRST, content: content.allowed_preprint_version_first},
+  [FT.ALLOWED_PREPRINT_AFTER]: {name: FT.ALLOWED_PREPRINT_AFTER, content: content.allowed_preprint_version_after},
+  [FT.ALLOWED_PREPRINT_ANY]: {name: FT.ALLOWED_PREPRINT_ANY, content: content.allowed_preprint_version_any},
+  [FT.ALLOWED_PREPRINT_UNSURE]: {name: FT.ALLOWED_PREPRINT_UNSURE, content: content.allowed_preprint_version_unsure},
+  [FT.ALLOWED_PREPRINT_OTHER]: {name: FT.ALLOWED_PREPRINT_OTHER, content: content.allowed_preprint_version_other},
 };
 
+export const secondaryFilterTypes = {
+  allowed_preprint_version: {
+    typeName: 'allowed_preprint_version',
+    content: content.allowed_preprint_version,
+    filters: [
+      filterList[FT.ALLOWED_PREPRINT_NO_POLICY],
+      filterList[FT.ALLOWED_PREPRINT_NONE],
+      filterList[FT.ALLOWED_PREPRINT_FIRST],
+      filterList[FT.ALLOWED_PREPRINT_AFTER],
+      filterList[FT.ALLOWED_PREPRINT_ANY],
+      filterList[FT.ALLOWED_PREPRINT_UNSURE],
+      filterList[FT.ALLOWED_PREPRINT_OTHER],
+    ]
+  }
+};
 
 export const filterTypesList = [
   {
@@ -76,6 +98,7 @@ export const filterTypesList = [
       filterList[FT.PREPRINT_LICENSING],
       filterList[FT.PREPRINT_SCOOP],
       filterList[FT.PREPRINT_REVIEW],
+      secondaryFilterTypes.allowed_preprint_version,
     ]
   }
 ];
@@ -108,5 +131,12 @@ export const filterRules = {
   [FT.PREPRINT_MEDIA]: item => item['preprint-media'] !== "",
   [FT.PREPRINT_LICENSING]: item => item['preprint-licensing'] !== "",
   [FT.PREPRINT_SCOOP]: item => item['preprint-scoop'] !== "",
-  [FT.PREPRINT_REVIEW]: item => item['preprint-review'] !== ""
+  [FT.PREPRINT_REVIEW]: item => item['preprint-review'] !== "",
+  [FT.ALLOWED_PREPRINT_NO_POLICY]: item => item['preprint-version'] === 'No preprint policy',
+  [FT.ALLOWED_PREPRINT_NONE]: item => item['preprint-version'] === 'None (preprints not allowed)',
+  [FT.ALLOWED_PREPRINT_FIRST]: item => item['preprint-version'] === 'First submission only (before peer review)',
+  [FT.ALLOWED_PREPRINT_AFTER]: item => item['preprint-version'] === 'After peer review (but not final, copyedited version)',
+  [FT.ALLOWED_PREPRINT_ANY]: item => item['preprint-version'] === 'Any manuscript version (preprint or postprint, but not necessarily the publisher\'s version)',
+  [FT.ALLOWED_PREPRINT_UNSURE]: item => item['preprint-version'] === 'Unsure (preprints are allowed, but it\'s not clear what version)',
+  [FT.ALLOWED_PREPRINT_OTHER]: item => item['preprint-version'] === 'Other',
 };

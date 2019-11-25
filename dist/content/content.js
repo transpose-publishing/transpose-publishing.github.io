@@ -107,6 +107,14 @@ window._content = {
     preprint_licensing: "Preprint licensing policy",
     preprint_scoop: "Scoop protection",
     preprint_review: "Community review",
+    allowed_preprint_version: "Allowed preprint version",
+    allowed_preprint_version_no_policy: "No preprint policy",
+    allowed_preprint_version_none: "None (preprints not allowed)",
+    allowed_preprint_version_first: "First submission only",
+    allowed_preprint_version_after: "After peer review",
+    allowed_preprint_version_any: "Any manuscript version",
+    allowed_preprint_version_unsure: "Unsure",
+    allowed_preprint_version_other: "Other",
 
     //Results section and title details
     date: "Date",

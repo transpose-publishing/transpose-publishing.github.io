@@ -71,7 +71,8 @@ export default function HomePage ({loading, data, urlSearchQuery}) {
         <div className="banner-row row-4">
           <AddFilters
             activeFilters={activeFilters}
-            addFilter={addFilter}/>
+            addFilter={addFilter}
+            removeFilter={removeFilter}/>
 
           <VerifiedFilter
             label={content.verified}

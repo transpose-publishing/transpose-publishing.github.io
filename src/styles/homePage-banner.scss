@@ -146,6 +146,12 @@
         top: 0;
         left: 176px;
 
+        &.secondary {
+          top: auto;
+          bottom: 0;
+          left: 100%;
+        }
+
         .filter-list-item {
           white-space: nowrap;
           width: 100%;
