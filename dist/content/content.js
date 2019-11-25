@@ -72,8 +72,8 @@ window._content = {
       link: 'https://docs.google.com/spreadsheets/d/10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc/export?format=csv&id=10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc&gid=0'
     },
     new_record_link: {
-      text: "Update or add records",
-      link: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSU4cmOwS2NdM16S0h8F6A3FSPs1fp2Eng9HPXeosfLsL_lsXRtEC8odQW5GJTfz7fmVbl2f2YJ2_Sd/pubhtml?gid=1688324546&single=true'
+      text: "Add record",
+      link: 'https://docs.google.com/forms/d/e/1FAIpQLSf2VsvytNSGrYLwKmsdN3SYAIYSHo71A1-RppjlyIuLcIKepw/viewform'
     },
     search_placeholder: "Search journal title, ISSN, DOI, Publisher",
     search_header: "Transpose database",
@@ -128,6 +128,7 @@ window._content = {
       text: 'Report error',
       link: 'mailto:transpose-publishing@googlegroups.com'
     },
+    edit_record_button: "Edit Record",
     compare_checkbox_label: "Compare up to 3 journals",
     details_label_pr: "Peer review",
     details_label_opr: "Open peer review",

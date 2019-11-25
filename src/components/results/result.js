@@ -71,8 +71,13 @@ export default function Result ({item, expanded}) {
 
           <div className="compare-checkbox-bar">
             <CompareCheckbox item={item} checkboxLabel={content.compare_checkbox_label}/>
-
-            <a className="report-error-link" href={content.report_error_link.link}>{content.report_error_link.text}</a>
+            {(item.verified !== "Yes" && item['prefilled-URL'])
+              ? <a className="report-error-link" href={item['prefilled-URL']} target="_blank">
+                  {content.edit_record_button}
+                </a>
+              : <a className="report-error-link" href={content.report_error_link.link}>
+                  {content.report_error_link.text}
+                </a>}
           </div>
 
           <PeerReviewDetails item={item}/>
