@@ -6,6 +6,9 @@ const {ASC} = SORT_ORDER;
 export function useMergeState (initialState) {
   const [state, setState] = useState(initialState);
   return [state, (newState) => {
+    if(typeof  newState === 'function') {
+      return setState(newState)
+    }
     setState( prevState => ({...prevState, ...newState}))
   }]
 }
@@ -116,6 +119,33 @@ prepareDomForModal.cleanup = function prepareDomForModal_cleanup () {
   body.style['padding-right'] = '0'
 };
 
+export function sortGenerator (field, order = ASC, {ignoreBlanks, secondaryField, secondaryOrder} = {}) {
+  return function sortFunction (a, b){
+    const aValue = a[field].toLowerCase();
+    const bValue = b[field].toLowerCase();
+    if(ignoreBlanks) {
+      if(aValue === "" && bValue === "" && secondaryField) {
+        const secondaryFieldAValue = a[secondaryField].toLowerCase();
+        const secondaryFieldBValue = b[secondaryField].toLowerCase();
+        if(secondaryFieldAValue < secondaryFieldBValue) { return secondaryOrder === ASC ? -1 : 1; }
+        if(secondaryFieldAValue > secondaryFieldBValue) { return secondaryOrder === ASC ? 1 : -1; }
+      }
+      if(aValue === "") return 1;
+      if(bValue === "") return -1;
+    }
+    if(aValue < bValue) { return order === ASC ? -1 : 1; }
+    if(aValue > bValue) { return order === ASC ? 1 : -1; }
+    if(secondaryField) {
+      const secondaryFieldAValue = a[secondaryField].toLowerCase();
+      const secondaryFieldBValue = b[secondaryField].toLowerCase();
+      if(secondaryFieldAValue < secondaryFieldBValue) { return secondaryOrder === ASC ? -1 : 1; }
+      if(secondaryFieldAValue > secondaryFieldBValue) { return secondaryOrder === ASC ? 1 : -1; }
+    }
+    return 0;
+  }
+}
+
+
 //utils
 export function searchString (searchTerm, source) {
   if(typeof searchTerm !== 'string' || typeof source !== 'string' || searchTerm === "" || source === "") return false;
@@ -135,6 +165,7 @@ export function generateUid (uidPrefix) {
   }
   return `${uidPrefix}-${uids[uidPrefix]}`
 }
+
 
 //content
 export function getContent () {
@@ -169,32 +200,6 @@ export function parseInlineLink (str, in_line_link) {
   if(linkIndex === -1) return str;
   const linkElement = <a href={link} target="_blank">{text}</a>;
   return [str.substring(0, linkIndex), linkElement, str.substring(linkIndex + text.length)]
-}
-
-export function sortGenerator (field, order = ASC, {ignoreBlanks, secondaryField, secondaryOrder} = {}) {
-  return function sortFunction (a, b){
-    const aValue = a[field].toLowerCase();
-    const bValue = b[field].toLowerCase();
-    if(ignoreBlanks) {
-      if(aValue === "" && bValue === "" && secondaryField) {
-        const secondaryFieldAValue = a[secondaryField].toLowerCase();
-        const secondaryFieldBValue = b[secondaryField].toLowerCase();
-        if(secondaryFieldAValue < secondaryFieldBValue) { return secondaryOrder === ASC ? -1 : 1; }
-        if(secondaryFieldAValue > secondaryFieldBValue) { return secondaryOrder === ASC ? 1 : -1; }
-      }
-      if(aValue === "") return 1;
-      if(bValue === "") return -1;
-    }
-    if(aValue < bValue) { return order === ASC ? -1 : 1; }
-    if(aValue > bValue) { return order === ASC ? 1 : -1; }
-    if(secondaryField) {
-      const secondaryFieldAValue = a[secondaryField].toLowerCase();
-      const secondaryFieldBValue = b[secondaryField].toLowerCase();
-      if(secondaryFieldAValue < secondaryFieldBValue) { return secondaryOrder === ASC ? -1 : 1; }
-      if(secondaryFieldAValue > secondaryFieldBValue) { return secondaryOrder === ASC ? 1 : -1; }
-    }
-    return 0;
-  }
 }
 
 export function renderContent (contentNode) {

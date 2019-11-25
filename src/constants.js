@@ -55,6 +55,11 @@ export const SORT_FIELDS = {
   DATE: 'date'
 };
 
+export const USER_STORIES_SORT_FIELDS = {
+  GROUP: 'group',
+  TYPE: 'type',
+};
+
 export const SORT_ORDER = {
   ASC: 'ASC',
   DESC: 'DESC'

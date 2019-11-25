@@ -1,5 +1,6 @@
 import React from 'react';
-import {SORT_FIELDS, iconAssetPath, SORT_ORDER} from '../constants';
+import SortArrow from 'components/SortArrow';
+import {SORT_FIELDS, SORT_ORDER} from '../constants';
 import {orderDefaults} from '../models/sortModels';
 import {getContent} from '../utils';
 
@@ -66,13 +67,6 @@ export default function SortBar ({sort, updateSort}) {
       </div>
       <div className="shadow-canvas"/>
     </div>
-  )
-}
-
-function SortArrow ({order, active}) {
-  return (
-    <img className={order === ASC ? 'asc' : ''}
-      src={`./${iconAssetPath}/Dropdown-Arrow-Icon-${active ? 'Green' : 'White'}.svg`}/>
   )
 }
 

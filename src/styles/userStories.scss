@@ -55,6 +55,20 @@
       .type-header {
         width: 109px;
       }
+
+      .sort-button {
+        cursor: pointer;
+
+        img {
+          height: 20px;
+          margin-left: 10px;
+          vertical-align: middle;
+
+          &.asc {
+            transform: rotate(180deg);
+          }
+        }
+      }
     }
   }
 }
