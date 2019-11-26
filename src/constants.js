@@ -64,3 +64,9 @@ export const SORT_ORDER = {
   ASC: 'ASC',
   DESC: 'DESC'
 };
+
+export const SEARCH_TYPE = {
+  ALL: 'All',
+  TITLE: 'Title',
+  PUBLISHER: 'Publisher',
+};

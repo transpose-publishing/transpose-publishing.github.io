@@ -2,8 +2,8 @@ import React from 'react';
 import {iconAssetPath} from "../../constants";
 
 export default function Paging ({page, totalPages, setPage}) {
-  let index = 0;
-  let pagesArray = Array(totalPages).fill(null).map(_ => {
+  let index = 1;
+  let pagesArray = Array(totalPages - 1).fill(null).map(_ => {
     index++;
     return index;
   });
@@ -44,21 +44,22 @@ export default function Paging ({page, totalPages, setPage}) {
       {pagesArray.map( (i) =>
         <button
           key={i}
-          className={`page-button ${i === page ? 'active-page' : ''}`}
-          onClick={() => setPage(i)}
+          className={`page-button ${i - 1 === page ? 'active-page' : ''}`}
+          onClick={() => setPage(i - 1)}
         >
-          {i + 1}
+          {i}
         </button>
       )}
 
       {rightDots && <span className='paging-dots'>...</span>}
 
-      <button
-        className={`page-button ${totalPages - 1 === page ? 'active-page' : ''}`}
-        onClick={() => setPage(totalPages - 1)}
-      >
-        {totalPages}
-      </button>
+      {totalPages > 11 &&
+        <button
+          className={`page-button ${totalPages - 1 === page ? 'active-page' : ''}`}
+          onClick={() => setPage(totalPages - 1)}
+        >
+          {totalPages}
+        </button>}
 
       <button className={`arrow-button ${totalPages - 1 === page ? 'hidden' : ''}`} onClick={() => setPage(page + 1)}>
         <img className="page-arrow right-arrow" src={`./${iconAssetPath}/page-arrow.png`}/>

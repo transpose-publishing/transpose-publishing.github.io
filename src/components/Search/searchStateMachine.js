@@ -1,5 +1,6 @@
 import React, {useEffect, useLayoutEffect} from 'react';
 import {useLayoutEffectOnUpdate, useClickOutside, StateMachine, useMachine} from 'utils';
+import {SEARCH_TYPE} from 'constants';
 
 
 const SearchMachine = new StateMachine({
@@ -58,7 +59,14 @@ const SearchMachine = new StateMachine({
       },
       setUrlSearchQuery (searchTerm) {
         this.actions.selectSearchTerm(searchTerm)
-      }
+      },
+      calculateResults () {
+        const results = this.actions.calculateResults(this.state.inputValue);
+        if(!results.length) {
+          this.dispatch('noResultsDisplayed')
+        }
+        this.setMachineState({results})
+      },
     },
 
     resultsDisplayed: {
@@ -109,38 +117,43 @@ const SearchMachine = new StateMachine({
 
   actions: {
     calculateResults (inputValue) {
-      const {data} = this.props;
+      const {data, searchType} = this.props;
       if(!data) return [];
       const publishers = [];
       const titles = [];
       const publishersUsedIndex = [];
       const titlesUsedIndex = [];
       data.forEach( item => {
-        const publisher = item.publisher.toLowerCase();
-        const title = item.title.toLowerCase();
         const searchValue = inputValue.toLowerCase();
-        if(publisher?.includes(searchValue) && !publishersUsedIndex.includes(publisher)) {
-          publishers.push(item.publisher);
-          publishersUsedIndex.push(publisher);
+
+        if(searchType === SEARCH_TYPE.ALL || searchType === SEARCH_TYPE.PUBLISHER) {
+          const publisher = item.publisher.toLowerCase();
+          if(publisher?.includes(searchValue) && !publishersUsedIndex.includes(publisher)) {
+            publishers.push(item.publisher);
+            publishersUsedIndex.push(publisher);
+          }
         }
-        if(title?.includes(searchValue) && !titlesUsedIndex.includes(title)) {
-          titles.push(item.title);
-          titlesUsedIndex.push(title);
+        if(searchType === SEARCH_TYPE.ALL || searchType === SEARCH_TYPE.TITLE) {
+          const title = item.title.toLowerCase();
+          if(title?.includes(searchValue) && !titlesUsedIndex.includes(title)) {
+            titles.push(item.title);
+            titlesUsedIndex.push(title);
+          }
         }
       });
       return [...titles, ...publishers]
     },
     selectSearchTerm (searchTerm) {
-      this.props.setSearchTerm(searchTerm);
+      this.props.setSearchTerm(searchTerm, this.props.searchType);
       this.setMachineState({inputValue: searchTerm});
       this.dispatch('resetFocus');
-    }
+    },
   }
 });
 
 export default function useSearchMachine ({props, refs}) {
   return useMachine(SearchMachine, {props, refs}, ({state, inputValue, activeIndex}, dispatch) => {
-    const {urlSearchQuery} = props;
+    const {urlSearchQuery, searchType} = props;
     const focused = state.includes('focused');
 
     useClickOutside({
@@ -174,5 +187,9 @@ export default function useSearchMachine ({props, refs}) {
     useLayoutEffectOnUpdate(function onUrlSearchQueryChange_updateSearchTerm () {
       dispatch('setUrlSearchQuery', urlSearchQuery)
     }, [urlSearchQuery]);
+
+    useEffect(function onSearchTypeChange_recalculateResults () {
+      dispatch('calculateResults')
+    }, [searchType])
   })
 }

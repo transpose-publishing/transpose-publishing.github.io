@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import {iconAssetPath, KEYCODE} from 'constants';
+import React, {useRef, useState} from 'react';
+import {iconAssetPath, KEYCODE, SEARCH_TYPE} from 'constants';
 import {keyboardControls} from 'utils';
 import useSearchMachine from './searchStateMachine';
 
@@ -12,9 +12,11 @@ export default function Search ({placeholder, setSearchTerm, data, urlSearchQuer
     searchInputNode: useRef(null),
   };
 
+  const [searchType, setSearchType] = useState(SEARCH_TYPE.ALL);
+
   const [{state, inputValue, activeIndex, results}, dispatch] =
     useSearchMachine({
-      props: {data, setSearchTerm, urlSearchQuery},
+      props: {data, setSearchTerm, urlSearchQuery, searchType},
       refs
     });
 
@@ -41,6 +43,14 @@ export default function Search ({placeholder, setSearchTerm, data, urlSearchQuer
       />
 
       <img className="search-glass" src={`./${iconAssetPath}/search-glass.png`}/>
+
+      <select className='search-type-select' onChange={e => setSearchType(e.target.value)}>
+        <option>{SEARCH_TYPE.ALL}</option>
+        <option>{SEARCH_TYPE.TITLE}</option>
+        <option>{SEARCH_TYPE.PUBLISHER}</option>
+      </select>
+
+      <div className='search-type-select-text'>{searchType}</div>
 
       {state.includes('resultsDisplayed') &&
         <div className="search-suggestions" ref={refs.searchSuggestionsNode}>

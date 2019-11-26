@@ -2,12 +2,12 @@ import React, {useState, useLayoutEffect, Fragment} from 'react';
 import {searchString, sortGenerator} from '../../utils';
 import Paging from "./paging";
 import Result from './result';
-import {itemsPerPage} from '../../constants';
+import {itemsPerPage, SEARCH_TYPE} from 'constants';
 import {filterRules} from '../../models/filterModels';
 import {sortOptions} from '../../models/sortModels';
 
 
-export default function ResultsList ({loading, data, searchTerm, sort, activeFilters, expandFirstItem}) {
+export default function ResultsList ({loading, data, searchTerm, searchType, sort, activeFilters, expandFirstItem}) {
   const [page, setPage] = useState(0);
 
   useLayoutEffect(function onSearchOrFilterChange_resetPage () {
@@ -29,12 +29,16 @@ export default function ResultsList ({loading, data, searchTerm, sort, activeFil
       let titleMatches = [];
       let publisherMatches = [];
       let otherMatches = [];
+      const searchTitles = searchType === SEARCH_TYPE.ALL || searchType === SEARCH_TYPE.TITLE;
+      const searchPublishers = searchType === SEARCH_TYPE.ALL || searchType === SEARCH_TYPE.PUBLISHER;
       data.forEach(item => {
         if (filtersOn && filterItem(item) === true) return;
-        if (searchString(searchTerm, item.title)) return titleMatches.push(item);
-        if (searchString(searchTerm, item.publisher)) return publisherMatches.push(item);
-        for (const key in item) {
-          if (searchString(searchTerm, item[key])) return otherMatches.push(item)
+        if (searchTitles && searchString(searchTerm, item.title)) return titleMatches.push(item);
+        if (searchPublishers && searchString(searchTerm, item.publisher)) return publisherMatches.push(item);
+        if (searchType === SEARCH_TYPE.ALL) {
+          for (const key in item) {
+            if (searchString(searchTerm, item[key])) return otherMatches.push(item)
+          }
         }
       });
       filteredData = [...titleMatches, ...publisherMatches, ...otherMatches];
@@ -44,7 +48,7 @@ export default function ResultsList ({loading, data, searchTerm, sort, activeFil
       filteredData = filteredData.filter( item => filterItem(item) === false)
     }
 
-    const totalPages = filteredData.length ? Math.floor(filteredData.length / itemsPerPage) : 0;
+    const totalPages = filteredData.length ? Math.ceil(filteredData.length / itemsPerPage) : 0;
     const pagedList = filteredData.slice((page * itemsPerPage), ((page + 1) * itemsPerPage));
     return {resultsList: pagedList, totalPages}
   }

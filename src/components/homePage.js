@@ -8,14 +8,16 @@ import ActiveFilterDisplay from './activeFilterDisplay'
 import SortBar from './sortBar';
 import CompareFooter from './compareFooter';
 import CompareModal from './compareModal';
-import {FILTER_TYPES as FT, iconAssetPath} from '../constants';
+import {FILTER_TYPES as FT, iconAssetPath, SEARCH_TYPE} from 'constants';
 
 const {content} = getContent();
 
 
 
 export default function HomePage ({loading, data, urlSearchQuery}) {
-  const [searchTerm, setSearchTerm] = usePersistedState('HomePage:searchTerm', urlSearchQuery);
+  const [{searchTerm, searchType}, setSearchTerm] = usePersistedState('HomePage:searchTerm', {
+    searchTerm: urlSearchQuery, searchType: SEARCH_TYPE.ALL
+  });
   const [verifiedFilter, toggleVerifiedFilter] = useState(false);
   const [sort, updateSort] = useMergeState({field: null, order: null});
   const [compareModalOpen, toggleCompareModal] = useState(false);
@@ -36,8 +38,8 @@ export default function HomePage ({loading, data, urlSearchQuery}) {
     setExpandFirstItem(!!urlSearchQuery)
   }, [urlSearchQuery]);
 
-  function setSearchTermAndExpandFirstItemFalse (term) {
-    setSearchTerm(term);
+  function setSearchTermAndExpandFirstItemFalse (searchTerm, searchType) {
+    setSearchTerm({searchTerm, searchType});
     setExpandFirstItem(false)
   }
 
@@ -93,6 +95,7 @@ export default function HomePage ({loading, data, urlSearchQuery}) {
           loading={loading}
           data={data}
           searchTerm={searchTerm}
+          searchType={searchType}
           sort={sort}
           activeFilters={verifiedFilter ? [FT.VERIFIED, ...activeFilters] : activeFilters}
           expandFirstItem={expandFirstItem}/>
