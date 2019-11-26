@@ -19,7 +19,7 @@ export default function Paging ({page, totalPages, setPage}) {
   if(totalPages > 10 && page > totalPages - 8) {
     pagesArray = pagesArray.slice(totalPages - 12, totalPages - 2)
   } else if(totalPages > 10 && page > 5) {
-    pagesArray = pagesArray.slice(page - 5, page + 5)
+    pagesArray = pagesArray.slice(page - 5, page + 4)
   } else if(totalPages > 10) {
     pagesArray = pagesArray.slice(0, 10)
   }
@@ -39,7 +39,7 @@ export default function Paging ({page, totalPages, setPage}) {
         1
       </button>
 
-      {leftDots && <span>...</span>}
+      {leftDots && <span className='paging-dots'>...</span>}
 
       {pagesArray.map( (i) =>
         <button
@@ -51,7 +51,7 @@ export default function Paging ({page, totalPages, setPage}) {
         </button>
       )}
 
-      {rightDots && <span>...</span>}
+      {rightDots && <span className='paging-dots'>...</span>}
 
       <button
         className={`page-button ${totalPages - 1 === page ? 'active-page' : ''}`}

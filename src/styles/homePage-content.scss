@@ -278,6 +278,11 @@
   visibility: hidden;
 }
 
+.paging-dots {
+  width: 34px;
+  text-align: center;
+}
+
 .paging-container .page-arrow.left-arrow {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
