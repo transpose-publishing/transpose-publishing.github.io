@@ -79,6 +79,7 @@ window._content = {
     search_header: "Transpose database",
 
     //Filters and labels
+    add_filter_button: 'Add Filter',
     filter_type_pr: "Peer review",
     filter_type_opr: "Open peer review",
     filter_type_coreview: "Co-review",
@@ -122,7 +123,6 @@ window._content = {
     doi: "DOI",
     title: "Journal",
     publisher: "Publisher",
-    verified: "Verified",
     oa: "OA",
     report_error_link: {
       text: 'Report error',
@@ -209,5 +209,12 @@ window._content = {
 
     //Footer
     twitter_link: 'https://twitter.com/TRANSPOSEsci',
+
+
+    //Loading and Error Texts
+    loading_database: 'Retrieving data...',
+    database_loading_error: 'There was an error retrieving the data!',
+    stats_page_loading: 'Loading stats, this can take a moment...',
+    application_error: 'Sorry, there was an application error!',
   }
 };

@@ -1,9 +1,9 @@
 import React, {useRef} from 'react';
 import {iconAssetPath, FILTER_TYPES as FT} from "../constants";
-import {useClickOutside, useMergeState} from '../utils';
+import {useClickOutside, useMergeState, getContent} from 'utils';
 import {filterTypesList, filterList} from '../models/filterModels';
 
-
+const {content} = getContent();
 
 export default function AddFilters ({activeFilters, addFilter, removeFilter}) {
   const [{menuOpen, typeName, filters, secondaryTypeName, secondaryFiltersList}, updateState] = useMergeState({
@@ -40,7 +40,7 @@ export default function AddFilters ({activeFilters, addFilter, removeFilter}) {
   return (
     <div  className="add-filters-button-container" ref={buttonRef}>
       <button className="add-filters-button" onClick={toggleMenu} >
-        Add Filter
+        {content.add_filter_button}
         <img src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Grey.svg`}/>
       </button>
 

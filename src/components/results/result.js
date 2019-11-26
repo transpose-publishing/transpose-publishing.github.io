@@ -56,7 +56,7 @@ export default function Result ({item, expanded}) {
 
         <div className="result-section-issn">
           {item.issn &&
-            item.issn.split(', ').map(issn => <span key={issn}>{issn}</span>)}
+            item.issn.split(', ').map((issn, index) => <span key={issn + index}>{issn}</span>)}
         </div>
 
         <div className="result-section-oa">

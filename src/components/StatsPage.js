@@ -1,4 +1,7 @@
 import React, {useState} from 'react';
+import {getContent} from 'utils';
+
+const {content} = getContent();
 
 const statsUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSU4cmOwS2NdM16S0h8F6A3FSPs1fp2Eng9HPXeosfLsL_lsXRtEC8odQW5GJTfz7fmVbl2f2YJ2_Sd/pubhtml?gid=146126401&single=true';
 
@@ -11,7 +14,7 @@ export default function StatsPage () {
 
   return (
     <div className={`stats-container${loading ? ' stats-container--loading' : ''}`}>
-      {loading && <div className='loading-cover'><h1>Loading stats...</h1></div>}
+      {loading && <div className='loading-cover'><h1>{content.stats_page_loading}</h1></div>}
       <iframe onLoad={onLoad} className='stats-iframe' src={statsUrl}></iframe>
     </div>
   )

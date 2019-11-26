@@ -17,10 +17,8 @@ import {getContent, ErrorBoundary} from './utils';
 
 const {content} = getContent();
 
-const ERROR_MESSAGE = 'There was an error retrieving the data!';
-
 function App () {
-  const [loading, setLoading] = useState('Retrieving data...');
+  const [loading, setLoading] = useState(content.loading_database);
   const [data, setData] = useState([]);
 
   useEffect(function fetchData_onMount () {
@@ -29,13 +27,13 @@ function App () {
       setData(dataArray);
       setLoading(false);
     }).catch( e => {
-      setLoading(ERROR_MESSAGE);
+      setLoading(content.database_loading_error);
       console.error(e)
     });
 
     fetchTimeout.then(() => {
       setLoading( prevLoading =>
-        (prevLoading && prevLoading !== ERROR_MESSAGE)
+        (prevLoading && prevLoading !== content.database_loading_error)
           ? 'Still retrieving, google docs is taking a long time to respond...'
           : prevLoading
       )

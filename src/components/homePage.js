@@ -77,7 +77,7 @@ export default function HomePage ({loading, data, urlSearchQuery}) {
             removeFilter={removeFilter}/>
 
           <VerifiedFilter
-            label={content.verified}
+            label={content.filter_verified}
             verifiedFilter={verifiedFilter}
             toggleVerifiedFilter={() => toggleVerifiedFilter(!verifiedFilter)}/>
         </div>

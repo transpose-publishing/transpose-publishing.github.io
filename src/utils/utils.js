@@ -2,6 +2,8 @@ import React, {useEffect, useLayoutEffect, useState, useRef} from "react";
 import {SORT_ORDER} from 'constants';
 const {ASC} = SORT_ORDER;
 
+const {content} = getContent();
+
 //Custom Hooks
 export function useMergeState (initialState) {
   const [state, setState] = useState(initialState);
@@ -96,7 +98,7 @@ export class ErrorBoundary extends React.Component {
     return {hasError: true}
   };
   render() {
-    return this.state.hasError ? "Something went wrong! Please try refreshing the page." : this.props.children;
+    return this.state.hasError ? <div className='application-error'>{content.application_error}</div> : this.props.children;
   }
 }
 
