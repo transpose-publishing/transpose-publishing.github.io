@@ -17,10 +17,23 @@
 
   .primary-description {
     font-size: 16px;
+    margin-bottom: 10px;
   }
 
   .section-header {
     font-weight: 500;
     margin-top: 20px;
+  }
+
+  .about-page-container {
+    .twitter-feed {
+      float: right;
+      width: 450px;
+      height: 650px;
+      overflow-y: scroll;
+      border: 1px solid $color-compare-border-2;
+      margin-left: 30px;
+      margin-top: 20px;
+    }
   }
 }
