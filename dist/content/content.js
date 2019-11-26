@@ -211,7 +211,7 @@ window._content = {
     twitter_link: 'https://twitter.com/TRANSPOSEsci',
 
 
-    //Loading and Error Texts
+    //Loading and Error Messages
     loading_database: 'Retrieving data...',
     loading_database_long_time: 'Still retrieving, google docs is taking a long time to respond...',
     database_loading_error: 'There was an error retrieving the data!',
