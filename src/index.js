@@ -34,7 +34,7 @@ function App () {
     fetchTimeout.then(() => {
       setLoading( prevLoading =>
         (prevLoading && prevLoading !== content.database_loading_error)
-          ? 'Still retrieving, google docs is taking a long time to respond...'
+          ? content.loading_database_long_time
           : prevLoading
       )
     })

@@ -213,6 +213,7 @@ window._content = {
 
     //Loading and Error Texts
     loading_database: 'Retrieving data...',
+    loading_database_long_time: 'Still retrieving, google docs is taking a long time to respond...',
     database_loading_error: 'There was an error retrieving the data!',
     stats_page_loading: 'Loading stats, this can take a moment...',
     application_error: 'Sorry, there was an application error!',
