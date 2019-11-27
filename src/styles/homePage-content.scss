@@ -93,7 +93,7 @@
     padding-right: 16px;
 
     &.collapsed {
-      transition:max-height 0.3s linear;
+      transition:max-height 0.1s linear;
       max-height: 0;
     }
 
