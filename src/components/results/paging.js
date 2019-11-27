@@ -2,6 +2,8 @@ import React from 'react';
 import {iconAssetPath} from "../../constants";
 
 export default function Paging ({page, totalPages, setPage}) {
+  if(totalPages === 0) return null;
+
   let index = 1;
   let pagesArray = Array(totalPages - 1).fill(null).map(_ => {
     index++;
@@ -9,18 +11,18 @@ export default function Paging ({page, totalPages, setPage}) {
   });
 
   let rightDots, leftDots;
-  if(totalPages > 10 && totalPages - page > 7) {
+  if(totalPages > 13 && totalPages - page > 7) {
     rightDots = true;
   }
-  if(totalPages > 10 && page > 5) {
+  if(totalPages > 13 && page > 6) {
     leftDots = true
   }
 
-  if(totalPages > 10 && page > totalPages - 8) {
+  if(totalPages > 13 && page > totalPages - 8) {
     pagesArray = pagesArray.slice(totalPages - 12, totalPages - 2)
-  } else if(totalPages > 10 && page > 5) {
+  } else if(totalPages > 13 && page > 6) {
     pagesArray = pagesArray.slice(page - 5, page + 4)
-  } else if(totalPages > 10) {
+  } else if(totalPages > 13) {
     pagesArray = pagesArray.slice(0, 10)
   }
 
@@ -53,7 +55,7 @@ export default function Paging ({page, totalPages, setPage}) {
 
       {rightDots && <span className='paging-dots'>...</span>}
 
-      {totalPages > 11 &&
+      {totalPages > 13 &&
         <button
           className={`page-button ${totalPages - 1 === page ? 'active-page' : ''}`}
           onClick={() => setPage(totalPages - 1)}
