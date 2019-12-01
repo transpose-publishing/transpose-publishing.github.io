@@ -17,6 +17,15 @@ export default function ResultsList ({loading, data, searchTerm, searchType, sor
   const {resultsList, totalPages} = !!data.length ? generateFilteredList()
     : {resultsList: null, totalPages: 0};
 
+  function filterItem (item) {
+    for (const filter of activeFilters) {
+      if(filterMap[filter]?.rule?.(item) === false) {
+        return true
+      }
+    }
+    return false;
+  }
+
   function generateFilteredList () {
     let filteredData = data;
     const filtersOn = !!activeFilters.length;
@@ -51,15 +60,6 @@ export default function ResultsList ({loading, data, searchTerm, searchType, sor
     const totalPages = filteredData.length ? Math.ceil(filteredData.length / itemsPerPage) : 0;
     const pagedList = filteredData.slice((page * itemsPerPage), ((page + 1) * itemsPerPage));
     return {resultsList: pagedList, totalPages}
-  }
-
-  function filterItem (item) {
-    for (const filter of activeFilters) {
-      if(filterMap[filter]?.rule?.(item) === false) {
-        return true
-      }
-    }
-    return false;
   }
 
   return (
