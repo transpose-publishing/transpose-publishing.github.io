@@ -102,7 +102,7 @@ window._content = {
     coreview_form: "Co-reviewer in review form",
     coreview_database: "Co-reviewer deposited in database",
     preprint_policy: "Preprint policy",
-    preprint_version: "Publication links to preprint version",
+    preprint_version_link: "Publication links to preprint version",
     preprint_citation: "Preprints allowed in citation list",
     preprint_media: "Media coverage",
     preprint_licensing: "Preprint licensing policy",

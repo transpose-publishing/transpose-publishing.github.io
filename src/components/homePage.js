@@ -8,7 +8,8 @@ import ActiveFilterDisplay from './activeFilterDisplay'
 import SortBar from './sortBar';
 import CompareFooter from './compareFooter';
 import CompareModal from './compareModal';
-import {FILTER_TYPES as FT, iconAssetPath, SEARCH_TYPE} from 'constants';
+import {filterMap} from '../models/filterModels'
+import {FILTER_NAMES as FLTR, iconAssetPath, SEARCH_TYPE} from 'constants';
 
 const {content} = getContent();
 
@@ -77,7 +78,7 @@ export default function HomePage ({loading, data, urlSearchQuery}) {
             removeFilter={removeFilter}/>
 
           <VerifiedFilter
-            label={content.filter_verified}
+            label={filterMap[FLTR.VERIFIED].title}
             verifiedFilter={verifiedFilter}
             toggleVerifiedFilter={() => toggleVerifiedFilter(!verifiedFilter)}/>
         </div>
@@ -97,7 +98,7 @@ export default function HomePage ({loading, data, urlSearchQuery}) {
           searchTerm={searchTerm}
           searchType={searchType}
           sort={sort}
-          activeFilters={verifiedFilter ? [FT.VERIFIED, ...activeFilters] : activeFilters}
+          activeFilters={verifiedFilter ? [FLTR.VERIFIED, ...activeFilters] : activeFilters}
           expandFirstItem={expandFirstItem}/>
       </div>
 

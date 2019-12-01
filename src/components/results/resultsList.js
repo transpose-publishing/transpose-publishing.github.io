@@ -3,7 +3,7 @@ import {searchString, sortGenerator} from '../../utils';
 import Paging from "./paging";
 import Result from './result';
 import {itemsPerPage, SEARCH_TYPE} from 'constants';
-import {filterRules} from '../../models/filterModels';
+import {filterMap} from '../../models/filterModels';
 import {sortOptions} from '../../models/sortModels';
 
 
@@ -55,7 +55,7 @@ export default function ResultsList ({loading, data, searchTerm, searchType, sor
 
   function filterItem (item) {
     for (const filter of activeFilters) {
-      if(filterRules[filter]?.(item) === false) {
+      if(filterMap[filter]?.rule?.(item) === false) {
         return true
       }
     }

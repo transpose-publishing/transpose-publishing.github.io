@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
-import {iconAssetPath, FILTER_TYPES as FT} from "../constants";
+import {iconAssetPath, FILTER_NAMES as FLTR} from "../constants";
 import {useClickOutside, useMergeState, getContent} from 'utils';
-import {filterTypesList, filterList} from '../models/filterModels';
+import {filterTypesList, filterMap} from '../models/filterModels';
 
 const {content} = getContent();
 
@@ -35,7 +35,7 @@ export default function AddFilters ({activeFilters, addFilter, removeFilter}) {
     updateState({ secondaryTypeName: typeName, secondaryFiltersList: filters })
   }
 
-  const OAFilter = filterList[FT.OA];
+  const OAFilter = filterMap[FLTR.OA];
 
   return (
     <div  className="add-filters-button-container" ref={buttonRef}>
@@ -53,7 +53,7 @@ export default function AddFilters ({activeFilters, addFilter, removeFilter}) {
               key={item.typeName}
               onClick={() => selectType(item)}
             >
-              {item.content}
+              {item.title}
               <img src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Grey.svg`}/>
             </button>
           )
@@ -67,7 +67,7 @@ export default function AddFilters ({activeFilters, addFilter, removeFilter}) {
             toggleMenu();
           }}
         >
-          {OAFilter.content}
+          {OAFilter.title}
         </button>}
 
         {filters &&
@@ -89,7 +89,7 @@ export default function AddFilters ({activeFilters, addFilter, removeFilter}) {
                   toggleMenu();
                 }}
               >
-                {filter.content}
+                {filter.title}
                 <img src={`./${iconAssetPath}/Dropdown-Arrow-Icon-Grey.svg`}/>
               </button>
             )
@@ -111,7 +111,7 @@ export default function AddFilters ({activeFilters, addFilter, removeFilter}) {
                     toggleMenu();
                   }}
                 >
-                  {filter.content}
+                  {filter.title}
                 </button>
               )
             })}

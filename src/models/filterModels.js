@@ -1,142 +1,230 @@
-import {FILTER_TYPES as FT} from "../constants";
+import {FILTER_NAMES as FLTR} from "../constants";
 import {isNot} from "../utils";
 import {getContent} from '../utils';
 
 const {content} = getContent();
 
-export const filterList = {
-  [FT.OA]: {name: FT.OA, content: content.oa},
-  [FT.PR_POLICY]: {name: FT.PR_POLICY, content: content.pr_policy},
-  [FT.PR_DATABASE]: {name: FT.PR_DATABASE, content: content.pr_database},
-  [FT.PR_TRANSFER_POLICY]: {name: FT.PR_TRANSFER_POLICY, content: content.pr_transfer_policy},
-  [FT.OPR_REPORTS]: {name: FT.OPR_REPORTS, content: content.opr_reports},
-  [FT.OPR_RESPONSES]: {name: FT.OPR_RESPONSES, content: content.opr_responses},
-  [FT.OPR_LETTERS]: {name: FT.OPR_LETTERS, content: content.opr_letters},
-  [FT.OPR_VERSIONS]: {name: FT.OPR_VERSIONS, content: content.opr_versions},
-  [FT.OPR_IDENTITIES_PUBLISHED]: {name: FT.OPR_IDENTITIES_PUBLISHED, content: content.opr_identities_published},
-  [FT.OPR_IDENTITIES_AUTHOR]: {name: FT.OPR_IDENTITIES_AUTHOR, content: content.opr_identities_author},
-  [FT.OPR_COMMENTS]: {name: FT.OPR_COMMENTS, content: content.opr_comments},
-  [FT.OPR_INTERACTION]: {name: FT.OPR_INTERACTION, content: content.opr_interaction},
-  [FT.COREVIEW_POLICY]: {name: FT.COREVIEW_POLICY, content: content.coreview_policy},
-  [FT.COREVIEW_EMAIL]: {name: FT.COREVIEW_EMAIL, content: content.coreview_email},
-  [FT.COREVIEW_FORM]: {name: FT.COREVIEW_FORM, content: content.coreview_form},
-  [FT.COREVIEW_DATABASE]: {name: FT.COREVIEW_DATABASE, content: content.coreview_database},
-  [FT.PREPRINT_POLICY]: {name: FT.PREPRINT_POLICY, content: content.preprint_policy},
-  [FT.PREPRINT_VERSION]: {name: FT.PREPRINT_VERSION, content: content.preprint_version},
-  [FT.PREPRINT_CITATION]: {name: FT.PREPRINT_CITATION, content: content.preprint_citation},
-  [FT.PREPRINT_MEDIA]: {name: FT.PREPRINT_MEDIA, content: content.preprint_media},
-  [FT.PREPRINT_LICENSING]: {name: FT.PREPRINT_LICENSING, content: content.preprint_licensing},
-  [FT.PREPRINT_SCOOP]: {name: FT.PREPRINT_SCOOP, content: content.preprint_scoop},
-  [FT.PREPRINT_REVIEW]: {name: FT.PREPRINT_REVIEW, content: content.preprint_review},
-  [FT.ALLOWED_PREPRINT_NO_POLICY]: {name: FT.ALLOWED_PREPRINT_NO_POLICY, content: content.allowed_preprint_version_no_policy},
-  [FT.ALLOWED_PREPRINT_NONE]: {name: FT.ALLOWED_PREPRINT_NONE, content: content.allowed_preprint_version_none},
-  [FT.ALLOWED_PREPRINT_FIRST]: {name: FT.ALLOWED_PREPRINT_FIRST, content: content.allowed_preprint_version_first},
-  [FT.ALLOWED_PREPRINT_AFTER]: {name: FT.ALLOWED_PREPRINT_AFTER, content: content.allowed_preprint_version_after},
-  [FT.ALLOWED_PREPRINT_ANY]: {name: FT.ALLOWED_PREPRINT_ANY, content: content.allowed_preprint_version_any},
-  [FT.ALLOWED_PREPRINT_UNSURE]: {name: FT.ALLOWED_PREPRINT_UNSURE, content: content.allowed_preprint_version_unsure},
-  [FT.ALLOWED_PREPRINT_OTHER]: {name: FT.ALLOWED_PREPRINT_OTHER, content: content.allowed_preprint_version_other},
+const no_blank = ["No", ""];
+const no_notSpecified_blank = ["No", "Not specified", ""];
+
+export const filterMap = {
+  [FLTR.VERIFIED]: {
+    name: FLTR.VERIFIED,
+    title: content.filter_verified,
+    rule: item => item.verified === "Yes",
+  },
+  [FLTR.OA]: {
+    name: FLTR.OA,
+    title: content.filter_oa,
+    rule: item => item.oa === "Yes" || item.oa === "OA",
+  },
+  [FLTR.PR_POLICY]: {
+    name: FLTR.PR_POLICY,
+    title: content.pr_policy,
+    rule: item => item['pr-policy'] !== "",
+  },
+  [FLTR.PR_DATABASE]: {
+    name: FLTR.PR_DATABASE,
+    title: content.pr_database,
+    rule: item => isNot(item['pr-database'], no_blank),
+  },
+  [FLTR.PR_TRANSFER_POLICY]: {
+    name: FLTR.PR_TRANSFER_POLICY,
+    title: content.pr_transfer_policy,
+    rule: item => isNot(item['pr-transfer-policy'], no_blank),
+  },
+  [FLTR.OPR_REPORTS]: {
+    name: FLTR.OPR_REPORTS,
+    title: content.opr_reports,
+    rule: item => isNot(item['opr-reports'], no_notSpecified_blank),
+  },
+  [FLTR.OPR_RESPONSES]: {
+    name: FLTR.OPR_RESPONSES,
+    title: content.opr_responses,
+    rule: item => isNot(item['opr-responses'], no_notSpecified_blank),
+  },
+  [FLTR.OPR_LETTERS]: {
+    name: FLTR.OPR_LETTERS,
+    title: content.opr_letters,
+    rule: item => isNot(item['opr-letters'], no_notSpecified_blank),
+  },
+  [FLTR.OPR_VERSIONS]: {
+    name: FLTR.OPR_VERSIONS,
+    title: content.opr_versions,
+    rule: item => isNot(item['opr-versions'], no_notSpecified_blank),
+  },
+  [FLTR.OPR_IDENTITIES_PUBLISHED]: {
+    name: FLTR.OPR_IDENTITIES_PUBLISHED,
+    title: content.opr_identities_published,
+    rule: item => isNot(item['opr-identities-published'], no_notSpecified_blank),
+  },
+  [FLTR.OPR_IDENTITIES_AUTHOR]: {
+    name: FLTR.OPR_IDENTITIES_AUTHOR,
+    title: content.opr_identities_author,
+    rule: item => isNot(item['opr-indenties-author'], no_notSpecified_blank),
+  },
+  [FLTR.OPR_COMMENTS]: {
+    name: FLTR.OPR_COMMENTS,
+    title: content.opr_comments,
+    rule: item => isNot(item['opr-comments'], no_notSpecified_blank),
+  },
+  [FLTR.OPR_INTERACTION]: {
+    name: FLTR.OPR_INTERACTION,
+    title: content.opr_interaction,
+    rule: item => isNot(item['opr-interaction'], no_notSpecified_blank),
+  },
+  [FLTR.COREVIEW_POLICY]: {
+    name: FLTR.COREVIEW_POLICY,
+    title: content.coreview_policy,
+    rule: item => item['coreview-policy'] !== "",
+  },
+  [FLTR.COREVIEW_EMAIL]: {
+    name: FLTR.COREVIEW_EMAIL,
+    title: content.coreview_email,
+    rule: item => item['coreview-email'] === "Yes",
+  },
+  [FLTR.COREVIEW_FORM]: {
+    name: FLTR.COREVIEW_FORM,
+    title: content.coreview_form,
+    rule: item => item['coreview-form'] === "Yes",
+  },
+  [FLTR.COREVIEW_DATABASE]: {
+    name: FLTR.COREVIEW_DATABASE,
+    title: content.coreview_database,
+    rule: item => isNot(item['coreview-database'], no_blank),
+  },
+  [FLTR.PREPRINT_POLICY]: {
+    name: FLTR.PREPRINT_POLICY,
+    title: content.preprint_policy,
+    rule: item => item['preprint-policy'] !== "",
+  },
+  [FLTR.PREPRINT_VERSION_LINK]: {
+    name: FLTR.PREPRINT_VERSION_LINK,
+    title: content.preprint_version_link,
+    rule: item => isNot(item['preprint-url'], no_blank),
+  },
+  [FLTR.PREPRINT_CITATION]: {
+    name: FLTR.PREPRINT_CITATION,
+    title: content.preprint_citation,
+    rule: item => isNot(item['preprint-citation'], no_blank),
+  },
+  [FLTR.PREPRINT_MEDIA]: {
+    name: FLTR.PREPRINT_MEDIA,
+    title: content.preprint_media,
+    rule: item => item['preprint-media'] !== "",
+  },
+  [FLTR.PREPRINT_LICENSING]: {
+    name: FLTR.PREPRINT_LICENSING,
+    title: content.preprint_licensing,
+    rule: item => item['preprint-licensing'] !== "",
+  },
+  [FLTR.PREPRINT_SCOOP]: {
+    name: FLTR.PREPRINT_SCOOP,
+    title: content.preprint_scoop,
+    rule: item => item['preprint-scoop'] !== "",
+  },
+  [FLTR.PREPRINT_REVIEW]: {
+    name: FLTR.PREPRINT_REVIEW,
+    title: content.preprint_review,
+    rule: item => item['preprint-review'] !== "",
+  },
+  [FLTR.ALLOWED_PREPRINT_NO_POLICY]: {
+    name: FLTR.ALLOWED_PREPRINT_NO_POLICY,
+    title: content.allowed_preprint_version_no_policy,
+    rule: item => item['preprint-version'] === 'No preprint policy',
+  },
+  [FLTR.ALLOWED_PREPRINT_NONE]: {
+    name: FLTR.ALLOWED_PREPRINT_NONE,
+    title: content.allowed_preprint_version_none,
+    rule: item => item['preprint-version'] === 'None (preprints not allowed)',
+  },
+  [FLTR.ALLOWED_PREPRINT_FIRST]: {
+    name: FLTR.ALLOWED_PREPRINT_FIRST,
+    title: content.allowed_preprint_version_first,
+    rule: item => item['preprint-version'] === 'First submission only (before peer review)',
+  },
+  [FLTR.ALLOWED_PREPRINT_AFTER]: {
+    name: FLTR.ALLOWED_PREPRINT_AFTER,
+    title: content.allowed_preprint_version_after,
+    rule: item => item['preprint-version'] === 'After peer review (but not final, copyedited version)',
+  },
+  [FLTR.ALLOWED_PREPRINT_ANY]: {
+    name: FLTR.ALLOWED_PREPRINT_ANY,
+    title: content.allowed_preprint_version_any,
+    rule: item => item['preprint-version'] === "Any manuscript version (preprint or postprint, but not necessarily the publisher's version)",
+  },
+  [FLTR.ALLOWED_PREPRINT_UNSURE]: {
+    name: FLTR.ALLOWED_PREPRINT_UNSURE,
+    title: content.allowed_preprint_version_unsure,
+    rule: item => item['preprint-version'] === "Unsure (preprints are allowed, but it's not clear what version)",
+  },
+  [FLTR.ALLOWED_PREPRINT_OTHER]: {
+    name: FLTR.ALLOWED_PREPRINT_OTHER,
+    title: content.allowed_preprint_version_other,
+    rule: item => item['preprint-version'] === 'Other',
+  },
 };
 
-export const secondaryFilterTypes = {
-  allowed_preprint_version: {
-    typeName: 'allowed_preprint_version',
-    content: content.allowed_preprint_version,
-    filters: [
-      filterList[FT.ALLOWED_PREPRINT_NO_POLICY],
-      filterList[FT.ALLOWED_PREPRINT_NONE],
-      filterList[FT.ALLOWED_PREPRINT_FIRST],
-      filterList[FT.ALLOWED_PREPRINT_AFTER],
-      filterList[FT.ALLOWED_PREPRINT_ANY],
-      filterList[FT.ALLOWED_PREPRINT_UNSURE],
-      filterList[FT.ALLOWED_PREPRINT_OTHER],
-    ]
-  }
-};
+export const filterList = Object.values(filterMap);
 
 export const filterTypesList = [
   {
     typeName: 'peerReview',
-    content: content.filter_type_pr,
+    title: content.filter_type_pr,
     filters: [
-      filterList[FT.PR_POLICY],
-      filterList[FT.PR_DATABASE],
-      filterList[FT.PR_TRANSFER_POLICY]
+      filterMap[FLTR.PR_POLICY],
+      filterMap[FLTR.PR_DATABASE],
+      filterMap[FLTR.PR_TRANSFER_POLICY]
     ]
   },
   {
     typeName: 'openPeerReview',
-    content: content.filter_type_opr,
+    title: content.filter_type_opr,
     filters: [
-      filterList[FT.OPR_REPORTS],
-      filterList[FT.OPR_RESPONSES],
-      filterList[FT.OPR_LETTERS],
-      filterList[FT.OPR_VERSIONS],
-      filterList[FT.OPR_IDENTITIES_PUBLISHED],
-      filterList[FT.OPR_IDENTITIES_AUTHOR],
-      filterList[FT.OPR_COMMENTS],
-      filterList[FT.OPR_INTERACTION],
+      filterMap[FLTR.OPR_REPORTS],
+      filterMap[FLTR.OPR_RESPONSES],
+      filterMap[FLTR.OPR_LETTERS],
+      filterMap[FLTR.OPR_VERSIONS],
+      filterMap[FLTR.OPR_IDENTITIES_PUBLISHED],
+      filterMap[FLTR.OPR_IDENTITIES_AUTHOR],
+      filterMap[FLTR.OPR_COMMENTS],
+      filterMap[FLTR.OPR_INTERACTION],
     ]
   },
   {
     typeName: 'coreview',
-    content: content.filter_type_coreview,
+    title: content.filter_type_coreview,
     filters: [
-      filterList[FT.COREVIEW_POLICY],
-      filterList[FT.COREVIEW_EMAIL],
-      filterList[FT.COREVIEW_FORM],
-      filterList[FT.COREVIEW_DATABASE],
+      filterMap[FLTR.COREVIEW_POLICY],
+      filterMap[FLTR.COREVIEW_EMAIL],
+      filterMap[FLTR.COREVIEW_FORM],
+      filterMap[FLTR.COREVIEW_DATABASE],
     ]
   },
   {
     typeName: 'preprint',
-    content: content.filter_type_preprint,
+    title: content.filter_type_preprint,
     filters: [
-      filterList[FT.PREPRINT_POLICY],
-      filterList[FT.PREPRINT_VERSION],
-      filterList[FT.PREPRINT_CITATION],
-      filterList[FT.PREPRINT_MEDIA],
-      filterList[FT.PREPRINT_LICENSING],
-      filterList[FT.PREPRINT_SCOOP],
-      filterList[FT.PREPRINT_REVIEW],
-      secondaryFilterTypes.allowed_preprint_version,
+      filterMap[FLTR.PREPRINT_POLICY],
+      filterMap[FLTR.PREPRINT_VERSION_LINK],
+      filterMap[FLTR.PREPRINT_CITATION],
+      filterMap[FLTR.PREPRINT_MEDIA],
+      filterMap[FLTR.PREPRINT_LICENSING],
+      filterMap[FLTR.PREPRINT_SCOOP],
+      filterMap[FLTR.PREPRINT_REVIEW],
+      {
+        typeName: 'allowedPreprintVersion',
+        title: content.allowed_preprint_version,
+        filters: [
+          filterMap[FLTR.ALLOWED_PREPRINT_NO_POLICY],
+          filterMap[FLTR.ALLOWED_PREPRINT_NONE],
+          filterMap[FLTR.ALLOWED_PREPRINT_FIRST],
+          filterMap[FLTR.ALLOWED_PREPRINT_AFTER],
+          filterMap[FLTR.ALLOWED_PREPRINT_ANY],
+          filterMap[FLTR.ALLOWED_PREPRINT_UNSURE],
+          filterMap[FLTR.ALLOWED_PREPRINT_OTHER],
+        ]
+      },
     ]
   }
 ];
-
-
-const no_blank = ["No", ""];
-const no_notSpecified_blank = ["No", "Not specified", ""];
-
-export const filterRules = {
-  [FT.VERIFIED]: item => item.verified === "Yes",
-  [FT.OA]: item => item.oa === "Yes" || item.oa === "OA",
-  [FT.PR_POLICY]: item => item['pr-policy'] !== "",
-  [FT.PR_DATABASE]: item => isNot(item['pr-database'], no_blank),
-  [FT.PR_TRANSFER_POLICY]: item => isNot(item['pr-transfer-policy'], no_blank),
-  [FT.OPR_REPORTS]: item => isNot(item['opr-reports'], no_notSpecified_blank),
-  [FT.OPR_RESPONSES]: item => isNot(item['opr-responses'], no_notSpecified_blank),
-  [FT.OPR_LETTERS]: item => isNot(item['opr-letters'], no_notSpecified_blank),
-  [FT.OPR_VERSIONS]: item => isNot(item['opr-versions'], no_notSpecified_blank),
-  [FT.OPR_IDENTITIES_PUBLISHED]: item => isNot(item['opr-identities-published'], no_notSpecified_blank),
-  [FT.OPR_IDENTITIES_AUTHOR]: item => isNot(item['opr-indenties-author'], no_notSpecified_blank),
-  [FT.OPR_COMMENTS]: item => isNot(item['opr-comments'], no_notSpecified_blank),
-  [FT.OPR_INTERACTION]: item => isNot(item['opr-interaction'], no_notSpecified_blank),
-  [FT.COREVIEW_POLICY]: item => item['coreview-policy'] !== "",
-  [FT.COREVIEW_EMAIL]: item => item['coreview-email'] === "Yes",
-  [FT.COREVIEW_FORM]: item => item['coreview-form'] === "Yes",
-  [FT.COREVIEW_DATABASE]: item => isNot(item['coreview-database'], no_blank),
-  [FT.PREPRINT_POLICY]: item => item['preprint-policy'] !== "",
-  [FT.PREPRINT_VERSION]: item => isNot(item['preprint-version'], no_blank),
-  [FT.PREPRINT_CITATION]: item => isNot(item['preprint-citation'], no_blank),
-  [FT.PREPRINT_MEDIA]: item => item['preprint-media'] !== "",
-  [FT.PREPRINT_LICENSING]: item => item['preprint-licensing'] !== "",
-  [FT.PREPRINT_SCOOP]: item => item['preprint-scoop'] !== "",
-  [FT.PREPRINT_REVIEW]: item => item['preprint-review'] !== "",
-  [FT.ALLOWED_PREPRINT_NO_POLICY]: item => item['preprint-version'] === 'No preprint policy',
-  [FT.ALLOWED_PREPRINT_NONE]: item => item['preprint-version'] === 'None (preprints not allowed)',
-  [FT.ALLOWED_PREPRINT_FIRST]: item => item['preprint-version'] === 'First submission only (before peer review)',
-  [FT.ALLOWED_PREPRINT_AFTER]: item => item['preprint-version'] === 'After peer review (but not final, copyedited version)',
-  [FT.ALLOWED_PREPRINT_ANY]: item => item['preprint-version'] === 'Any manuscript version (preprint or postprint, but not necessarily the publisher\'s version)',
-  [FT.ALLOWED_PREPRINT_UNSURE]: item => item['preprint-version'] === 'Unsure (preprints are allowed, but it\'s not clear what version)',
-  [FT.ALLOWED_PREPRINT_OTHER]: item => item['preprint-version'] === 'Other',
-};

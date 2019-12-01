@@ -1,6 +1,6 @@
 import React, {useRef, useLayoutEffect} from 'react';
-import {filterList} from '../models/filterModels';
-import {FILTER_TYPES, iconAssetPath} from '../constants';
+import {filterMap, filterList} from '../models/filterModels';
+import {iconAssetPath} from '../constants';
 import {useMergeState} from '../utils';
 
 
@@ -12,7 +12,7 @@ export default function ActiveFilterDisplay ({activeFilters, removeFilter, clear
   });
 
   const buttonRefs = {};
-  Object.values(FILTER_TYPES).forEach(filter => buttonRefs[filter] = useRef(null));
+  filterList.forEach(filter => buttonRefs[filter.name] = useRef(null));
 
   useLayoutEffect(function onFiltersChange_calculateLastVisibleFilter () {
     let yOffset = null;
@@ -52,7 +52,7 @@ export default function ActiveFilterDisplay ({activeFilters, removeFilter, clear
                 onClick={() => removeFilter(index)}
                 ref={buttonRefs[filter]}
               >
-                {filterList[filter].content}
+                {filterMap[filter].title}
                 <img src={`./${iconAssetPath}/Close-Icon-1.svg`}/>
               </button>
 
