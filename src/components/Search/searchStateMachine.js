@@ -1,40 +1,53 @@
 import React, {useEffect, useLayoutEffect} from 'react';
-import {useLayoutEffectOnUpdate, useClickOutside, StateMachine, useMachine} from 'utils';
+import {useLayoutEffectOnUpdate, useClickOutside, ConditionMachine, useConditionMachine} from 'utils';
 import {SEARCH_TYPE} from 'constants';
 
 
-const SearchMachine = new StateMachine({
+const SearchMachine = new ConditionMachine({
   state: (props) => ({
-    state: ['idle'],
+    stateCondition: ['idle'],
     inputValue: props.urlSearchQuery,
     activeIndex: null,
     results: [],
   }),
 
-  transitions: {
+  stateConditions: {
+    all: {
+      selectSearchTerm (searchTerm) {
+        this.props.setSearchTerm(searchTerm, this.props.searchType);
+        this.setState({inputValue: searchTerm});
+        this.dispatch('resetFocus');
+      },
+      updateResults () {
+        const results = this.actions.calculateResults(this.state.inputValue);
+        if(!results.length) {
+          this.dispatch('noResultsDisplayed')
+        } else {
+          this.setState({results})
+        }
+      },
+    },
+
     idle: {
       focus () {
         const {results, inputValue} = this.state;
-        const newState = {state: ['focused']};
+        const newState = {stateCondition: ['focused']};
         if (!results.length && inputValue.length > 2) {
           newState.results = this.actions.calculateResults(inputValue);
         }
         if(results.length || newState.results?.length) {
-          newState.state.push('resultsDisplayed')
+          newState.stateCondition.push('resultsDisplayed')
         }
-        this.setMachineState(newState)
-      },
-      setUrlSearchQuery (searchTerm) {
-        this.actions.selectSearchTerm(searchTerm)
+        this.setState(newState)
       },
     },
 
     focused: {
       resetFocus () {
-        this.setMachineState({state: ['idle'], activeIndex: null})
+        this.setState({stateCondition: ['idle'], activeIndex: null})
       },
       resultsDisplayed () {
-        this.setMachineState({state: ['focused', 'resultsDisplayed']})
+        this.setState({stateCondition: ['focused', 'resultsDisplayed']})
       },
       onInputValueChange (value)  {
         const newState = {
@@ -42,10 +55,8 @@ const SearchMachine = new StateMachine({
           activeIndex: null,
           results: value.length > 2 ? this.actions.calculateResults(value) : [],
         };
-        if(newState.results.length) {
-          this.dispatch('resultsDisplayed')
-        }
-        this.setMachineState(newState)
+        this.dispatch(newState.results.length ? 'resultsDisplayed' : 'noResultsDisplayed');
+        this.setState(newState)
       },
       resetInputValue () {
         this.dispatch('onInputValueChange', '')
@@ -54,39 +65,15 @@ const SearchMachine = new StateMachine({
         e.preventDefault();
         this.dispatch('selectSearchTerm', this.state.inputValue)
       },
-      selectSearchTerm (searchTerm) {
-        this.actions.selectSearchTerm(searchTerm)
-      },
-      setUrlSearchQuery (searchTerm) {
-        this.actions.selectSearchTerm(searchTerm)
-      },
-      calculateResults () {
-        const results = this.actions.calculateResults(this.state.inputValue);
-        if(!results.length) {
-          this.dispatch('noResultsDisplayed')
-        }
-        this.setMachineState({results})
-      },
     },
 
     resultsDisplayed: {
       noResultsDisplayed () {
-        this.setMachineState({state: ['focused'], activeIndex: null, results: []})
-      },
-      onInputValueChange (value) {
-        const newState = {
-          inputValue: value,
-          activeIndex: null,
-          results: value.length > 2 ? this.actions.calculateResults(value) : []
-        };
-        if(!newState.results.length) {
-          this.dispatch('noResultsDisplayed')
-        }
-        this.setMachineState(newState)
+        this.setState({stateCondition: ['focused'], activeIndex: null, results: []})
       },
       onArrowDown (e) {
         e.preventDefault();
-        this.setMachineState({state: ['focused', 'resultsDisplayed', 'keyboardNavigation'], activeIndex: 0})
+        this.setState({stateCondition: ['focused', 'resultsDisplayed', 'keyboardNavigation'], activeIndex: 0})
       },
     },
 
@@ -95,16 +82,16 @@ const SearchMachine = new StateMachine({
         const {activeIndex, results} = this.state;
         if(activeIndex + 1 !== results.length) {
           e.preventDefault();
-          this.setMachineState({activeIndex: activeIndex + 1})
+          this.setState({activeIndex: activeIndex + 1})
         }
       },
       onArrowUp (e) {
         const {activeIndex} = this.state;
         e.preventDefault();
         if(activeIndex === 0) {
-          this.setMachineState({state: ['focused', 'resultsDisplayed'], activeIndex: null})
+          this.setState({stateCondition: ['focused', 'resultsDisplayed'], activeIndex: null})
         } else {
-          this.setMachineState({activeIndex: activeIndex - 1})
+          this.setState({activeIndex: activeIndex - 1})
         }
       },
       onEnter (e) {
@@ -143,18 +130,13 @@ const SearchMachine = new StateMachine({
       });
       return [...titles, ...publishers]
     },
-    selectSearchTerm (searchTerm) {
-      this.props.setSearchTerm(searchTerm, this.props.searchType);
-      this.setMachineState({inputValue: searchTerm});
-      this.dispatch('resetFocus');
-    },
   }
 });
 
 export default function useSearchMachine ({props, refs}) {
-  return useMachine(SearchMachine, {props, refs}, ({state, inputValue, activeIndex}, dispatch) => {
+  return useConditionMachine(SearchMachine, {props, refs}, ({stateCondition, inputValue, activeIndex}, dispatch) => {
     const {urlSearchQuery, searchType} = props;
-    const focused = state.includes('focused');
+    const focused = stateCondition.includes('focused');
 
     useClickOutside({
       container: refs.searchContainerNode,
@@ -185,11 +167,11 @@ export default function useSearchMachine ({props, refs}) {
     }, [focused]);
 
     useLayoutEffectOnUpdate(function onUrlSearchQueryChange_updateSearchTerm () {
-      dispatch('setUrlSearchQuery', urlSearchQuery)
+      dispatch('selectSearchTerm', urlSearchQuery)
     }, [urlSearchQuery]);
 
     useEffect(function onSearchTypeChange_recalculateResults () {
-      dispatch('calculateResults')
+      dispatch('updateResults')
     }, [searchType])
   })
 }

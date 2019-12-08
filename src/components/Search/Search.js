@@ -14,7 +14,7 @@ export default function Search ({placeholder, setSearchTerm, data, urlSearchQuer
 
   const [searchType, setSearchType] = useState(SEARCH_TYPE.ALL);
 
-  const [{state, inputValue, activeIndex, results}, dispatch] =
+  const [{stateCondition, inputValue, activeIndex, results}, dispatch] =
     useSearchMachine({
       props: {data, setSearchTerm, urlSearchQuery, searchType},
       refs
@@ -52,7 +52,7 @@ export default function Search ({placeholder, setSearchTerm, data, urlSearchQuer
 
       <div className='search-type-select-text'>{searchType}</div>
 
-      {state.includes('resultsDisplayed') &&
+      {stateCondition.includes('resultsDisplayed') &&
         <div className="search-suggestions" ref={refs.searchSuggestionsNode}>
           <ul>
             {results.map( (item, index) =>

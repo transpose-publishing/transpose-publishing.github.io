@@ -1,4 +1,4 @@
-export {StateMachine, useMachine} from "./stateMachine";
+export {ConditionMachine, useConditionMachine} from "./stateMachine";
 
 export {
   //custom hooks

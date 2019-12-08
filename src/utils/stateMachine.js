@@ -1,26 +1,30 @@
 import {useMemo} from "react";
 import {useMergeState} from "./utils";
 
-export function StateMachine (machine) {
+/* ConditionMachine and useConditionMachine create a state machine that defines behavior based on the condition of the
+host component, by defining methods organized by stateCondition that only run when the component is in the relevant
+stateCondition. It enforces this restriction by exposing the dispatch method, which is the only state update method
+the component should call */
+export function ConditionMachine (machine) {
   Object.assign(this, machine);
+
   this.dispatch = (actionName, ...payload) => {
     let actions = {};
-    if(Array.isArray(this.state.state)) {
-      this.state.state.forEach(state => Object.assign(actions, this.transitions[state]))
-    } else {
-      Object.assign(actions, this.transitions[this.state.state]);
+    if(this.stateConditions.all) {
+      Object.assign(actions, this.stateConditions.all)
     }
-
+    if(Array.isArray(this.state.stateCondition)) {
+      this.state.stateCondition.forEach(state => Object.assign(actions, this.stateConditions[state]))
+    } else {
+      Object.assign(actions, this.stateConditions[this.state.stateCondition]);
+    }
     const action = actions[actionName];
 
     if (action) {
       action.apply(this, payload)
     }
   };
-  this.setMachineState = (newState) => {
-    this.state = {...this.state, ...newState};
-    this.setState(newState)
-  };
+
   if(this.actions) {
     for(const action in this.actions) {
       this.actions[action] = this.actions[action].bind(this);
@@ -28,27 +32,22 @@ export function StateMachine (machine) {
   }
 }
 
-export function useMachine (Machine, {props, refs}, effects) {
-  const [stateValues, setState] = useMergeState(
+export function useConditionMachine (Machine, {props, refs}, effects) {
+  const [machineState, setMachineState] = useMergeState(
     typeof Machine.state === 'function'
       ? Machine.state(props)
       : Machine.state
   );
 
+  Machine.state = machineState;
+  Machine.setState = setMachineState;
   Machine.props = props;
-  const {dispatch} = useMemo(() => {
-    if(typeof Machine.state === 'function') {
-      Machine.state = Machine.state(props)
-    }
-    Machine.setState = setState;
-    Machine.refs = refs;
-    return Machine;
-  }, []);
+  Machine.refs = refs;
 
   let results;
   if(effects) {
-    results = effects(stateValues, dispatch)
+    results = effects(machineState, Machine.dispatch)
   }
 
-  return [stateValues, dispatch, results]
+  return [machineState, Machine.dispatch, results]
 }
