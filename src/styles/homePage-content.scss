@@ -12,6 +12,13 @@
   flex-direction: column;
   align-items: center;
 
+  .results-list-total {
+    margin-bottom: 16px;
+    font-size: 14px;
+    width: 100%;
+    padding-left: 48px;
+  }
+
   .result-item {
     cursor: pointer;
     display: flex;

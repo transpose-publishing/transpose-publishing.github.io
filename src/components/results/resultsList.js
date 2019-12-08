@@ -14,8 +14,8 @@ export default function ResultsList ({loading, data, searchTerm, searchType, sor
     setPage(0)
   }, [searchTerm, activeFilters]);
 
-  const {resultsList, totalPages} = !!data.length ? generateFilteredList()
-    : {resultsList: null, totalPages: 0};
+  const {resultsList, totalPages, searchTotal} = !!data.length ? generateFilteredList()
+    : {resultsList: null, totalPages: 0, searchTotal: 0};
 
   function filterItem (item) {
     for (const filter of activeFilters) {
@@ -59,17 +59,18 @@ export default function ResultsList ({loading, data, searchTerm, searchType, sor
 
     const totalPages = filteredData.length ? Math.ceil(filteredData.length / itemsPerPage) : 0;
     const pagedList = filteredData.slice((page * itemsPerPage), ((page + 1) * itemsPerPage));
-    return {resultsList: pagedList, totalPages}
+    return {resultsList: pagedList, totalPages, searchTotal: filteredData.length}
   }
 
   return (
     <div className="results-list">
       {loading && <div>{loading}</div>}
       {!loading && resultsList &&
-      <Fragment>
-        {resultsList.map((item, index) => <Result key={item.uid} item={item} expanded={expandFirstItem && index === 0}/>)}
-        <Paging page={page} totalPages={totalPages} setPage={setPage}/>
-      </Fragment>}
+        <Fragment>
+          <p className='results-list-total'><b>{searchTotal}</b> search results</p>
+          {resultsList.map((item, index) => <Result key={item.uid} item={item} expanded={expandFirstItem && index === 0}/>)}
+          <Paging page={page} totalPages={totalPages} setPage={setPage}/>
+        </Fragment>}
     </div>
   )
 }
