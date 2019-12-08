@@ -1,12 +1,12 @@
 import React, {Fragment, useState} from 'react';
 import CompareCheckbox from '../compareCheckbox';
 import {iconAssetPath} from "../../constants";
-import {ContentContext} from '../..';
 import PeerReviewDetails from './peerReviewDetails';
 import OpenPeerReviewDetails from './openPeerReviewDetails';
 import CoreviewDetails from './coreviewDetails';
 import PreprintsDetails from './preprintsDetails';
-import {getContent, useLayoutEffectOnUpdate} from '../../utils';
+import UnverifiedIcon from "./UnverifiedIcon";
+import {getContent, useLayoutEffectOnUpdate} from 'utils';
 
 const {content} = getContent();
 const timeouts = {};
@@ -45,7 +45,9 @@ export default function Result ({item, expanded}) {
     <Fragment>
       <div  className={`result-item ${showDetails && !animationClass_collapsed ? 'expanded' : ''}`} onClick={toggleShowDetails}>
         <div className="result-section-verified">
-          {item.verified === "Yes" && <img src={`./${iconAssetPath}/Verified-Icon-1.svg`}/>}
+          {item.verified === "Yes"
+            ? <img className='verified-icon' src={`./${iconAssetPath}/Verified-Icon-1.svg`}/>
+            : <UnverifiedIcon key={showDetails && animationClass_collapsed}/>}
         </div>
 
         <div className="result-section-title">{item.title}</div>

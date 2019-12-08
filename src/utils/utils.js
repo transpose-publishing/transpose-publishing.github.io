@@ -200,7 +200,7 @@ export function parseInlineLink (str, in_line_link) {
   }
   const linkIndex = str.indexOf(text);
   if(linkIndex === -1) return str;
-  const linkElement = <a href={link} target="_blank">{text}</a>;
+  const linkElement = <a key={0} href={link} target="_blank">{text}</a>;
   return [str.substring(0, linkIndex), linkElement, str.substring(linkIndex + text.length)]
 }
 

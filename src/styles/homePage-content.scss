@@ -25,11 +25,49 @@
     font-size: 12px;
 
     .result-section-verified {
+      position: relative;
       width: 24px;
-      img {
+
+      .verified-icon {
         width: 18px;
         margin-top: -2px;
       }
+
+      .unverified-icon {
+        width: 16px;
+        margin-left: 1px;
+      }
+
+      .hover-area {
+        position: absolute;
+        top: -10px;
+        padding-left: 23px;
+        z-index: 99;
+
+        div {
+          width: 464px;
+          border-radius: 4px;
+          background-color: white;
+          box-shadow: 0 3px 6px 0 #00000080;
+          padding: 16px;
+          cursor: default;
+
+          h3 {
+            font-size: 12px;
+            font-weight: bold;
+          }
+
+          p {
+            margin-top: 10px;
+
+            a {
+              color: $color-teal;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
     }
     .result-section-title {
       width: 336px;

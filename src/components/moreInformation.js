@@ -41,7 +41,7 @@ export default function MoreInformation ({anchor}) {
 
           <div>
             {editorial_policies.map( card =>
-              <div className="info-card">
+              <div className="info-card" id={card.anchor_id}>
                 <h4>{card.title}</h4>
                 <p>{renderContent(card.bullets || card.description)}</p>
               </div>)}
@@ -53,7 +53,7 @@ export default function MoreInformation ({anchor}) {
 
           <div>
             {faq.map( card =>
-              <div className="info-card">
+              <div className="info-card" id={card.anchor_id}>
                 <h4>{card.title}</h4>
                 <p>{renderContent(card.description)}</p>
               </div>)}
