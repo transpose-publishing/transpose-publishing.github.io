@@ -16,7 +16,7 @@ export default function PreprintsDetails ({item}) {
         <DetailsItem label={content.preprint_licensing_details} text={item['preprint-licensing']}/>
         <DetailsItem label={content.preprint_version_details} text={item['preprint-version']}/>
 
-        <img className='preprint-icon' src={`./${iconAssetPath}/_2-Links_citations.svg`} />
+        <img className='preprint-icon' src={`./${iconAssetPath}/Links_citations.svg`} />
         <div className="details-content-type-label">{content['preprint_label_link_citations']}</div>
         <DetailsItem label={content.preprint_link_details} text={item['preprint-link']}/>
         <DetailsItem label={content.preprint_citation_details} text={item['preprint-citation']}/>
