@@ -1,4 +1,5 @@
 // import "core-js";
+import 'utils/polyfills';
 import './styles/index.scss';
 
 import React, {useEffect, useState} from 'react';

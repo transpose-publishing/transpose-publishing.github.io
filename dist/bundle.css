@@ -428,7 +428,7 @@ button {
     justify-content: center;
     align-items: center; }
   .search-type-select option {
-    font-size: initial; }
+    font-size: 16px; }
 
 .search-suggestions {
   position: absolute;

@@ -19,6 +19,7 @@ const SearchMachine = new ConditionMachine({
         this.dispatch('resetFocus');
       },
       updateResults () {
+        if(this.state.inputValue.length < 3) return;
         const results = this.actions.calculateResults(this.state.inputValue);
         if(!results.length) {
           this.dispatch('noResultsDisplayed')

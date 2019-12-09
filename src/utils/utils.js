@@ -94,6 +94,9 @@ export class ErrorBoundary extends React.Component {
     super();
     this.state = {hasError: false}
   }
+  componentDidCatch(e) {
+    console.error(e)
+  }
   static getDerivedStateFromError (error) {
     return {hasError: true}
   };

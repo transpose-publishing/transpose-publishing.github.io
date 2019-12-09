@@ -81,7 +81,7 @@ window._content.glossary = [
     cards: [
       {
         title: 'Preprint',
-        description: 'A preprint is a version of a research manuscript that has not yet been published by a journal. Preprints are normally submitted to preprint servers before they are peer-reviewed and published as a way to help speed up the dissemination of scientific discoveries and enable the community to provide feedback that might improve the manuscript before publication. '
+        description: 'A preprint is a version of a research manuscript that has not yet been published by a journal. Preprints are normally submitted to preprint servers before they are peer-reviewed and published as a way to help speed up the dissemination of scientific discoveries and enable the community to provide feedback that might improve the manuscript before publication.'
       },
       {
         title: 'Article links to preprint',
@@ -97,11 +97,11 @@ window._content.glossary = [
       },
       {
         title: 'Scoop protection',
-        description: 'Scoop protection was first introduced to protect authors of manuscripts that were “scooped” during the peer review process. With scoop protection, the pending editorial decision for any submitted manuscript would not be affected if a competing paper was published after the submitted manuscript’s submission date. Some journals have extended this protection from the date of preprint posting, sometimes conditional on submitting the preprinted work to the journal within a set period of time. '
+        description: 'Scoop protection was first introduced to protect authors of manuscripts that were “scooped” during the peer review process. With scoop protection, the pending editorial decision for any submitted manuscript would not be affected if a competing paper was published after the submitted manuscript’s submission date. Some journals have extended this protection from the date of preprint posting, sometimes conditional on submitting the preprinted work to the journal within a set period of time.'
       },
       {
         title: 'Preprint community review',
-        description: 'Peer review of preprints by the scientific community. This can occur on dedicated reviewing sites or on the preprint server itself. Some journal editors consider these reviews to supplement the peer review process and further inform their editorial decisions.  '
+        description: 'Peer review of preprints by the scientific community. This can occur on dedicated reviewing sites or on the preprint server itself. Some journal editors consider these reviews to supplement the peer review process and further inform their editorial decisions.'
       },
     ]
   }
@@ -183,7 +183,7 @@ window._content.editorial_policies = [
   {
     title: 'Reporting issues with records',
     description: {
-      text: 'If you find a problem with a record, please let us know by pressing the “report” button. You may also email transpose-publishing@googlegroups.com  with any concerns. ',
+      text: 'If you find a problem with a record, please let us know by pressing the “report” button. You may also email transpose-publishing@googlegroups.com  with any concerns.',
       in_line_link: {
         text: 'transpose-publishing@googlegroups.com',
         link: 'transpose-publishing@googlegroups.com'
