@@ -1,9 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: './src/index.js',
-  devtool: 'inline-source-map',
+  //devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -21,11 +22,19 @@ module.exports = {
       }
     ]
   },
+  optimization: {
+    minimize: true
+  },
   plugins: [
+    new webpack.DefinePlugin({ //<--key to reduce React's size
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
     new MiniCssExtractPlugin({
       filename: "bundle.css",
       chunkFilename: "bundle.css"
-    })
+    }),
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx', '.css', '.scss'],
