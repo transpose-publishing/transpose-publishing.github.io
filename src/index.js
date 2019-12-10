@@ -1,4 +1,3 @@
-// import "core-js";
 import 'utils/polyfills';
 import './styles/index.scss';
 
