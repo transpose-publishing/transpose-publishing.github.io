@@ -1,4 +1,4 @@
-import {useMergeState} from "./utils";
+import {useMergeState} from "./customHooks";
 
 /* ConditionMachine and useConditionMachine create a state machine that defines behavior based on the condition of the
 host component, by defining methods organized by stateCondition that only run when the component is in the relevant

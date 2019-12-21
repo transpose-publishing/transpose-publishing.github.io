@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment} from 'react';
 import CompareCheckbox from '../compareCheckbox';
 import {iconAssetPath} from "../../constants";
 import PeerReviewDetails from './peerReviewDetails';
@@ -6,48 +6,20 @@ import OpenPeerReviewDetails from './openPeerReviewDetails';
 import CoreviewDetails from './coreviewDetails';
 import PreprintsDetails from './preprintsDetails';
 import UnverifiedIcon from "./UnverifiedIcon";
-import {getContent, useLayoutEffectOnUpdate} from 'utils';
+import {getContent, useFadeInOut} from 'utils';
 
 const {content} = getContent();
-const timeouts = {};
 
 export default function Result ({item, expanded}) {
-  const [showDetails, setShowDetails] = useState(expanded);
-  const [animationClass_collapsed, setCollapsedClass] = useState(!expanded);
-
-  useLayoutEffectOnUpdate(function onExpandedChange_setExpandedState () {
-    setCollapsedClass(!expanded);
-    setShowDetails(expanded);
-  }, [expanded]);
-
-  function toggleShowDetails () {
-    if(!showDetails) {
-      setShowDetails(true);
-      setTimeout(() => {
-        setCollapsedClass(false)
-      })
-    }
-    if(showDetails) {
-      if(timeouts[item.uid]) {
-        clearTimeout(timeouts[item.uid]);
-        delete timeouts[item.uid]
-      }
-      setCollapsedClass(!animationClass_collapsed);
-      if(!animationClass_collapsed) {
-        timeouts[item.uid] = setTimeout(() => {
-          setShowDetails(false)
-        }, 600)
-      }
-    }
-  }
+  const [showDetails, animationClass, toggleShowDetails] = useFadeInOut({controlledState: expanded, fadeTime: 600});
 
   return (
     <Fragment>
-      <div  className={`result-item ${showDetails && !animationClass_collapsed ? 'expanded' : ''}`} onClick={toggleShowDetails}>
+      <div  className={`result-item ${animationClass ? 'expanded' : ''}`} onClick={toggleShowDetails}>
         <div className="result-section-verified">
           {item.verified === "Yes"
             ? <img className='verified-icon' src={`./${iconAssetPath}/Verified-Icon-1.svg`}/>
-            : <UnverifiedIcon key={showDetails && animationClass_collapsed}/>}
+            : <UnverifiedIcon key={showDetails && animationClass}/>}
         </div>
 
         <div className="result-section-title">{item.title}</div>
@@ -69,7 +41,7 @@ export default function Result ({item, expanded}) {
       </div>
 
       {showDetails &&
-      <div className={`result-details ${animationClass_collapsed ? 'collapsed' : ''}`}>
+      <div className={`result-details ${animationClass ? 'expanded' : 'collapsed'}`}>
 
           <div className="compare-checkbox-bar">
             <CompareCheckbox item={item} checkboxLabel={content.compare_checkbox_label}/>

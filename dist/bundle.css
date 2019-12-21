@@ -553,12 +553,13 @@ button {
       background-color: #C7C7C7;
       box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5); }
   .results-list .result-details {
-    transition: max-height 0.5s linear;
-    max-height: 1200px;
     overflow: hidden;
     width: calc(100% - 32px);
     padding-left: 16px;
     padding-right: 16px; }
+    .results-list .result-details.expanded {
+      transition: max-height 0.5s linear;
+      max-height: 1200px; }
     .results-list .result-details.collapsed {
       transition: max-height 0.2s linear;
       max-height: 0; }

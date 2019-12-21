@@ -1,14 +1,15 @@
 export {ConditionMachine, useConditionMachine} from "./stateMachine";
-
 export {
-  //custom hooks
   useMergeState,
   useClickOutside,
   usePersistedState,
   useArrayState,
   useEffectOnUpdate,
   useLayoutEffectOnUpdate,
+  useFadeInOut
+} from './customHooks';
 
+export {
   //hoc
   ErrorBoundary,
 
