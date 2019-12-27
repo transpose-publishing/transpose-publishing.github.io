@@ -9,23 +9,24 @@ const SearchMachine = new ConditionMachine({
     inputValue: props.urlSearchQuery,
     activeIndex: null,
     results: [],
+    searchType: SEARCH_TYPE.ALL
   }),
 
   stateConditions: {
     all: {
       selectSearchTerm (searchTerm) {
-        this.props.setSearchTerm(searchTerm, this.props.searchType);
+        this.props.setSearchTerm(searchTerm, this.state.searchType);
         this.setState({inputValue: searchTerm});
         this.dispatch('resetFocus');
       },
-      updateResults () {
-        if(this.state.inputValue.length < 3) return;
-        const results = this.actions.calculateResults(this.state.inputValue);
-        if(!results.length) {
-          this.dispatch('noResultsDisplayed')
-        } else {
-          this.setState({results})
+      setSearchType (searchType) {
+        const {inputValue} = this.state;
+        const newState = {searchType};
+        if(inputValue.length > 2) {
+          newState.results = this.actions.calculateResults(inputValue, searchType);
+          this.dispatch(newState.results.length ? 'resultsDisplayed' : 'noResultsDisplayed')
         }
+        this.setState(newState);
       },
     },
 
@@ -48,7 +49,7 @@ const SearchMachine = new ConditionMachine({
         this.setState({stateCondition: ['idle'], activeIndex: null})
       },
       resultsDisplayed () {
-        this.setState({stateCondition: ['focused', 'resultsDisplayed']})
+        this.setState({stateCondition: ['focused', 'resultsDisplayed'], activeIndex: null})
       },
       onInputValueChange (value)  {
         const newState = {
@@ -104,8 +105,8 @@ const SearchMachine = new ConditionMachine({
   },
 
   actions: {
-    calculateResults (inputValue) {
-      const {data, searchType} = this.props;
+    calculateResults (inputValue, searchType = this.state.searchType) {
+      const {data} = this.props;
       if(!data) return [];
       const publishers = [];
       const titles = [];
@@ -135,8 +136,9 @@ const SearchMachine = new ConditionMachine({
 });
 
 export default function useSearchMachine ({props, refs}) {
-  return useConditionMachine(SearchMachine, {props, refs}, ({stateCondition, inputValue, activeIndex}, dispatch) => {
-    const {urlSearchQuery, searchType} = props;
+  return useConditionMachine(SearchMachine, {props, refs}, (state, dispatch) => {
+    const {stateCondition, activeIndex, searchType} = state;
+    const {urlSearchQuery} = props;
     const focused = stateCondition.includes('focused');
 
     useClickOutside({
@@ -171,8 +173,10 @@ export default function useSearchMachine ({props, refs}) {
       dispatch('selectSearchTerm', urlSearchQuery)
     }, [urlSearchQuery]);
 
-    useEffect(function onSearchTypeChange_recalculateResults () {
-      dispatch('updateResults')
+    useEffect(function onSearchTypeChange_focusInput () {
+      if(stateCondition.includes('focused')) {
+        refs.searchInputNode.current.focus()
+      }
     }, [searchType])
   })
 }

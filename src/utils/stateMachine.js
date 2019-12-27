@@ -1,9 +1,20 @@
 import {useMergeState} from "./customHooks";
 
-/* ConditionMachine and useConditionMachine create a state machine that defines behavior based on the condition of the
-host component, by defining methods organized by stateCondition that only run when the component is in the relevant
+/*
+ConditionMachine and useConditionMachine create a state machine that defines behavior based on the condition of the
+host component by defining methods organized by stateCondition that only run when the component is in the relevant
 stateCondition. It enforces this restriction by exposing the dispatch method, which is the only state update method
-the component should call */
+the component should call to mutate the ConditionMachine state.
+
+For ConditionMachines that use an array of stateConditions where multiple conditions with the same methods can be
+active at the same time (see example below), the overriding method is the one associated with the condition
+closest to the end of the array.
+
+Example: in searchStateMachine.js, onEnter method is available in both focused and keyboardNavigation stateConditions.
+When the search is both in focused and keyboardNavigation states, since the stateConditions array looks like:
+['focused', 'resultsDisplayed', 'keyboardNavigation'], the onEnter defined under keyboardNavigation is the overriding
+method because keyboardNavigation is the later condition in the array.
+*/
 export function ConditionMachine (machine) {
   Object.assign(this, machine);
 
