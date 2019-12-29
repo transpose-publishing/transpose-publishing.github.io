@@ -1,5 +1,6 @@
 import React from "react";
-import {SORT_ORDER} from 'constants';
+import {SORT_FIELDS, SORT_ORDER} from 'constants';
+const {DATE} = SORT_FIELDS;
 const {ASC} = SORT_ORDER;
 
 const {content} = getContent();
@@ -42,8 +43,12 @@ prepareDomForModal.cleanup = function prepareDomForModal_cleanup () {
 
 export function sortGenerator (field, order = ASC, {ignoreBlanks, secondaryField, secondaryOrder} = {}) {
   return function sortFunction (a, b){
-    const aValue = a[field].toLowerCase();
-    const bValue = b[field].toLowerCase();
+    let aValue = a[field].toLowerCase();
+    let bValue = b[field].toLowerCase();
+    if(field === DATE) {
+      aValue = new Date(aValue);
+      bValue = new Date(bValue);
+    }
     if(ignoreBlanks) {
       if(aValue === "" && bValue === "" && secondaryField) {
         const secondaryFieldAValue = a[secondaryField].toLowerCase();
@@ -57,8 +62,12 @@ export function sortGenerator (field, order = ASC, {ignoreBlanks, secondaryField
     if(aValue < bValue) { return order === ASC ? -1 : 1; }
     if(aValue > bValue) { return order === ASC ? 1 : -1; }
     if(secondaryField) {
-      const secondaryFieldAValue = a[secondaryField].toLowerCase();
-      const secondaryFieldBValue = b[secondaryField].toLowerCase();
+      let secondaryFieldAValue = a[secondaryField].toLowerCase();
+      let secondaryFieldBValue = b[secondaryField].toLowerCase();
+      if(secondaryField === DATE) {
+        secondaryFieldAValue = new Date(secondaryFieldAValue);
+        secondaryFieldBValue = new Date(secondaryFieldBValue);
+      }
       if(secondaryFieldAValue < secondaryFieldBValue) { return secondaryOrder === ASC ? -1 : 1; }
       if(secondaryFieldAValue > secondaryFieldBValue) { return secondaryOrder === ASC ? 1 : -1; }
     }
