@@ -6,7 +6,7 @@ const {about_page} = getContent();
 
 export default function AboutPage () {
   useEffect(function onMount_startTwitterFeed () {
-    twttr.widgets.load(document.getElementById('twitter-timeline'));
+    window.twttr?.widgets.load(document.getElementById('twitter-timeline'));
   }, []);
 
   const primaryDescription = about_page.find(node => node.class === 'primary-description');
@@ -23,15 +23,17 @@ export default function AboutPage () {
           </Fragment>}
 
         <div className='about-page-container'>
-          <div className='twitter-feed'>
-            <a
-              className="twitter-timeline"
-              data-theme="light"
-              data-link-color="#2B7BB9"
-              href="https://twitter.com/TRANSPOSEsci?ref_src=twsrc%5Etfw">
-              Tweets by TRANSPOSEsci
-            </a>
-          </div>
+          {window.twttr && (
+            <div className='twitter-feed'>
+              <a
+                className="twitter-timeline"
+                data-theme="light"
+                data-link-color="#2B7BB9"
+                href="https://twitter.com/TRANSPOSEsci?ref_src=twsrc%5Etfw">
+                Tweets by TRANSPOSEsci
+              </a>
+            </div>
+          )}
 
           {about_page.map(aboutNode => {
             if(aboutNode.class === 'primary-description') return null;
