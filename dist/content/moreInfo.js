@@ -159,9 +159,7 @@ window._content.editorial_policies = [
             text:'A spreadsheet to enter many journals at once (contact transpose-publishing@googlegroups.com), which permits more flexibility in differentiating policies but is less user-friendly.',
             in_line_link: {
               text: 'transpose-publishing@googlegroups.com ',
-              link: 'transpose-publishing@googlegroups.com ',
-              text: 'spreadsheet ',
-              link: 'google.com '
+              link: 'transpose-publishing@googlegroups.com '
             }
           }
         ]
