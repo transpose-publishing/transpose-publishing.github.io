@@ -98,4 +98,4 @@ window._content.about_page = [
      '- Royal Society',
      ]
  }
-]
+];
