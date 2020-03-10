@@ -24,7 +24,7 @@ window._content.about_page = [
      {
        text: 'See the recent preprint of our landscape study on the availability of journal policies across disciplines (bioRxiv preprint)',
        link: 'https://www.biorxiv.org/content/10.1101/2020.01.24.918995v1'
-     },
+     }
    ]
  },
 
@@ -53,8 +53,8 @@ window._content.about_page = [
        in_line_link: {
           text: 'transpose-publishing@googlegroups.com',
           link: 'transpose-publishing@googlegroups.com'
-     },
-}
+     }
+},
 
  {
    title: 'Current Contributors',
@@ -67,15 +67,17 @@ window._content.about_page = [
      '- Tony Ross-Hellauer, TU Graz & Know-Center, Austria',
      '- Sarah Stryeck, TU Graz, Austria',
    ]
-}
- {
+},
+ 
+{
    title: 'Past Contributors',
    content: [
      '- Cameron Blandford, 221B, USA',
      '- Benedikt Fecher, Humboldt Institute for Internet and Society, Germany',
      '- Daniel Himmelstein, UPenn, USA',
    ]
-}
+},
+ 
 {
      title: 'Participating publishers',
      content: [
