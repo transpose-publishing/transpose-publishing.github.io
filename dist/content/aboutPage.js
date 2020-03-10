@@ -5,12 +5,12 @@ text, links or in_line_links
 */
 
 window._content.about_page = [
- {
+  {
    class: 'primary-description',
    content: 'Transpose (TRANsparency in Scholarly Publishing for Open Scholarship Evolution) is an initiative to build a database of journal policies. We’re focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and publishers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.'
- },
+  },
   
- {
+  {
    title: 'More about Transpose',
    content: [
      {
@@ -31,7 +31,7 @@ window._content.about_page = [
  {
    title: 'Get involved',
      {
-       text:'Update existing journal information: Click on ‘Edit Report’ link and fill in the form',
+       text:'Update existing journal information: In existing journal record, click on ‘Edit Report’ link and fill in the form',
      },
      {
       text: 'Add policies for one journal, or policies that are identical across several journals'
@@ -42,7 +42,7 @@ window._content.about_page = [
       in_line_link: {
          text: 'transpose-publishing@googlegroups.com',
          link: 'transpose-publishing@googlegroups.com'
-      }
+       }
      },
      {
        text: 'Follow us on Twitter',
@@ -53,6 +53,7 @@ window._content.about_page = [
        in_line_link: {
           text: 'transpose-publishing@googlegroups.com',
           link: 'transpose-publishing@googlegroups.com'
+       }
      }
 },
 
@@ -67,7 +68,7 @@ window._content.about_page = [
      '- Tony Ross-Hellauer, TU Graz & Know-Center, Austria',
      '- Sarah Stryeck, TU Graz, Austria',
    ]
-},
+ },
  
 {
    title: 'Past Contributors',
@@ -99,5 +100,5 @@ window._content.about_page = [
      '- PLOS',
      '- Royal Society',
      ]
- }
+  }
 ];
