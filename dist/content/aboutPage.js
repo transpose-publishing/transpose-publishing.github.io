@@ -13,28 +13,29 @@ window._content.about_page = [
   {
    title: 'More about Transpose',
    content: [
-     {
+      {
        text: 'View database statistics',
        link: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSU4cmOwS2NdM16S0h8F6A3FSPs1fp2Eng9HPXeosfLsL_lsXRtEC8odQW5GJTfz7fmVbl2f2YJ2_Sd/pubhtml?gid=146126401&single=true'
-     },
-     {
+      },
+      {
        text: 'See the poster of our landscape study on the availability of journal policies across disciplines (CSE2019 Poster)',
        link: 'https://zenodo.org/record/3237242'
-     },
-     {
+      },
+      {
        text: 'See the recent preprint of our landscape study on the availability of journal policies across disciplines (bioRxiv preprint)',
        link: 'https://www.biorxiv.org/content/10.1101/2020.01.24.918995v1'
-     }
-   ]
- },
+      }
+    ]
+  },
 
- {
+  {
    title: 'Get involved',
+    content: [
      {
-       text:'Update existing journal information: In existing journal record, click on ‘Edit Report’ link and fill in the form',
+      text:'Update existing journal information: In existing journal record, click on ‘Edit Report’ link and fill in the form',
      },
      {
-      text: 'Add policies for one journal, or policies that are identical across several journals'
+      text: 'Add policies for one journal, or policies that are identical across several journals',
       link: 'https://docs.google.com/forms/d/e/1FAIpQLSf2VsvytNSGrYLwKmsdN3SYAIYSHo71A1-RppjlyIuLcIKepw/viewform'
      },
      {
@@ -54,10 +55,11 @@ window._content.about_page = [
           text: 'transpose-publishing@googlegroups.com',
           link: 'transpose-publishing@googlegroups.com'
        }
-     }
-},
+      }
+    ]
+  },
 
- {
+  {
    title: 'Current Contributors',
    content: [
      '- Samantha Hindle, bioRxiv and PREreview, USA',
@@ -67,19 +69,19 @@ window._content.about_page = [
      '- Naomi Penfold, ASAPbio, USA',
      '- Tony Ross-Hellauer, TU Graz & Know-Center, Austria',
      '- Sarah Stryeck, TU Graz, Austria',
-   ]
- },
+    ]
+  },
  
-{
+  {
    title: 'Past Contributors',
    content: [
      '- Cameron Blandford, 221B, USA',
      '- Benedikt Fecher, Humboldt Institute for Internet and Society, Germany',
      '- Daniel Himmelstein, UPenn, USA',
-   ]
-},
+    ]
+  },
  
-{
+  {
      title: 'Participating publishers',
      content: [
      'We thank the following publishers for providing data about multiple journals.',
@@ -99,6 +101,6 @@ window._content.about_page = [
      '- Pensoft',
      '- PLOS',
      '- Royal Society',
-     ]
+    ]
   }
 ];
