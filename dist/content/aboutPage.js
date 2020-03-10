@@ -34,14 +34,15 @@ window._content.about_page = [
        text:'Update existing journal information: Click on ‘Edit Report’ link and fill in the form',
      },
      {
-      text: 'Add new single journal entry'
+      text: 'Add policies for one journal, or policies that are identical across several journals'
       link: 'https://docs.google.com/forms/d/e/1FAIpQLSf2VsvytNSGrYLwKmsdN3SYAIYSHo71A1-RppjlyIuLcIKepw/viewform'
      },
      {
-      text: 'To add a new multiple journal entry, please contact transpose-publishing@googlegroups.com',
+      text: 'To add multiple journals that differ in their policies, please contact transpose-publishing@googlegroups.com',
       in_line_link: {
          text: 'transpose-publishing@googlegroups.com',
          link: 'transpose-publishing@googlegroups.com'
+      }
      },
      {
        text: 'Follow us on Twitter',
@@ -97,3 +98,4 @@ window._content.about_page = [
      '- Royal Society',
      ]
  }
+]
