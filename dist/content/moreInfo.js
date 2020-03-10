@@ -161,6 +161,10 @@ window._content.editorial_policies = [
               text: 'transpose-publishing@googlegroups.com ',
               link: 'transpose-publishing@googlegroups.com '
             }
+            in_line_link: {
+              text: 'spreadsheet ',
+              link: 'google.com '
+            }
           }
         ]
       },
