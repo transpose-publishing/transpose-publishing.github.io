@@ -33,6 +33,7 @@ window._content.about_page = [
     content: [
      {
       text:'Update existing journal information: In existing journal record, click on ‘Edit Report’ link and fill in the form',
+      link: 'https://transpose-publishing.github.io/#/',
      },
      {
       text: 'Add policies for one journal, or policies that are identical across several journals',
