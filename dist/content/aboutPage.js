@@ -25,6 +25,10 @@ window._content.about_page = [
       {
        text: '- See the recent preprint of our landscape study on the availability of journal policies across disciplines (bioRxiv preprint)',
        link: 'https://www.biorxiv.org/content/10.1101/2020.01.24.918995v1'
+      },
+      {
+       text: '- Read about reuse of Transpose data in the Clarivate Master Journal List',
+       link: 'https://asapbio.org/transpose-data-reused-by-clarivate'
       }
     ]
   },
