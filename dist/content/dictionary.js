@@ -64,8 +64,8 @@ window._content.dictionary = {
   copyright_statement: "All original work in this repository is dedicated to the public domain under the CC0 waiver. This work was funded by a grant to ASAPbio from the Leona M. and Harry B. Helmsley Charitable Trust.",
 
   //Banner
-  banner_description: "A database of journal policies <br/>on peer review, co-reviewing, and preprinting",
-  home_page_banner_description: "A database of journal policies <br/>on peer review, co-reviewing, and preprinting",
+  banner_description: "A database of journal policies <br/>No longer actively maintained",
+  home_page_banner_description: "A database of journal policies <br/>No longer actively maintained",
   download_link: {
     text: "Download database",
     link: 'https://docs.google.com/spreadsheets/d/10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc/export?format=csv&id=10cgryddPROS2szJrC2xzTsqEu1nCgSTNZZBkLizZfTc&gid=0'
