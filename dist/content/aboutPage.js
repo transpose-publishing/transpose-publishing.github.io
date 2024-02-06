@@ -8,7 +8,7 @@ text, links or in_line_links
 window._content.about_page = [
   {
    class: 'primary-description',
-   content: '2024-02-06 UPDATE: Transpose is no longer actively being maintained. The data will continue to be available for download, and code continues to be available at https://github.com/transpose-publishing. <\br> <\br>Transpose (TRANsparency in Scholarly Publishing for Open Scholarship Evolution) is an initiative to build a database of journal policies. We’re focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and publishers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.'
+   content: '**** 2024-02-06 UPDATE: Transpose is no longer actively being maintained. The data will continue to be available for download, and code continues to be available at https://github.com/transpose-publishing. **** Transpose (TRANsparency in Scholarly Publishing for Open Scholarship Evolution) is an initiative to build a database of journal policies. We’re focusing on three areas: open peer review, co-reviewing, and detailed preprinting policies. We welcome contributions from anyone, but seek verification from journals and publishers. Our goal is to foster new practices while increasing awareness among authors, editors, and other stakeholders, and we seek to provide resources to assist journals in setting, sharing, and clarifying their policies.'
   },
   
   {
